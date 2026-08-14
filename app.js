@@ -145,20 +145,21 @@ init() {
       const due = this.dueFlashcards().length;
       const original = this.data.questions.filter(q => q.origin.toLowerCase().includes('original') || q.origin.toLowerCase().includes('instructor')).length; const pastExam=this.data.questions.filter(q=>/past exam/i.test(q.origin)).length; const examVariants=this.data.questions.filter(q=>/exam-style variant/i.test(q.origin)).length;
       return `
-        <section class="hero">
-          <div>
+        <section class="hero hero-polished">
+          <div class="hero-copy">
             <div class="eyebrow">Principles of Finance · TCH 302 · v${esc(this.data.meta.version)}</div>
-            <h1>Learn the source.<br/>Then master the decision.</h1>
-            <p class="lead">All seven course modules combine official course theory with supporting-note depth, normalized past-exam patterns, and a large generated exam-style variant bank. The generated variants change numbers, scenarios, distractors, and reasoning paths while staying tied to source-supported concepts and formulas.</p>
+            <h1>Understand finance.<br/>Practice like the exam.</h1>
+            <p class="lead">Deep, source-grounded theory, bilingual key terms, worked examples, and 600 classified practice questions across all seven course modules.</p>
             <div class="hero-actions"><button class="btn primary" onclick="App.go('learn/${this.state.lastLesson}')">Continue Learning →</button><button class="btn" onclick="App.startPractice('mixed')">Quick Practice</button></div>
+            <div class="hero-progress-card"><div><span class="kicker">Continue learning</span><strong>${esc(last.title)}</strong><small>${this.vi(last.vi)}</small></div><div><div class="progress"><span style="width:${stats.lessonProgress}%"></span></div><div class="progress-meta"><span>Course progress</span><strong>${stats.lessonProgress}%</strong></div></div></div>
           </div>
-          <div class="hero-panel">
-            <div class="kicker">Continue learning</div><h3 style="margin-top:8px">${esc(last.title)}</h3><div class="vi">${this.vi(last.vi)}</div>
-            <div style="margin-top:16px" class="progress"><span style="width:${stats.lessonProgress}%"></span></div><div class="progress-meta"><span>Course lessons completed</span><strong>${stats.lessonProgress}%</strong></div>
-            <div class="source-policy-mini"><strong>Source policy</strong><br/>Lecture → instructor-commented Q&A → original tutorial → supporting textbook → practice workbook. Working-note copies never become answer keys automatically.</div>
+          <div class="hero-visual-wrap">
+            <img class="hero-visual-img" src="${this.assetUrl(this.getModuleIllustration('dashboard'))}" alt="Finance Mastery learning workspace" onerror="this.closest('.hero-visual-wrap').classList.add('image-missing');this.style.display='none'"/>
+            <div class="hero-visual-fallback">Finance Mastery visual</div>
+            <div class="hero-float hero-float-a"><strong>${this.data.questions.length}</strong><span>Practice questions</span></div>
+            <div class="hero-float hero-float-b"><strong>${Object.keys(this.data.lessons).length}</strong><span>Deep lessons</span></div>
           </div>
         </section>
-        <section class="section visual-gallery-section"><div class="section-head"><div><div class="eyebrow">Visual learning</div><h2>Illustrated study experience</h2></div></div><div class="grid grid-2 visual-gallery">${this.renderIllustration(this.getModuleIllustration('dashboard'),'Finance learning workspace illustration','A hero-style illustration used to make the site more engaging.')} ${this.renderIllustration(this.getModuleIllustration('intro'),'Financial system flow illustration','A visual summary of savers, markets, banks, and borrowers.')}</div></section>
         <div class="grid grid-4">${this.statCard(stats.completedLessons,'Lessons completed')}${this.statCard(stats.accuracy+'%','Practice accuracy')}${this.statCard(this.state.mistakes.length,'Mistakes to review')}${this.statCard(due,'Flashcards due')}</div>
         <section class="section"><div class="section-head"><div><div class="eyebrow">v${esc(this.data.meta.version)} exam-ready depth</div><h2>Built from your course sources</h2></div></div>
           <div class="grid grid-4">${this.statCard(Object.keys(this.data.lessons).length,'Detailed lessons')}${this.statCard(this.data.formulas.length,'Verified formulas')}${this.statCard(this.data.questions.length,'Practice questions')}${this.statCard(examVariants,'Generated exam-style variants')}</div>
@@ -173,7 +174,7 @@ init() {
       const completed = m.lessons.filter(x => this.state.completedLessons.includes(x)).length;
       const pct = m.lessons.length ? Math.round(completed/m.lessons.length*100) : 0;
       const qCount = this.data.questions.filter(q=>q.module===m.id).length;
-      return `<article class="card module-card"><div class="module-top"><span class="module-number">MODULE ${String(m.order).padStart(2,'0')}</span><span class="badge ${m.coverage.toLowerCase()}">${m.coverage} SOURCE COVERAGE</span></div><h3>${esc(m.name)}</h3><div class="vi">${this.vi(m.vi)}</div><div class="module-meta"><span>${m.lessons.length} lessons</span><span>${qCount} practice questions</span></div><div class="progress"><span style="width:${pct}%"></span></div><div class="progress-meta"><span>Lesson progress</span><span>${pct}%</span></div><div class="module-actions"><button class="btn sm primary" onclick="App.openModule('${m.id}')">Open module →</button></div></article>`;
+      return `<article class="card module-card"><div class="module-top"><div class="module-heading-icon">${this.renderModuleIcon(m.id,'compact')}<span class="module-number">MODULE ${String(m.order).padStart(2,'0')}</span></div><span class="badge ${m.coverage.toLowerCase()}">${m.coverage} SOURCE COVERAGE</span></div><h3>${esc(m.name)}</h3><div class="vi">${this.vi(m.vi)}</div><div class="module-meta"><span>${m.lessons.length} lessons</span><span>${qCount} practice questions</span></div><div class="progress"><span style="width:${pct}%"></span></div><div class="progress-meta"><span>Lesson progress</span><span>${pct}%</span></div><div class="module-actions"><button class="btn sm primary" onclick="App.openModule('${m.id}')">Open module →</button></div></article>`;
     },
 
     renderLearnHome() {
@@ -185,12 +186,12 @@ init() {
       const lessonCards = m.lessons.map((lid,i) => {
         const l = this.data.lessons[lid]; const done = this.state.completedLessons.includes(lid);
         const qn = this.data.questions.filter(q=>q.concept===lid).length;
-        return `<article class="card pad flat lesson-card"><div class="module-top"><span class="badge">LESSON ${i+1}</span><span class="badge ${done?'high':''}">${done?'COMPLETED':'READY'}</span></div><h3 style="margin-top:12px">${esc(l.title)}</h3><div class="vi">${this.vi(l.vi)}</div><p class="muted small" style="margin:12px 0">${esc(l.objective)}</p><div class="lesson-card-meta"><span>${qn} questions</span><span>${l.formula?l.formula.length+' formula'+(l.formula.length>1?'s':''):'Conceptual'}</span></div><button class="btn sm primary" onclick="App.go('learn/${lid}')">Open lesson →</button></article>`;
+        return `<article class="card pad flat lesson-card"><div class="lesson-card-top"><div class="lesson-mini-icon">${this.renderModuleIcon(m.id,'mini')}</div><div class="lesson-card-heading"><div class="module-top"><span class="badge">LESSON ${i+1}</span><span class="badge ${done?'high':''}">${done?'COMPLETED':'READY'}</span></div><h3>${esc(l.title)}</h3><div class="vi">${this.vi(l.vi)}</div></div></div><p class="muted small" style="margin:12px 0">${esc(l.objective)}</p><div class="lesson-card-meta"><span>${qn} questions</span><span>${l.formula?l.formula.length+' formula'+(l.formula.length>1?'s':''):'Conceptual'}</span></div><button class="btn sm primary" onclick="App.go('learn/${lid}')">Open lesson →</button></article>`;
       }).join('');
       const totalQ=this.data.questions.filter(q=>q.module===m.id).length;
       const flow=(m.chapterFlow||[]).map((g,i)=>`<div class="chapter-flow-card"><div class="kicker">Stage ${i+1}</div><h3>${esc(g.title)}</h3><ul>${(g.items||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
       return `<div class="page-head"><div><div class="eyebrow">Module ${String(m.order).padStart(2,'0')}</div><h1>${esc(m.name)}</h1><div class="vi">${this.vi(m.vi)}</div><p class="lead" style="margin-top:10px">Primary source: ${esc(m.primarySource)}</p></div><div><span class="badge ${m.coverage.toLowerCase()}">${m.coverage} SOURCE COVERAGE</span><div class="action-row"><button class="btn primary" onclick="App.resetPractice('${m.id}');App.go('practice')">Practice chapter · ${totalQ} Q</button></div></div></div>
-        <section class="section module-visual">${this.renderIllustration(this.getModuleIllustration(m.id), `${m.name} illustration`, `A visual overview for ${m.name}.`)}</section>
+        <section class="chapter-banner"><img src="${this.assetUrl(this.getModuleIllustration(m.id))}" alt="${esc(m.name)} chapter banner" onerror="this.closest('.chapter-banner').classList.add('image-missing');this.style.display='none'"/><div class="chapter-banner-fallback">${this.renderModuleIcon(m.id,'banner-icon')}</div><div class="chapter-banner-overlay"><span>MODULE ${String(m.order).padStart(2,'0')}</span><strong>${esc(m.name)}</strong><small>${totalQ} practice questions · ${m.lessons.length} lessons</small></div></section>
         <section class="section"><div class="section-head"><div><div class="eyebrow">Chapter roadmap</div><h2>Learn in this order</h2></div></div><div class="grid grid-3">${flow}</div></section>
         ${m.examPatterns?.length?`<section class="section"><div class="section-head"><div><div class="eyebrow">Past-exam signals</div><h2>Recurring ways this module is tested</h2></div></div><div class="card pad flat"><ul class="exam-checklist">${m.examPatterns.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></section>`:''}<section class="section"><div class="section-head"><div><div class="eyebrow">Lessons</div><h2>Deep theory + targeted practice</h2></div></div><div class="grid grid-2">${lessonCards}</div></section>`;
     },
@@ -214,7 +215,7 @@ init() {
         <aside class="card pad flat lesson-outline"><div class="kicker">Lesson outline</div><div class="outline-list">${lessonIds.map(x=>`<button class="outline-item ${x===id?'active':''}" onclick="App.go('learn/${x}')">${esc(this.data.lessons[x].title)}</button>`).join('')}</div></aside>
         <article class="card lesson-main">
           <header class="lesson-header"><div class="eyebrow">Module ${String(m.order).padStart(2,'0')} · ${esc(m.name)}</div><h1>${esc(l.title)}</h1><div class="key-term"><span class="translation">${this.vi(l.vi)}</span></div><p class="lead">${esc(l.objective)}</p><div class="lesson-source-line"><span class="badge">${esc(l.source.level||'Course source')}</span><span>${esc(l.source.file)} · ${esc(l.source.location||'')}</span></div></header>
-          <section class="lesson-block lesson-visual-block"><div class="kicker">Visual aid</div><h2>See the concept</h2>${this.renderIllustration(this.getLessonIllustration(id), `${l.title} illustration`, `Illustration for ${l.title}.`)}</section>
+          <section class="lesson-visual-strip"><div class="lesson-visual-copy">${this.renderModuleIcon(m.id,'lesson-hero-icon')}<div><span class="kicker">Visual chapter cue</span><strong>${esc(m.name)}</strong></div></div><img src="${this.assetUrl(this.getModuleIllustration(m.id))}" alt="${esc(m.name)} visual" loading="lazy" onerror="this.style.display='none'"/></section>
           <section class="lesson-block"><div class="kicker">Intuition first</div><h2>Why this makes sense</h2><div class="callout primary"><p style="margin:0">${esc(l.intuition)}</p></div></section>
           <section class="lesson-block"><div class="kicker">Source-grounded concept</div><h2>Definition</h2><p>${esc(l.definition)}</p><button class="source-btn" onclick='App.openSource(${jsonAttr(l.source)})'>◫ View source reference</button></section>
           ${keyTerms}

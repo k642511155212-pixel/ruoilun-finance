@@ -38,3 +38,10 @@ Past Exam Mode initialization: **20 questions / 25 minutes**
 - Prior papers are labeled exam-practice sources, not theory authority.
 - Past-paper items with ambiguous scan wording were normalized/adapted with explicit assumptions.
 - No external web knowledge was added to the academic content in this build.
+
+
+## v0.6.2 visual QA
+- Root-level hero/banner WebP assets added for GitHub Pages reliability.
+- Inline SVG icons require no external assets.
+- Image failure fallbacks prevent broken-alt-text layouts.
+- Chapter banners and homepage hero are responsive.

@@ -1,3 +1,17 @@
+# Finance Mastery v0.6.2 Visual Update
+
+This build fixes the broken illustration issue by placing the five website illustration files directly in the repository root. When uploading to GitHub, make sure these files are present next to `index.html`:
+
+- `fm-hero.webp`
+- `fm-financial-system.webp`
+- `fm-tvm.webp`
+- `fm-risk.webp`
+- `fm-ratios.webp`
+
+The update also adds small module/lesson icons, chapter banner images, and a redesigned homepage hero section.
+
+---
+
 # Upload v0.5 to GitHub Pages
 
 1. Download and unzip the v0.5 package.

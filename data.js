@@ -2,9 +2,9 @@ const FINANCE_DATA = {
   "meta": {
     "course": "Principles of Finance (TCH 302)",
     "product": "Finance Mastery",
-    "version": "0.6.1",
-    "subtitle": "Expanded exam-style practice · 600-question bank · theory + calculation variants · illustrated interface",
-    "policy": "Official lecture and instructor-commented Q&A remain primary. Newly uploaded consolidated LTTC notes are supporting study notes, used only where aligned with the governing course sources. Past exam files are used to identify recurring exam patterns and to build normalized/adapted practice; they do not override theory sources. v0.6 adds generated exam-style variants derived from recurring patterns in the uploaded prior-paper archive; generated variants are clearly labeled and never presented as original past-paper questions. v0.6.1 also adds custom finance illustrations throughout the interface to make the learning experience more visual and engaging."
+    "version": "0.6.2",
+    "subtitle": "Expanded exam-style practice · 600-question bank · theory + calculation variants · polished visual learning interface",
+    "policy": "Official lecture and instructor-commented Q&A remain primary. Newly uploaded consolidated LTTC notes are supporting study notes, used only where aligned with the governing course sources. Past exam files are used to identify recurring exam patterns and to build normalized/adapted practice; they do not override theory sources. v0.6 adds generated exam-style variants derived from recurring patterns in the uploaded prior-paper archive; generated variants are clearly labeled and never presented as original past-paper questions. v0.6.2 upgrades the visual system with a polished homepage hero, chapter banners, and compact lesson-card icons while keeping the same source-grounded academic content and 600-question practice bank."
   },
   "modules": [
     {
