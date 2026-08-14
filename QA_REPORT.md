@@ -1,28 +1,19 @@
-# Finance Mastery v0.7 QA Report
+# Finance Mastery v0.8 QA Report
 
-## Build integrity
-- `app.js`: Node syntax check passed.
-- `data.js`: Node syntax check passed.
-- Course content preserved: 69 lessons, 600 practice questions, 42 source flashcards.
-- GitHub Pages static structure preserved (`index.html`, `app.js`, `data.js`, `styles.css`, `.nojekyll`).
+## Annotation rebuild
+- Replaced the v0.7 per-render selection handler with a persistent global annotation layer modeled on Accounting Mastery v6.1.
+- Floating toolbar keeps the browser text selection alive on toolbar click (`mousedown.preventDefault`).
+- Quote anchoring uses exact selected text + prefix/suffix context.
+- Highlight rendering uses `<mark>` segments and is applied immediately after saving.
+- Four semantic colors: Important, Exam trap, Understood/example, Definition.
+- Comment editor, highlight recoloring, deletion, and flashcard conversion integrated.
+- Notes page provides module/color/search filtering, jump-to-theory, edit, flashcard conversion, backup export/import.
+- Personal flashcards integrate with the existing Finance Mastery flashcard and spaced-review system.
+- Legacy v0.7 annotation fields are migrated where possible.
 
-## Annotation workflow tests
-Automated browser checks were run against an inline build with browser localStorage mocked:
-- Dashboard renders without JavaScript errors.
-- Lesson route renders and exposes annotatable theory blocks.
-- Selecting theory text opens the contextual study toolbar.
-- Highlight saves and re-renders inline.
-- Comment composer saves a personal comment.
-- Personal flashcard composer creates a card linked to the lesson.
-- Notes & Highlights page lists annotations and personal flashcards.
-- Personal flashcards appear in the Flashcards page using the personal filter.
-- Clicking an annotated passage opens its annotation detail modal.
-
-## Persistence design
-- Annotations and personal flashcards are stored in the existing Finance Mastery localStorage state.
-- Exact text plus character offsets are stored for each annotation.
-- Quote-based re-anchoring is attempted if lesson text shifts in a later build.
-- Export/import JSON backup is included for portability and data safety.
-
-## Source fidelity
-Personal annotations are explicitly separated from academic source content and do not alter the course source hierarchy.
+## Static validation
+- `node --check app.js`: PASS
+- `node --check data.js`: PASS
+- `node --check annotations.js`: PASS
+- `index.html` loads `data.js` → `annotations.js` → `app.js` in dependency order.
+- GitHub Pages remains static-only; no backend dependency added.

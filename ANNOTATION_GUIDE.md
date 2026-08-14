@@ -1,22 +1,28 @@
-# Finance Mastery v0.7 — Highlight, Comment & Personal Flashcards
+# Finance Mastery v0.8 — Personal Annotation Layer
 
-## How to annotate theory
-1. Open any lesson.
-2. Drag across text inside a theory section.
-3. A compact study toolbar appears above the selection.
-4. Choose:
-   - one of four highlight colours;
-   - **Comment** to attach a personal note;
-   - **Flashcard** to create a personal active-recall card.
+The annotation interaction is modeled on the user-provided `Accounting Mastery v6.1 Annotations` reference.
 
-## Notes & Highlights
-Use the **Notes & Highlights** item in the left navigation to review every saved annotation, edit comments, remove highlights, jump back to the lesson, and manage personal flashcards.
+## How to use
+1. Open any lesson in **Learn**.
+2. Select a phrase, sentence, formula explanation, worked-example step, or theory paragraph.
+3. A floating toolbar appears with:
+   - **Highlight** — default yellow.
+   - **Comment** — highlight + personal note.
+   - **Flashcard** — turn the selection into a personal flashcard.
+   - Four semantic highlight colors:
+     - Yellow: Important
+     - Red: Exam trap
+     - Green: Understood / example
+     - Blue: Definition
+4. Click an existing highlight to edit its color/comment, create a flashcard, or delete it.
+5. Use **Notes & Highlights** in the sidebar to search/filter all annotations and jump back to their lesson.
+6. Personal flashcards appear in the normal **Flashcards** page and use the existing spaced-review workflow.
 
-## Personal flashcards
-Personal cards are included in the normal Flashcards system and use the same Again / Hard / Good / Easy review scheduling. Use the **Personal flashcards** filter to study only your own cards.
+## Persistence and resilience
+- Uses the existing `finance-mastery-state-v2` browser storage key, so v0.7 progress and personal study data remain compatible.
+- New annotations store the exact selected quote plus nearby prefix/suffix text. This makes highlights more resilient when lesson wording is edited slightly in future releases.
+- Existing v0.7 highlights are migrated automatically when possible.
+- Export/import backup is available on the Notes page.
 
-## Storage and backup
-Annotations and personal flashcards are stored in browser localStorage for the GitHub Pages site. They stay on the same browser/device unless browser data is cleared. Use **Export backup** from Notes & Highlights or Settings to download a JSON backup. Use **Import backup** to restore or move the study layer to another browser/device.
-
-## Academic source separation
-Highlights, comments, and personal flashcards are user-created study material. They never modify the source-grounded theory or become academic sources.
+## Selection rule
+For stable rendering, one annotation is limited to one readable theory block (for example one paragraph, list item, theory card, formula box, or callout). This is the same design principle used by the Accounting Mastery reference.
