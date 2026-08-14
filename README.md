@@ -1,3 +1,7 @@
+Finance Mastery v0.6.3 — blank-page hotfix
+
+Fixes missing runtime helpers and switches illustration URLs to root-relative-safe bundled assets for GitHub Pages.
+
 # Finance Mastery v0.6.2 Visual Update
 
 This build fixes the broken illustration issue by placing the five website illustration files directly in the repository root. When uploading to GitHub, make sure these files are present next to `index.html`:

@@ -5,28 +5,28 @@
   const LEGACY_KEY = 'finance-mastery-state-v1';
 
 const MODULE_ILLUSTRATIONS = {
-  dashboard: 'assets/illustrations/finance-learning-workspace.png',
-  intro: 'assets/illustrations/financial-system-flow.png',
-  tvm: 'assets/illustrations/time-value-money.png',
-  personal: 'assets/illustrations/finance-learning-workspace.png',
-  markets: 'assets/illustrations/financial-system-flow.png',
-  valuation: 'assets/illustrations/finance-learning-workspace.png',
-  risk: 'assets/illustrations/portfolio-risk.png',
-  health: 'assets/illustrations/financial-ratios-dashboard.png'
+  dashboard: 'fm-hero.webp',
+  intro: 'fm-financial-system.webp',
+  tvm: 'fm-tvm.webp',
+  personal: 'fm-tvm.webp',
+  markets: 'fm-financial-system.webp',
+  valuation: 'fm-hero.webp',
+  risk: 'fm-risk.webp',
+  health: 'fm-ratios.webp'
 };
 
 const LESSON_ILLUSTRATIONS = {
-  'financial-system': 'assets/illustrations/financial-system-flow.png',
-  'money-functions-payment': 'assets/illustrations/financial-system-flow.png',
-  'financial-instruments-deep': 'assets/illustrations/financial-system-flow.png',
-  'bond-price': 'assets/illustrations/finance-learning-workspace.png',
-  'bond-ytm': 'assets/illustrations/finance-learning-workspace.png',
-  'stock-valuation': 'assets/illustrations/finance-learning-workspace.png',
-  'expected-value-risk': 'assets/illustrations/portfolio-risk.png',
-  'two-asset-portfolio-risk': 'assets/illustrations/portfolio-risk.png',
-  'financial-statements': 'assets/illustrations/financial-ratios-dashboard.png',
-  'ratio-analysis': 'assets/illustrations/financial-ratios-dashboard.png',
-  'dupont-analysis': 'assets/illustrations/financial-ratios-dashboard.png'
+  'financial-system': 'fm-financial-system.webp',
+  'money-functions-payment': 'fm-financial-system.webp',
+  'financial-instruments-deep': 'fm-financial-system.webp',
+  'bond-price': 'fm-hero.webp',
+  'bond-ytm': 'fm-hero.webp',
+  'stock-valuation': 'fm-hero.webp',
+  'expected-value-risk': 'fm-risk.webp',
+  'two-asset-portfolio-risk': 'fm-risk.webp',
+  'financial-statements': 'fm-ratios.webp',
+  'ratio-analysis': 'fm-ratios.webp',
+  'dupont-analysis': 'fm-ratios.webp'
 };
 
   const defaults = {
@@ -62,7 +62,25 @@ getLessonIllustration(lessonId) {
 },
 
 renderIllustration(src, alt, caption='') {
-  return `<figure class="illustration-card"><img src="${src}" alt="${esc(alt)}" loading="lazy"/><figcaption>${esc(caption || alt)}</figcaption></figure>`;
+  return `<figure class="illustration-card"><img src="${this.assetUrl(src)}" alt="${esc(alt)}" loading="lazy" onerror="this.style.display='none';this.closest('.illustration-card')?.classList.add('image-missing')"/><figcaption>${esc(caption || alt)}</figcaption></figure>`;
+},
+
+assetUrl(path) {
+  return String(path || '').replace(/^\/+/, '');
+},
+
+renderModuleIcon(moduleId, extraClass='') {
+  const icons = {
+    intro: '<path d="M4 7h16M6 7v10m4-10v10m4-10v10m4-10v10M3 19h18M5 4h14l2 3H3l2-3Z"/>',
+    tvm: '<circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2M4 4l2 2M20 4l-2 2"/>',
+    personal: '<path d="M4 10h16v9H4zM7 10V7a5 5 0 0 1 10 0v3M8 14h8"/>',
+    markets: '<path d="M4 18V9m5 9V5m5 13v-7m5 7V3M3 20h18"/>',
+    valuation: '<path d="M5 5h14v14H5zM8 15l3-3 2 2 4-5M8 9h3"/>',
+    risk: '<path d="M12 3l7 3v5c0 4.5-2.7 7.7-7 10-4.3-2.3-7-5.5-7-10V6l7-3Z"/><path d="M8 14l2-2 2 1 4-5"/>',
+    health: '<path d="M4 19h16M6 16v-4m4 4V8m4 8v-6m4 6V5"/><path d="M5 7l4-3 4 2 5-4"/>'
+  };
+  const body = icons[moduleId] || icons.intro;
+  return `<svg class="module-svg-icon ${esc(extraClass)}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
 },
 
 init() {
