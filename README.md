@@ -1,51 +1,35 @@
-# Finance Mastery v0.4 — Exam-Ready Deep Learning Edition
+Finance Mastery v0.6.1
 
-Static GitHub Pages build for Principles of Finance (TCH 302).
+Illustrated interface update: added custom finance-themed illustrations to the dashboard, module pages, and lesson pages.
 
-## What changed in v0.4
+# Finance Mastery v0.5 — GitHub Pages
 
-- 7 course modules / 65 lessons retained from the audited course map.
-- Every lesson now has a visible learning flow: **Identify → Connect → Apply → Check**.
-- Deeper theory explanations added, with major exam concepts receiving hand-written source-grounded expansions.
-- Supporting textbooks are used to deepen only concepts already mapped to the course.
-- Practice bank expanded to **283 questions**.
-- Questions classified by **skill**, **difficulty**, **origin**, **module**, and **mistake type**.
-- New source-derived practice includes definition discrimination, cause/effect relationships, error diagnosis, application scenarios, timeline reasoning, and interpretation.
-- Immediate feedback now shows the tested skill, error category, explanation, exam tip, and source.
-- Module pages include a chapter roadmap and one-click chapter practice.
-- GitHub Pages ready: `.nojekyll` and `404.html` are included.
+This build integrates the newly uploaded LTTC notes and past-exam archive while preserving the source hierarchy.
 
-## Source hierarchy
+## What changed
+- Version: **0.5**
+- Lessons: **69** across 7 course modules
+- Practice questions: **390**
+- Past-exam normalized/adapted questions: **66**
+- Formula objects: **31**
+- Flashcards / glossary terms: **42**
+- Source records: **21**
 
-1. Latest official lecture
-2. Instructor-commented Q&A
-3. Original course tutorial/exercise
-4. Supporting uploaded textbook
-5. Practice workbook
-6. Working-note copies (never treated as official answer keys without evidence)
+### New source layer
+1. `LTTC_Financial market_HKT.pdf` — supporting notes for money, financial instruments, markets, institutions, regulation, and money-market instruments.
+2. `LTTC_Time value and money_HKT.pdf` — supporting worked explanations for TVM, compounding, annuities, loans, NPV/IRR, and financing.
+3. `5 bộ đề năm trước LTTC.pdf` — recurring exam-pattern archive.
+4. `b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf` — scanned prior final.
 
-The full Mishkin & Serletis textbook is used as a supporting source for mapped Financial Markets/Institutions topics. The Bodie/Merton/Cleeton upload is a partial scan; later chapters listed in its table of contents are not treated as available unless their pages are actually present.
+## New learning features
+- New lessons on **Money & Payment Systems**, **Financial Instruments**, **Well-Run Markets & Regulation**, and **Two-Asset Portfolio Risk**.
+- Each major module shows **Past-exam signals**: recurring ways the topic is tested.
+- Practice now includes **Past Exam Drill** as a separate origin filter.
+- Exam Mode now includes a dedicated **Past-exam drill**.
+- Expanded loan-payoff, amortization, continuous-compounding, money-market yield, portfolio-risk, and reverse-DuPont coverage.
 
-## Publish on GitHub Pages
+## Source policy
+Official lecture and instructor-commented Q&A remain primary. The HKT files are supporting notes and prior papers are exam evidence. Past-paper questions are normalized/adapted rather than treated as theory or copied blindly.
 
-Upload **all files and folders in this package to the root of your repository** so `index.html` is directly visible in the repo. Then:
-
-1. GitHub repository → **Settings** → **Pages**
-2. Source: **Deploy from a branch**
-3. Branch: **main**
-4. Folder: **/(root)**
-5. Save
-
-Your URL will be `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/`.
-
-## Files that must remain together
-
-- `index.html`
-- `app.js`
-- `data.js`
-- `styles.css`
-- `assets/`
-- `content/`
-- `.nojekyll`
-
-No npm installation or build step is required.
+## GitHub Pages
+Upload the **contents** of this folder to the repository root. Keep `.nojekyll`. If GitHub Pages is already configured for `main / (root)`, committing these files updates the existing site URL automatically.

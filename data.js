@@ -2,9 +2,9 @@ const FINANCE_DATA = {
   "meta": {
     "course": "Principles of Finance (TCH 302)",
     "product": "Finance Mastery",
-    "version": "0.4",
-    "subtitle": "Exam-ready deep learning edition · source-grounded theory + classified practice",
-    "policy": "Academic content is grounded in uploaded course sources. Official lecture/Q&A remains primary; supporting textbooks deepen only mapped topics. Generated extensions use source-supported principles and are visibly labeled."
+    "version": "0.6.1",
+    "subtitle": "Expanded exam-style practice · 600-question bank · theory + calculation variants · illustrated interface",
+    "policy": "Official lecture and instructor-commented Q&A remain primary. Newly uploaded consolidated LTTC notes are supporting study notes, used only where aligned with the governing course sources. Past exam files are used to identify recurring exam patterns and to build normalized/adapted practice; they do not override theory sources. v0.6 adds generated exam-style variants derived from recurring patterns in the uploaded prior-paper archive; generated variants are clearly labeled and never presented as original past-paper questions. v0.6.1 also adds custom finance illustrations throughout the interface to make the learning experience more visual and engaging."
   },
   "modules": [
     {
@@ -25,7 +25,9 @@ const FINANCE_DATA = {
         "Goal of management",
         "Financial system",
         "Financial markets and institutions",
-        "Flow of funds"
+        "Flow of funds",
+        "Functions of money and payment systems",
+        "Financial-instrument value drivers and standardization"
       ],
       "lessons": [
         "real-vs-financial",
@@ -34,7 +36,9 @@ const FINANCE_DATA = {
         "firm-decisions",
         "business-organization",
         "goal-management",
-        "financial-system"
+        "financial-system",
+        "money-functions-payment",
+        "financial-instruments-deep"
       ],
       "chapterFlow": [
         {
@@ -60,7 +64,9 @@ const FINANCE_DATA = {
             "Goal of management",
             "Financial system",
             "Financial markets and institutions",
-            "Flow of funds"
+            "Flow of funds",
+            "Functions of money and payment systems",
+            "Financial-instrument value drivers"
           ]
         }
       ],
@@ -75,6 +81,12 @@ const FINANCE_DATA = {
         "Goal of management",
         "Financial system",
         "Financial markets and institutions"
+      ],
+      "examPatterns": [
+        "Distinguish money from wealth and income; identify medium of exchange, unit of account, and store of value.",
+        "Explain why liquidity makes money a useful store of value even when other assets may offer higher expected returns.",
+        "Recognize the legal structure and uses of a financial instrument: payment, store of value, and risk transfer.",
+        "Rank instrument value by size, timing, likelihood of payment, and state/circumstances."
       ]
     },
     {
@@ -148,6 +160,13 @@ const FINANCE_DATA = {
         "Growing cash flows",
         "APR and EAR",
         "NPV"
+      ],
+      "examPatterns": [
+        "Lump-sum PV/FV with annual or sub-annual compounding.",
+        "APR ↔ periodic rate ↔ EAR; recognize that horizon does not change the EAR formula.",
+        "Unequal cash-flow timelines and deferred annuities.",
+        "Loan payment, total interest, remaining balance/payoff, and principal-versus-interest split.",
+        "NPV/IRR decisions and constrained project selection under a capital budget."
       ]
     },
     {
@@ -214,6 +233,12 @@ const FINANCE_DATA = {
         "Interest-only loans",
         "Credit-card balances",
         "Growing savings plans"
+      ],
+      "examPatterns": [
+        "Mortgage/loan payment and payoff after k payments.",
+        "Interest-only loan cash-flow structure.",
+        "Credit-card timing / cash-cycle reasoning.",
+        "Retirement or insurance annuity: compare purchase price with PV of promised payments."
       ]
     },
     {
@@ -237,12 +262,15 @@ const FINANCE_DATA = {
         "Insurance and pensions",
         "Finance companies",
         "Mutual funds and investment banks",
-        "Asymmetric information"
+        "Asymmetric information",
+        "Characteristics of a well-run financial market",
+        "Financial regulation and investor protection"
       ],
       "lessons": [
         "market-role",
         "market-structure",
         "money-capital-markets",
+        "market-quality-regulation",
         "fx-derivatives",
         "market-rates",
         "international-markets",
@@ -267,7 +295,8 @@ const FINANCE_DATA = {
             "Money and capital markets",
             "Foreign exchange markets",
             "Derivatives",
-            "Holding-period return"
+            "Holding-period return",
+            "Characteristics of a well-run financial market"
           ]
         },
         {
@@ -278,7 +307,8 @@ const FINANCE_DATA = {
             "Insurance and pensions",
             "Finance companies",
             "Mutual funds and investment banks",
-            "Asymmetric information"
+            "Asymmetric information",
+            "Financial regulation and investor protection"
           ]
         }
       ],
@@ -293,6 +323,13 @@ const FINANCE_DATA = {
         "Holding-period return",
         "Internationalization",
         "Financial institutions"
+      ],
+      "examPatterns": [
+        "Primary vs secondary; money vs capital; exchange vs OTC classification.",
+        "Money-market instrument identification: T-bills, CDs, commercial paper, repos, federal funds, bankers’ acceptances.",
+        "Functions and types of financial intermediaries, especially commercial banks and investment banks.",
+        "Adverse selection (before transaction) vs moral hazard (after transaction) and mitigation tools.",
+        "Why secondary-market prices/liquidity affect future primary-market financing."
       ]
     },
     {
@@ -376,6 +413,14 @@ const FINANCE_DATA = {
         "Equity valuation",
         "Zero-growth dividends",
         "Constant-growth dividends"
+      ],
+      "examPatterns": [
+        "Coupon-bond price from par, coupon, maturity, and YTM; then interpret premium/discount.",
+        "Recalculate YTM or price when maturity/rating/required return changes.",
+        "T-bill quote → price → holding-period return / bond-equivalent yield / EAR.",
+        "Commercial paper and other money-market yield conventions.",
+        "Bid/ask interpretation and money-market instrument identification.",
+        "Credit ratings, default risk, liquidity, tax treatment, and yield spreads."
       ]
     },
     {
@@ -399,12 +444,14 @@ const FINANCE_DATA = {
         "Risk premium",
         "Hedging",
         "Diversification",
-        "Risk spreading"
+        "Risk spreading",
+        "Two-asset portfolio variance, covariance and correlation"
       ],
       "lessons": [
         "defining-risk",
         "probability-expected-value",
         "variance-standard-deviation",
+        "portfolio-risk-two-assets",
         "leverage-risk",
         "value-at-risk",
         "systematic-idiosyncratic",
@@ -427,7 +474,8 @@ const FINANCE_DATA = {
             "Standard deviation",
             "Leverage",
             "Value at Risk",
-            "Idiosyncratic risk"
+            "Idiosyncratic risk",
+            "Two-asset portfolio risk"
           ]
         },
         {
@@ -453,6 +501,13 @@ const FINANCE_DATA = {
         "Idiosyncratic risk",
         "Systematic risk",
         "Risk aversion"
+      ],
+      "examPatterns": [
+        "Expected value and standard deviation from discrete outcomes.",
+        "Portfolio risk from weights, variances/standard deviations, covariance or correlation.",
+        "Interpret perfect positive correlation as no diversification benefit from combining risky assets.",
+        "Explain how financial leverage changes default risk and the dispersion of equity outcomes.",
+        "Risk aversion: investors require compensation (risk premium) to bear more risk."
       ]
     },
     {
@@ -542,6 +597,13 @@ const FINANCE_DATA = {
         "Statement of cash flows",
         "Free cash flow",
         "Retained earnings"
+      ],
+      "examPatterns": [
+        "Compute missing net margin, asset turnover, equity multiplier, ROA, or ROE using DuPont identities.",
+        "Interpret whether weak ROE comes from profitability, efficiency, or leverage.",
+        "Calculate debt-to-equity and other leverage/coverage ratios.",
+        "Compare companies using multiple ratios rather than a single number.",
+        "Discuss book versus market leverage and off-balance-sheet obligations conceptually."
       ]
     }
   ],
@@ -927,7 +989,8 @@ const FINANCE_DATA = {
       },
       "supporting": [
         "The Economics of Money, Banking, and Financial Markets — Mishkin & Serletis, Chapter 2: financial markets, intermediaries, transaction costs, risk sharing, asymmetric information, and regulation",
-        "Financial Economics — Bodie, Merton & Cleeton, Part I / Chapter 2 in the uploaded scan: financial markets, intermediaries, infrastructure, regulation, and governmental organizations"
+        "Financial Economics — Bodie, Merton & Cleeton, Part I / Chapter 2 in the uploaded scan: financial markets, intermediaries, infrastructure, regulation, and governmental organizations",
+        "LTTC_Financial market_HKT.pdf · six-part financial system and instrument/market/institution notes"
       ],
       "deepExplanation": [
         "Start with the economic problem: some households, firms, or governments have funds available now, while others need financing now. The financial system is the set of mechanisms through which those resources, financial claims, and risks are transferred.",
@@ -955,7 +1018,8 @@ const FINANCE_DATA = {
       "examFocus": [
         "Be able to explain The Financial System in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
-        "Be able to reject the common mistake: Do not treat 'financial system' as a synonym for 'financial markets.' Markets are only one component. The course explicitly lists six parts, and supporting sources explain how markets and intermediaries perform different but connected functions."
+        "Be able to reject the common mistake: Do not treat 'financial system' as a synonym for 'financial markets.' Markets are only one component. The course explicitly lists six parts, and supporting sources explain how markets and intermediaries perform different but connected functions.",
+        "Past papers repeatedly test whether a transaction occurs through a financial market, intermediary, or particular financial instrument."
       ]
     },
     "tvm-intuition": {
@@ -977,9 +1041,9 @@ const FINANCE_DATA = {
         "level": "Primary course source"
       },
       "deepExplanation": [
-        "The core idea is equivalence across dates. Two cash amounts that look identical in nominal terms are not automatically equal in economic value if they are received at different dates.",
-        "Compounding asks: if money is available now and earns a return, what amount will it grow to later? Discounting asks the reverse: what amount today is economically equivalent to a future cash flow? These are two directions of the same time-value relationship.",
-        "For exams, do not begin with a formula. First identify the valuation date, place cash flows on a timeline, and then decide whether you are moving each amount forward or backward in time."
+        "The newly uploaded TVM notes give three reasons the same nominal amount is worth more today: money available today can earn a return, inflation can reduce future purchasing power, and future receipt is generally uncertain. These reasons reinforce the course intuition rather than replacing it.",
+        "The core idea is equivalence across dates. Two equal nominal cash amounts are not automatically equal in economic value if they are received at different dates.",
+        "Compounding asks what a present amount grows to; discounting asks what present amount is equivalent to a future cash flow. Always choose a valuation date before selecting a formula."
       ],
       "studyFlow": [
         {
@@ -1003,6 +1067,31 @@ const FINANCE_DATA = {
         "Be able to explain Time Value of Money in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Compounding moves value forward in time; discounting moves value backward in time."
+      ],
+      "supporting": [
+        "LTTC_Time value and money_HKT.pdf · pp. 1–5"
+      ],
+      "keyTerms": [
+        [
+          "Compounding",
+          "Ghép lãi / tích lũy"
+        ],
+        [
+          "Discounting",
+          "Chiết khấu"
+        ],
+        [
+          "Purchasing power",
+          "Sức mua"
+        ],
+        [
+          "Inflation",
+          "Lạm phát"
+        ],
+        [
+          "Reinvestment rate",
+          "Lãi suất tái đầu tư"
+        ]
       ]
     },
     "lump-sum": {
@@ -1064,7 +1153,9 @@ const FINANCE_DATA = {
       "deepExplanation": [
         "A lump sum is a single cash flow, so its valuation is the cleanest TVM case. The future-value and present-value formulas are inverses of one another: one compounds a present amount forward, the other discounts a future amount backward.",
         "The interest rate and number of periods must use the same time unit. If the rate is monthly, the number of periods must be months; if the rate is annual, the number of periods must be years. This unit-matching step is a frequent source of otherwise avoidable errors.",
-        "Sensitivity follows directly from discounting. Holding a future cash flow and horizon fixed, a larger positive discount rate produces a lower present value. Holding the rate fixed, a longer wait also lowers present value."
+        "Sensitivity follows directly from discounting. Holding a future cash flow and horizon fixed, a larger positive discount rate produces a lower present value. Holding the rate fixed, a longer wait also lowers present value.",
+        "Compound interest means interest can itself earn interest. Over long horizons, the gap between simple and compound interest can become large, so “rate × years” is not a valid substitute for compounding when the source specifies compound interest.",
+        "When choosing between a long deposit and a sequence of shorter deposits, the reinvestment rate on the future short deposit matters; the initial quoted rates alone are not enough."
       ],
       "studyFlow": [
         {
@@ -1088,6 +1179,9 @@ const FINANCE_DATA = {
         "Be able to explain Lump-Sum Valuation in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Match the rate per period with the number of periods."
+      ],
+      "supporting": [
+        "LTTC_Time value and money_HKT.pdf · compounding examples and reinvestment-rate example"
       ]
     },
     "multiple-cash-flows": {
@@ -1181,12 +1275,15 @@ const FINANCE_DATA = {
       ],
       "supporting": [
         "PV of an annuity.pdf — visual derivation",
-        "Q&A 3.pdf — payment timing clarification"
+        "Q&A 3.pdf — payment timing clarification",
+        "LTTC_Time value and money_HKT.pdf · annuity section, including insurance-annuity and mortgage applications"
       ],
       "deepExplanation": [
         "An annuity is a repeated equal cash flow at regular intervals. The compact annuity formula works because every payment has the same amount and spacing, but the payments still occur at different dates and therefore carry different discount factors.",
         "Timing is decisive. In the standard ordinary-annuity setup, the first payment occurs one period after the valuation date. The instructor Q&A repeatedly emphasizes that a payment occurring today changes the structure and should not be silently treated as an ordinary annuity.",
-        "On exams, identify PMT, periodic rate, and number of payments only after confirming the first payment date. Many annuity mistakes are timeline mistakes rather than algebra mistakes."
+        "On exams, identify PMT, periodic rate, and number of payments only after confirming the first payment date. Many annuity mistakes are timeline mistakes rather than algebra mistakes.",
+        "The new notes distinguish cash flows starting immediately from cash flows starting at the end of the period. In practice, read the dates rather than relying on labels: a first payment today is an annuity-due timing pattern; a first payment one period from now is an ordinary-annuity timing pattern.",
+        "A deferred annuity is handled by valuing the annuity one period before its first payment, then discounting that value back to the desired valuation date."
       ],
       "studyFlow": [
         {
@@ -1244,7 +1341,9 @@ const FINANCE_DATA = {
       "deepExplanation": [
         "Start with the course definition: The lecture lists three loan payment methods: amortized loan, discount loan, and interest-only loan.",
         "The source then connects this concept to: Amortized loan: interest and principal are paid as you go. Discount loan: interest and principal are paid at maturity. Interest-only loan: interest is paid as you go and principal is paid at maturity.",
-        "Exam lens: Interest-only does not mean principal disappears; principal is due at maturity."
+        "Exam lens: Interest-only does not mean principal disappears; principal is due at maturity.",
+        "The consolidated notes explicitly warn against computing a “true rate” as total interest divided by original principal when the principal is being repaid through time. The outstanding balance changes after every payment, so interest is charged on a declining balance.",
+        "A past-paper pattern asks for both payment and payoff after a specified payment. Solve in two stages: compute PMT from the original loan, then value only the remaining payments at the payoff date."
       ],
       "studyFlow": [
         {
@@ -1267,7 +1366,37 @@ const FINANCE_DATA = {
       "examFocus": [
         "Be able to explain Loan Payment Methods & Amortization in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
-        "Be able to reject the common mistake: Interest-only does not mean principal disappears; principal is due at maturity."
+        "Be able to reject the common mistake: Interest-only does not mean principal disappears; principal is due at maturity.",
+        "Be able to compute the payment first, then compute remaining balance/payoff at a later payment date.",
+        "Be able to split a specific payment into interest = r × prior balance and principal = PMT − interest."
+      ],
+      "theory": [
+        {
+          "title": "1. Payment equation",
+          "body": "For a fully amortizing loan, the original principal equals the present value of the scheduled payments at the loan rate per payment period."
+        },
+        {
+          "title": "2. Interest/principal split",
+          "body": "Each payment first covers interest on the outstanding balance. The remainder reduces principal. As the balance falls, interest generally falls and principal repayment rises."
+        },
+        {
+          "title": "3. Remaining balance",
+          "body": "Immediately after payment k, the remaining balance equals the present value at that date of the payments still outstanding. This is the cleanest payoff calculation."
+        },
+        {
+          "title": "4. Total interest",
+          "body": "For a fixed fully amortizing loan with no fees, total scheduled interest equals total payments over the loan minus original principal."
+        }
+      ],
+      "formula": [
+        {
+          "label": "Remaining balance after payment k",
+          "html": "B<sub>k</sub> = PMT × [1 − (1+r)<sup>−(n−k)</sup>] / r"
+        }
+      ],
+      "supporting": [
+        "LTTC_Time value and money_HKT.pdf · amortization explanation",
+        "5 bộ đề năm trước LTTC.pdf · recurring loan-payment/payoff written problems"
       ]
     },
     "perpetuities": {
@@ -1433,6 +1562,10 @@ const FINANCE_DATA = {
         {
           "label": "Effective Annual Rate",
           "html": "EAR = (1 + APR / m)<sup>m</sup> − 1"
+        },
+        {
+          "label": "Continuous compounding",
+          "html": "FV = PV·e<sup>rt</sup> &nbsp; and &nbsp; PV = FV·e<sup>−rt</sup>"
         }
       ],
       "variables": [
@@ -1446,12 +1579,15 @@ const FINANCE_DATA = {
         ]
       ],
       "supporting": [
-        "Q&A 3.pdf — EAR-to-monthly-rate clarification"
+        "Q&A 3.pdf — EAR-to-monthly-rate clarification",
+        "LTTC_Time value and money_HKT.pdf · pp. 3–6"
       ],
       "deepExplanation": [
         "APR is a quoted annual rate when compounding occurs more frequently than once per year. The periodic rate is the APR divided by the number of compounding periods per year when the lecture uses the standard nominal-rate convention.",
         "EAR measures the one-year growth actually produced after intra-year compounding. Therefore EAR and APR are generally not interchangeable when compounding is more frequent than annually.",
-        "The safest exam workflow is: identify compounding frequency, compute the periodic rate, match that rate to the cash-flow period, and convert to EAR only when an effective annual comparison is requested."
+        "The safest exam workflow is: identify compounding frequency, compute the periodic rate, match that rate to the cash-flow period, and convert to EAR only when an effective annual comparison is requested.",
+        "The consolidated notes also show continuous compounding as a limiting case. Use it only when the problem explicitly states a continuously compounded annual rate: FV = PV·e^(rt), or PV = FV·e^(−rt).",
+        "Do not compare two quoted APRs with different compounding frequencies directly. Convert to a common effective basis when the question asks which financing or saving offer is economically better."
       ],
       "studyFlow": [
         {
@@ -1502,12 +1638,16 @@ const FINANCE_DATA = {
         }
       ],
       "supporting": [
-        "Time Value of Money workbook — NPV sheet with investment profiles"
+        "Time Value of Money workbook — NPV sheet with investment profiles",
+        "LTTC_Time value and money_HKT.pdf · NPV section",
+        "5 bộ đề năm trước LTTC.pdf · capital-budget / maximum total NPV question"
       ],
       "deepExplanation": [
         "Net Present Value compares the present value of benefits with the present value of costs. It is therefore a value-creation measure expressed at a common date, usually today.",
         "The decision logic is direct: a positive NPV means the discounted benefits exceed the required investment on the chosen discount-rate basis; a negative NPV means the opposite. For mutually exclusive alternatives, the lecture emphasizes comparing the value created rather than treating every positive-return project as equally desirable.",
-        "A common exam trap is to add cash flows from different dates before discounting. NPV requires each dated cash flow to be discounted appropriately, then summed."
+        "A common exam trap is to add cash flows from different dates before discounting. NPV requires each dated cash flow to be discounted appropriately, then summed.",
+        "Opportunity cost of capital is the return available on the next-best alternative of comparable risk. Discounting at that opportunity cost makes future cash flows comparable with the investment made today.",
+        "A constrained-project-selection question is not solved by choosing the highest individual NPV or highest NPV per project blindly. Enumerate feasible combinations under the budget and maximize total NPV unless the course question specifies another constraint."
       ],
       "studyFlow": [
         {
@@ -1531,6 +1671,12 @@ const FINANCE_DATA = {
         "Be able to explain Net Present Value (NPV) in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: For mutually exclusive alternatives, do not simply choose the highest IRR."
+      ],
+      "theory": [
+        {
+          "title": "Capital rationing / budget constraint",
+          "body": "Past papers include project-selection problems where a firm has a fixed investment budget. Positive NPV remains the value criterion, but when not every positive-NPV project can be funded, compare feasible combinations and choose the combination with the largest total NPV."
+        }
       ]
     },
     "irr": {
@@ -1762,7 +1908,9 @@ const FINANCE_DATA = {
       "deepExplanation": [
         "Start with the course definition: In Q&A 3, the instructor confirms a method that values the remaining payments immediately before the 12th annual payment is due.",
         "The source then connects this concept to: A payment due immediately is not discounted like later payments. The remaining annuity must use the number of payments still outstanding.",
-        "Exam lens: “Immediately before” a payment date is a timing cue: the imminent payment is due at that date."
+        "Exam lens: “Immediately before” a payment date is a timing cue: the imminent payment is due at that date.",
+        "Past papers repeatedly use the same architecture: calculate the regular payment from the original loan, then calculate the payoff as the value of remaining payments immediately after a specified payment.",
+        "Be precise about “before” versus “after” a payment. Immediately after payment k, there are n−k scheduled payments left; immediately before payment k, payment k itself is still outstanding."
       ],
       "studyFlow": [
         {
@@ -1786,6 +1934,10 @@ const FINANCE_DATA = {
         "Be able to explain Mortgage Payoff Before a Scheduled Payment in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: “Immediately before” a payment date is a timing cue: the imminent payment is due at that date."
+      ],
+      "supporting": [
+        "5 bộ đề năm trước LTTC.pdf · loan payoff written questions",
+        "LTTC_Time value and money_HKT.pdf · amortization section"
       ]
     },
     "financing-rebate": {
@@ -2071,7 +2223,8 @@ const FINANCE_DATA = {
       "deepExplanation": [
         "The course classifies markets along several independent dimensions. Debt versus equity describes the type of claim. Primary versus secondary describes whether the security is newly issued or already outstanding. Exchange versus OTC describes the trading arrangement.",
         "These dimensions should not be collapsed. A debt instrument can trade in a primary or secondary market; equity can trade on an exchange or in another arrangement. The labels answer different questions about the same transaction.",
-        "For primary-versus-secondary exam questions, focus on whether the issuer receives funds from the transaction. In a secondary-market trade, ownership changes but the issuing firm does not receive the resale proceeds."
+        "For primary-versus-secondary exam questions, focus on whether the issuer receives funds from the transaction. In a secondary-market trade, ownership changes but the issuing firm does not receive the resale proceeds.",
+        "Past papers repeatedly test the economic role of the secondary market: the issuing firm normally does not receive cash from a secondary-market trade, but a liquid/high-priced secondary market can improve future primary financing because investors value tradability and market prices provide information."
       ],
       "studyFlow": [
         {
@@ -2095,6 +2248,10 @@ const FINANCE_DATA = {
         "Be able to explain Debt, Equity, Primary, Secondary, Exchange & OTC in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Primary versus secondary describes issue status, while exchange versus OTC describes the trading venue/structure."
+      ],
+      "supporting": [
+        "LTTC_Financial market_HKT.pdf · market structure",
+        "5 bộ đề năm trước LTTC.pdf · repeated primary/secondary and OTC classification questions"
       ]
     },
     "money-capital-markets": {
@@ -2303,12 +2460,15 @@ const FINANCE_DATA = {
         "level": "Primary course source"
       },
       "supporting": [
-        "The Economics of Money, Banking, and Financial Markets — Mishkin & Serletis, Chapters 2 and 8"
+        "The Economics of Money, Banking, and Financial Markets — Mishkin & Serletis, Chapters 2 and 8",
+        "LTTC_Financial market_HKT.pdf · §4 Types of financial institutions"
       ],
       "deepExplanation": [
         "Financial institutions channel funds and provide services that can make financing possible when direct market transactions would be costly or information-intensive.",
         "Mishkin's supporting framework highlights transaction-cost reduction, risk sharing, and information production. Economies of scale can lower transaction costs per unit, while screening and monitoring can reduce losses associated with asymmetric information.",
-        "Do not define an intermediary only by the label 'bank.' The course includes several categories of financial institutions with different contractual forms and services."
+        "Do not define an intermediary only by the label 'bank.' The course includes several categories of financial institutions with different contractual forms and services.",
+        "A common exam trap is to treat every financial institution as a bank. Start by asking how the institution obtains funds and what it does with them.",
+        "Commercial banks commonly transform maturities by funding themselves with relatively short-maturity deposits while making longer-maturity loans, which creates liquidity-management needs."
       ],
       "studyFlow": [
         {
@@ -2332,6 +2492,24 @@ const FINANCE_DATA = {
         "Be able to explain Financial Institutions & Intermediation in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Do not think of intermediaries only as banks; the course includes multiple types of financial institutions."
+      ],
+      "theory": [
+        {
+          "title": "Depository institutions",
+          "body": "Commercial banks, savings institutions, and credit unions accept deposits or similar funding and use funds to make loans and hold securities."
+        },
+        {
+          "title": "Contractual savings institutions",
+          "body": "Insurance companies and pension funds receive funds on a contractual basis and invest to meet future obligations."
+        },
+        {
+          "title": "Investment intermediaries",
+          "body": "Finance companies, mutual funds, money-market mutual funds, hedge funds, securities firms, and investment banks perform different funding, pooling, trading, or issuance functions."
+        },
+        {
+          "title": "Investment bank distinction",
+          "body": "An investment bank does not perform the classic deposit-and-loan intermediation role. It advises issuers and underwrites securities, purchasing issues for resale and earning fees from issuance and corporate transactions."
+        }
       ]
     },
     "insurance-pensions": {
@@ -2453,12 +2631,15 @@ const FINANCE_DATA = {
       },
       "supporting": [
         "The Economics of Money, Banking, and Financial Markets — Chapter 8",
-        "Original tutorial: Es FOR FM & FIs.docx"
+        "Original tutorial: Es FOR FM & FIs.docx",
+        "5 bộ đề năm trước LTTC.pdf · adverse selection, moral hazard, collateral and principal-agent questions"
       ],
       "deepExplanation": [
         "Asymmetric information exists when one party to a financial transaction has better information than the other. The timing of the information problem determines the key label.",
         "Adverse selection is the before-transaction problem: parties with undesirable characteristics may be more eager to transact, making selection difficult. Moral hazard is the after-transaction problem: once funds or insurance are provided, behavior may change in ways that increase risk to the other party.",
-        "The course and supporting textbook connect these problems to screening, monitoring, collateral, contractual restrictions, deductibles, and other mechanisms. In exam questions, first identify whether the problem occurs before or after the contract."
+        "The course and supporting textbook connect these problems to screening, monitoring, collateral, contractual restrictions, deductibles, and other mechanisms. In exam questions, first identify whether the problem occurs before or after the contract.",
+        "Past papers use unsecured credit and bank financing to test the distinction: adverse selection concerns hidden borrower type or project quality before lending; moral hazard concerns hidden actions after funds are provided.",
+        "Collateral can reduce lender loss and borrower incentives, but it is not perfect. If collateral value is volatile or highly correlated with borrower distress, the protection may deteriorate exactly when it is needed."
       ],
       "studyFlow": [
         {
@@ -2707,7 +2888,8 @@ const FINANCE_DATA = {
       "deepExplanation": [
         "Bond prices and required market yields move in opposite directions because the bond's promised cash flows are fixed while the discount rate changes. A higher required return reduces the present value of those fixed cash flows.",
         "The effect is not a new formula; it is the discounting mechanism applied to the same coupons and face value at a different required return. This connection is more useful than memorizing an isolated inverse relationship.",
-        "For exam interpretation, separate coupon rate from required return. The coupon rate determines promised coupon cash flows; the required return is used to discount them for valuation."
+        "For exam interpretation, separate coupon rate from required return. The coupon rate determines promised coupon cash flows; the required return is used to discount them for valuation.",
+        "Past papers also test credit-rating changes. If a firm becomes safer and the required return falls while coupon cash flows are unchanged, the bond price rises. The mechanism is the same inverse price–yield relationship."
       ],
       "studyFlow": [
         {
@@ -2731,6 +2913,9 @@ const FINANCE_DATA = {
         "Be able to explain Interest Rates & Bond Prices in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Do not assume bond prices move in the same direction as market interest rates."
+      ],
+      "supporting": [
+        "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · written bond repricing question"
       ]
     },
     "ytm-bond-types": {
@@ -2880,7 +3065,8 @@ const FINANCE_DATA = {
       "deepExplanation": [
         "Start with the course definition: The bond equivalent yield is the quoted nominal or stated yield on a security; some money-market securities are quoted on a discount basis using a 360-day year.",
         "The source then connects this concept to: Discount yields use face value as the base and a 360-day year. Single-payment instruments such as negotiable CDs and federal funds pay interest once at maturity.",
-        "Exam lens: Do not compare differently quoted money-market yields without first converting them to a common basis."
+        "Exam lens: Do not compare differently quoted money-market yields without first converting them to a common basis.",
+        "The workflow for money-market yield questions is more important than memorizing one number: identify quote convention → compute price → compute holding-period return on actual money invested → annualize on the requested basis."
       ],
       "studyFlow": [
         {
@@ -2904,6 +3090,19 @@ const FINANCE_DATA = {
         "Be able to explain Money-Market Yield Conventions in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Do not compare differently quoted money-market yields without first converting them to a common basis."
+      ],
+      "theory": [
+        {
+          "title": "From discount quote to price",
+          "body": "For a discount instrument quoted on a bank-discount basis, first convert the quoted discount into the dollar discount over the instrument’s remaining days, then subtract from face value. The exact day-count convention must follow the course problem statement."
+        },
+        {
+          "title": "Compare yields on a common basis",
+          "body": "Past exams ask for bond-equivalent yield and effective annual return. A quoted discount yield, a simple annualized investment yield, and an EAR are not interchangeable."
+        }
+      ],
+      "supporting": [
+        "5 bộ đề năm trước LTTC.pdf · T-bill and commercial-paper yield problems"
       ]
     },
     "money-market-instruments": {
@@ -2929,7 +3128,9 @@ const FINANCE_DATA = {
       "deepExplanation": [
         "Start with the course definition: The lecture covers Treasury bills, federal funds, repurchase agreements, commercial paper, negotiable certificates of deposit, banker’s acceptances, and Eurodollar instruments.",
         "The source then connects this concept to: T-bills are discount securities. Federal funds are short-term interbank balances. Repurchase agreements are collateralized arrangements involving the sale and repurchase of securities.",
-        "Exam lens: Do not assume all money-market instruments pay periodic coupons."
+        "Exam lens: Do not assume all money-market instruments pay periodic coupons.",
+        "A fast classification rule from the course materials is original maturity. Money-market instruments are short-term debt; equity is not a money-market instrument regardless of how quickly it can be sold.",
+        "Past papers often mix one long-term government bond into a list of T-bills/CDs/commercial paper/bankers’ acceptances. Do not classify from issuer alone; classify from instrument type and original maturity."
       ],
       "studyFlow": [
         {
@@ -2953,6 +3154,36 @@ const FINANCE_DATA = {
         "Be able to explain Money-Market Instruments in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Do not assume all money-market instruments pay periodic coupons."
+      ],
+      "theory": [
+        {
+          "title": "Treasury bills",
+          "body": "Short-term government discount instruments that pay face value at maturity. The supporting notes emphasize high liquidity and low default probability."
+        },
+        {
+          "title": "Negotiable certificates of deposit",
+          "body": "Bank-issued time-deposit instruments that can be sold in secondary markets."
+        },
+        {
+          "title": "Commercial paper",
+          "body": "Short-term unsecured debt issued by large, well-known firms or financial institutions."
+        },
+        {
+          "title": "Repurchase agreements",
+          "body": "Economically short-term collateralized loans in which securities such as Treasury bills are sold with an agreement to repurchase them."
+        },
+        {
+          "title": "Federal funds / interbank funds",
+          "body": "Very short-term transfers of reserve balances between banks; they are bank-to-bank loans, not loans made by the federal government."
+        },
+        {
+          "title": "Bankers’ acceptances",
+          "body": "Time drafts or payment obligations backed/accepted by a bank, which increases the credibility and marketability of the claim."
+        }
+      ],
+      "supporting": [
+        "LTTC_Financial market_HKT.pdf · pp. 6–10",
+        "5 bộ đề năm trước LTTC.pdf · money-market instrument MCQs"
       ]
     },
     "treasury-corporate-bonds": {
@@ -4049,7 +4280,8 @@ const FINANCE_DATA = {
       "deepExplanation": [
         "DuPont analysis decomposes return on equity into operating profitability, asset-use efficiency, and financial leverage. The course components are net profit margin, total asset turnover, and the equity multiplier.",
         "The value of the decomposition is diagnostic. Two firms can have the same ROE for very different reasons: one may earn high margins, another may use assets rapidly, and another may rely more heavily on leverage.",
-        "On exams, do not stop after calculating ROE. Use the components to explain what operational or financing driver is producing the result."
+        "On exams, do not stop after calculating ROE. Use the components to explain what operational or financing driver is producing the result.",
+        "Past papers frequently leave DuPont components blank. Treat the identities as a system of equations, not only as a memorized decomposition. Solve for the missing component and then interpret why firms differ."
       ],
       "studyFlow": [
         {
@@ -4073,6 +4305,28 @@ const FINANCE_DATA = {
         "Be able to explain DuPont Analysis in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Do not interpret a high ROE without checking whether it comes from strong margins, efficient assets, or high leverage."
+      ],
+      "theory": [
+        {
+          "title": "ROA decomposition",
+          "body": "ROA = Net profit margin × Asset turnover. This separates operating profitability per dollar of sales from the efficiency with which assets generate sales."
+        },
+        {
+          "title": "ROE decomposition",
+          "body": "ROE = Net profit margin × Asset turnover × Equity multiplier = ROA × Equity multiplier."
+        },
+        {
+          "title": "Reverse engineering",
+          "body": "If ROE and ROA are given, Equity multiplier = ROE/ROA. If ROA and asset turnover are given, Net profit margin = ROA/Asset turnover."
+        },
+        {
+          "title": "Interpretation",
+          "body": "A high ROE can come from high margin, efficient asset use, or high leverage. The decomposition prevents the analyst from attributing performance to the wrong driver."
+        }
+      ],
+      "supporting": [
+        "5 bộ đề năm trước LTTC.pdf · repeated DuPont missing-value and comparison problems",
+        "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · luxury-company DuPont table"
       ]
     },
     "benchmarking-cautions": {
@@ -4123,6 +4377,332 @@ const FINANCE_DATA = {
         "Be able to explain Time-Series, Cross-Sectional Analysis & Ratio Cautions in your own words, not only recognize the term.",
         "Be able to connect the concept to at least one stated relationship from the source.",
         "Be able to reject the common mistake: Avoid declaring a company “good” or “bad” from one ratio in isolation."
+      ]
+    },
+    "money-functions-payment": {
+      "module": "intro",
+      "title": "Money: Functions & the Payment System",
+      "vi": "Tiền: chức năng và hệ thống thanh toán",
+      "objective": "Explain what money is, distinguish it from wealth and income, and trace how payment systems reduce transaction frictions.",
+      "intuition": "Money matters because exchange becomes dramatically easier when people do not need to barter. The payment system evolves toward methods that reduce time, transport cost, theft risk, and processing cost.",
+      "definition": "Money is anything generally accepted as payment for goods and services or in repayment of debts. In the supporting notes, money is a stock measured at a point in time, while income is a flow measured per unit of time.",
+      "relationships": [
+        "Medium of exchange lowers the transaction cost created by the double coincidence of wants in barter.",
+        "Unit of account reduces the number of relative prices people must compare.",
+        "Store of value transfers purchasing power through time, but inflation erodes the real purchasing power of money.",
+        "Liquidity is the ease and speed with which an asset can be converted into a medium of exchange without a large loss of value.",
+        "Payment systems evolved from commodity money to fiat money, checks, electronic payment, and e-money as technology reduced settlement frictions."
+      ],
+      "commonMistake": "Do not use money, wealth, and income as synonyms. Money is one asset inside wealth, and income is a flow over time.",
+      "source": {
+        "file": "LTTC_Financial market_HKT.pdf",
+        "location": "pp. 1–4",
+        "preview": "assets/source-previews-v05/markets-notes-01.png",
+        "level": "Supporting study notes; aligned with course financial-system content"
+      },
+      "deepExplanation": [
+        "The key exam distinction is stock versus flow. Saying someone “has VND 10 million” describes a stock. Saying someone “earns VND 10 million per month” describes an income flow.",
+        "The three classic functions answer three different questions: How do we pay? (medium of exchange); how do we quote value? (unit of account); how do we carry purchasing power forward? (store of value).",
+        "A barter system can work, but it imposes search costs because both parties must want exactly what the other offers. Money breaks that double coincidence requirement, which is why it supports specialization and economic efficiency."
+      ],
+      "studyFlow": [
+        {
+          "label": "1 · Separate",
+          "text": "Distinguish money (stock) from income (flow) and broader wealth."
+        },
+        {
+          "label": "2 · Function",
+          "text": "Map each scenario to medium of exchange, unit of account, or store of value."
+        },
+        {
+          "label": "3 · Friction",
+          "text": "Ask what transaction cost the payment method is reducing."
+        },
+        {
+          "label": "4 · Exam check",
+          "text": "If the question mentions inflation, liquidity, barter, or payment technology, identify the exact money function being tested."
+        }
+      ],
+      "examFocus": [
+        "Explain the double coincidence of wants and why money reduces transaction costs.",
+        "Recognize that money is the most liquid asset but not necessarily the highest-return store of value.",
+        "Distinguish fiat money, checks, electronic payments, debit/stored-value cards, and e-cash at a conceptual level."
+      ],
+      "keyTerms": [
+        [
+          "Money",
+          "Tiền"
+        ],
+        [
+          "Medium of exchange",
+          "Phương tiện trao đổi"
+        ],
+        [
+          "Unit of account",
+          "Đơn vị tính toán"
+        ],
+        [
+          "Store of value",
+          "Phương tiện lưu giữ giá trị"
+        ],
+        [
+          "Liquidity",
+          "Tính thanh khoản"
+        ],
+        [
+          "Fiat money",
+          "Tiền pháp định"
+        ],
+        [
+          "Transaction cost",
+          "Chi phí giao dịch"
+        ],
+        [
+          "Double coincidence of wants",
+          "Sự trùng khớp kép về nhu cầu"
+        ]
+      ],
+      "supporting": [
+        "LTTC_Financial market_HKT.pdf · pp. 1–4",
+        "Mishkin & Serletis · Chapter 3, Functions of Money and Evolution of the Payments System"
+      ]
+    },
+    "financial-instruments-deep": {
+      "module": "intro",
+      "title": "Financial Instruments: Claims, Value & Design",
+      "vi": "Công cụ tài chính: quyền đòi, giá trị và thiết kế",
+      "objective": "Define a financial instrument and explain what makes it valuable, useful, and tradable.",
+      "intuition": "A financial instrument is not just “a security.” It is an enforceable financial contract that specifies who owes what, when, and under what conditions. Its value therefore depends on the promised cash flows and the risk surrounding those promises.",
+      "definition": "A financial instrument is a written legal obligation of one party to transfer something of value, usually money, to another party at a future date or contingent event under specified conditions.",
+      "relationships": [
+        "Financial instruments can serve as means of payment, stores of value, and mechanisms for transferring risk.",
+        "Larger promised payments are more valuable, other things equal.",
+        "Earlier payments are more valuable because of the time value of money.",
+        "More likely payments are more valuable because default risk is lower.",
+        "Payments received in states when the holder needs resources most can be especially valuable for risk management.",
+        "Standardization reduces the cost of creating, understanding, and trading contracts; information provisions help reduce monitoring and asymmetric-information problems."
+      ],
+      "commonMistake": "Do not value an instrument only from its face amount. Timing, probability of payment, contingencies, and marketability matter.",
+      "source": {
+        "file": "LTTC_Financial market_HKT.pdf",
+        "location": "pp. 4–10",
+        "preview": "assets/source-previews-v05/markets-notes-01.png",
+        "level": "Supporting study notes; course-aligned"
+      },
+      "deepExplanation": [
+        "A useful way to read any instrument is as a contract tree: identify the issuer/counterparty, promised payment, timing, contingencies, collateral or enforcement, and tradability.",
+        "Standardization is economically important because bespoke contracts are costly to design and hard to compare. Homogeneous contracts make search, pricing, and trading easier.",
+        "Information design matters because the party receiving funds often knows more about the project or behavior than the saver or lender. Financial contracts therefore often embed reporting, collateral, covenants, or other mechanisms that help reduce information problems."
+      ],
+      "studyFlow": [
+        {
+          "label": "1 · Contract",
+          "text": "Identify the parties and legal obligation."
+        },
+        {
+          "label": "2 · Cash flow",
+          "text": "Identify amount, timing, and contingencies."
+        },
+        {
+          "label": "3 · Risk",
+          "text": "Assess likelihood of payment and state dependence."
+        },
+        {
+          "label": "4 · Marketability",
+          "text": "Ask how standardization and information affect liquidity and transaction cost."
+        }
+      ],
+      "examFocus": [
+        "Classify a contract as financial instrument or non-financial asset.",
+        "Use size, timing, likelihood, and circumstances to compare instrument value.",
+        "Explain why standardized contracts can be cheaper and more liquid than highly customized ones."
+      ],
+      "keyTerms": [
+        [
+          "Financial instrument",
+          "Công cụ tài chính"
+        ],
+        [
+          "Security",
+          "Chứng khoán"
+        ],
+        [
+          "Counterparty",
+          "Đối tác hợp đồng"
+        ],
+        [
+          "Standardization",
+          "Tiêu chuẩn hóa"
+        ],
+        [
+          "Contingency",
+          "Điều kiện/biến cố phát sinh"
+        ],
+        [
+          "Risk transfer",
+          "Chuyển giao rủi ro"
+        ]
+      ],
+      "supporting": [
+        "LTTC_Financial market_HKT.pdf · pp. 4–10",
+        "2024 Introduction to Finance.pdf · six-part financial system",
+        "Mishkin & Serletis · Chapter 2, Financial Market Instruments"
+      ]
+    },
+    "market-quality-regulation": {
+      "module": "markets",
+      "title": "Well-Run Markets, Information & Regulation",
+      "vi": "Thị trường vận hành tốt, thông tin và quản lý",
+      "objective": "Explain what makes a financial market work well and why regulation targets information and institutional soundness.",
+      "intuition": "A market can exist without being efficient or trustworthy. For finance to channel funds well, trading must be reasonably cheap, information must be credible and widely available, and investors must be able to enforce claims.",
+      "definition": "The supporting LTTC notes describe well-run financial markets as markets designed to keep transaction costs low, communicate accurate and widely available information, and protect investors’ rights. Regulation aims especially to improve information and the soundness of financial intermediaries.",
+      "relationships": [
+        "Lower transaction costs support trading and liquidity.",
+        "Better information reduces adverse selection before transactions and helps monitoring after transactions.",
+        "Investor protection and enforceability make promises to repay more credible.",
+        "Entry restrictions, disclosure, supervision, and safety-and-soundness rules are mechanisms regulators can use to reduce failures in intermediation."
+      ],
+      "commonMistake": "Do not say regulation exists only to control prices. In the uploaded sources, the central reasons are information problems and the safety/soundness of the financial system.",
+      "source": {
+        "file": "LTTC_Financial market_HKT.pdf",
+        "location": "Financial markets §3.3 and regulation §5",
+        "preview": "assets/source-previews-v05/markets-notes-01.png",
+        "level": "Supporting study notes; cross-checked with Mishkin Chapter 2"
+      },
+      "deepExplanation": [
+        "The recurring logic is information → trust → participation. If investors cannot distinguish good from bad issuers, they may withdraw or demand high compensation; this is an adverse-selection channel.",
+        "After financing occurs, borrowers may take actions lenders cannot fully observe. Disclosure, monitoring, covenants, capital requirements, and supervision can address different parts of that post-contract problem.",
+        "A well-run market therefore is not defined simply by high trading volume. Low friction, reliable information, enforceable rights, and institutional soundness matter together."
+      ],
+      "studyFlow": [
+        {
+          "label": "1 · Cost",
+          "text": "Are transactions cheap enough to support liquidity?"
+        },
+        {
+          "label": "2 · Information",
+          "text": "Can participants obtain credible information?"
+        },
+        {
+          "label": "3 · Enforcement",
+          "text": "Can contractual rights be enforced?"
+        },
+        {
+          "label": "4 · Stability",
+          "text": "Are intermediaries supervised so their failure does not undermine the system?"
+        }
+      ],
+      "examFocus": [
+        "Explain the two main regulatory objectives emphasized in the sources: information and soundness.",
+        "Connect adverse selection and moral hazard to disclosure, supervision, and monitoring.",
+        "Explain why investor protection is a condition for financial-market participation."
+      ],
+      "keyTerms": [
+        [
+          "Market liquidity",
+          "Thanh khoản thị trường"
+        ],
+        [
+          "Investor protection",
+          "Bảo vệ nhà đầu tư"
+        ],
+        [
+          "Disclosure",
+          "Công bố thông tin"
+        ],
+        [
+          "Soundness",
+          "An toàn/lành mạnh tài chính"
+        ],
+        [
+          "Enforcement",
+          "Cưỡng chế thực thi"
+        ]
+      ],
+      "supporting": [
+        "LTTC_Financial market_HKT.pdf",
+        "Mishkin & Serletis · Chapter 2, Regulation of the Financial System"
+      ]
+    },
+    "portfolio-risk-two-assets": {
+      "module": "risk",
+      "title": "Two-Asset Portfolio Risk",
+      "vi": "Rủi ro danh mục hai tài sản",
+      "objective": "Calculate and interpret portfolio variance using weights and covariance/correlation.",
+      "intuition": "Diversification works because portfolio risk depends not only on each asset’s own volatility but also on how the two assets move together.",
+      "definition": "For a two-asset portfolio, variance equals the weighted sum of individual variances plus twice the product of the two weights and the covariance between asset returns.",
+      "relationships": [
+        "Cov(X,Y) = ρXY·σX·σY connects correlation to covariance.",
+        "A lower correlation, other things equal, lowers portfolio variance.",
+        "Perfect positive correlation (ρ = +1) provides no diversification benefit beyond the weighted combination of the same-direction risks.",
+        "Negative correlation can materially reduce portfolio risk because the cross-product term becomes negative."
+      ],
+      "commonMistake": "Do not average the two standard deviations. Portfolio variance requires squared weights and the covariance cross term.",
+      "source": {
+        "file": "5 bộ đề năm trước LTTC.pdf",
+        "location": "Past-paper portfolio-risk calculation; principle aligned with risk materials",
+        "preview": "assets/source-previews-v05/past-exams-01.png",
+        "level": "Past exam pattern + source-supported risk extension"
+      },
+      "deepExplanation": [
+        "Think of portfolio variance as three pieces: contribution from asset X, contribution from asset Y, and the interaction between them. That interaction is why correlation matters.",
+        "If a question provides covariance directly, use it directly. If it provides correlation instead, convert correlation to covariance using σXσY.",
+        "Always check whether the inputs called “variance” are already squared quantities or whether the table actually reports standard deviations. Past-paper scans can be visually ambiguous, so the normalized v0.5 questions state the units clearly."
+      ],
+      "studyFlow": [
+        {
+          "label": "1 · Inputs",
+          "text": "Identify weights, standard deviations/variances, and covariance or correlation."
+        },
+        {
+          "label": "2 · Convert",
+          "text": "If needed, compute covariance = correlation × σX × σY."
+        },
+        {
+          "label": "3 · Variance",
+          "text": "Apply squared weights plus 2wXwYCov."
+        },
+        {
+          "label": "4 · Interpret",
+          "text": "Explain the role of correlation rather than reporting a number only."
+        }
+      ],
+      "examFocus": [
+        "Calculate two-asset portfolio standard deviation from cleanly stated inputs.",
+        "Explain why lower correlation creates diversification benefit.",
+        "Recognize that ρ = +1 means the assets move perfectly together and therefore do not offset one another."
+      ],
+      "formula": [
+        {
+          "label": "Two-asset variance",
+          "html": "σ<sub>p</sub><sup>2</sup> = w<sub>x</sub><sup>2</sup>σ<sub>x</sub><sup>2</sup> + w<sub>y</sub><sup>2</sup>σ<sub>y</sub><sup>2</sup> + 2w<sub>x</sub>w<sub>y</sub>Cov(x,y)"
+        },
+        {
+          "label": "Covariance from correlation",
+          "html": "Cov(x,y) = ρ<sub>xy</sub>σ<sub>x</sub>σ<sub>y</sub>"
+        }
+      ],
+      "variables": [
+        [
+          "wₓ, wᵧ",
+          "Portfolio weights"
+        ],
+        [
+          "σₓ, σᵧ",
+          "Asset return standard deviations"
+        ],
+        [
+          "Cov(x,y)",
+          "Covariance of returns"
+        ],
+        [
+          "ρₓᵧ",
+          "Correlation coefficient"
+        ]
+      ],
+      "supporting": [
+        "5 bộ đề năm trước LTTC.pdf · portfolio-risk calculation",
+        "2023 Understanding risk.pdf · variance/standard deviation and diversification concepts"
       ]
     }
   },
@@ -4400,6 +4980,72 @@ const FINANCE_DATA = {
       "variables": "Net margin, asset turnover, equity multiplier",
       "use": "Decompose ROE into profitability, efficiency, and leverage.",
       "source": "2023 Analyzing Firm Performance.pdf · Slide 23",
+      "lesson": "dupont-analysis"
+    },
+    {
+      "id": "continuous-comp",
+      "module": "tvm",
+      "name": "Continuous Compounding",
+      "vi": "Ghép lãi liên tục",
+      "expression": "FV = PV·e^(rt); PV = FV·e^(−rt)",
+      "variables": "PV, FV, r, t",
+      "use": "Use only when the rate is explicitly continuously compounded.",
+      "source": "LTTC_Time value and money_HKT.pdf · continuous compounding section",
+      "lesson": "apr-ear"
+    },
+    {
+      "id": "loan-balance",
+      "module": "tvm",
+      "name": "Remaining Balance After k Payments",
+      "vi": "Dư nợ sau k kỳ thanh toán",
+      "expression": "Bₖ = PMT × [1 − (1+r)^−(n−k)] / r",
+      "variables": "Bₖ, PMT, r, n, k",
+      "use": "Compute payoff immediately after payment k for a fixed-rate fully amortizing loan.",
+      "source": "LTTC_Time value and money_HKT.pdf + past-exam loan-payoff pattern",
+      "lesson": "loans"
+    },
+    {
+      "id": "portfolio-var-2",
+      "module": "risk",
+      "name": "Two-Asset Portfolio Variance",
+      "vi": "Phương sai danh mục hai tài sản",
+      "expression": "σp² = wx²σx² + wy²σy² + 2wxwyCov(x,y)",
+      "variables": "weights, asset variances, covariance",
+      "use": "Calculate total portfolio risk from individual risk and co-movement.",
+      "source": "5 bộ đề năm trước LTTC.pdf · portfolio-risk pattern; aligned with risk source concepts",
+      "lesson": "portfolio-risk-two-assets"
+    },
+    {
+      "id": "cov-corr",
+      "module": "risk",
+      "name": "Covariance from Correlation",
+      "vi": "Hiệp phương sai từ hệ số tương quan",
+      "expression": "Cov(x,y) = ρxyσxσy",
+      "variables": "ρxy, σx, σy",
+      "use": "Convert a correlation coefficient to covariance for portfolio variance.",
+      "source": "5 bộ đề năm trước LTTC.pdf · portfolio-risk pattern",
+      "lesson": "portfolio-risk-two-assets"
+    },
+    {
+      "id": "dupont-reverse-em",
+      "module": "health",
+      "name": "DuPont Reverse: Equity Multiplier",
+      "vi": "DuPont đảo: hệ số nhân vốn chủ",
+      "expression": "Equity Multiplier = ROE / ROA",
+      "variables": "ROE, ROA",
+      "use": "Recover leverage when ROE and ROA are given.",
+      "source": "5 bộ đề năm trước LTTC.pdf · DuPont missing-value problems",
+      "lesson": "dupont-analysis"
+    },
+    {
+      "id": "dupont-reverse-margin",
+      "module": "health",
+      "name": "DuPont Reverse: Net Profit Margin",
+      "vi": "DuPont đảo: biên lợi nhuận ròng",
+      "expression": "Net Profit Margin = ROA / Asset Turnover",
+      "variables": "ROA, Asset Turnover",
+      "use": "Recover margin when ROA and asset turnover are given.",
+      "source": "5 bộ đề năm trước LTTC.pdf · DuPont missing-value problems",
       "lesson": "dupont-analysis"
     }
   ],
@@ -4686,7 +5332,7 @@ const FINANCE_DATA = {
       "difficulty": "Standard",
       "origin": "Generated Practice",
       "prompt": "A perpetuity pays $30,000 per year forever and the discount rate is 8%. What is its present value?",
-      "answer": 375000.0,
+      "answer": 375000,
       "tolerance": 0.02,
       "unit": "$",
       "explanation": "PV = C/r = 30,000/0.08 = 375,000.",
@@ -4704,7 +5350,7 @@ const FINANCE_DATA = {
       "difficulty": "Standard",
       "origin": "Generated Practice",
       "prompt": "A growing perpetuity pays $30,000 next year, grows at 4%, and is discounted at 8%. What is its present value?",
-      "answer": 750000.0,
+      "answer": 750000,
       "tolerance": 0.02,
       "unit": "$",
       "explanation": "PV = C/(r−g) = 30,000/(0.08−0.04) = 750,000.",
@@ -4934,7 +5580,7 @@ const FINANCE_DATA = {
       "difficulty": "Foundation",
       "origin": "Generated Practice",
       "prompt": "For the lecture interest-only loan of VND 5 billion at 15% per year, what is the annual interest payment? Enter in VND.",
-      "answer": 750000000.0,
+      "answer": 750000000,
       "tolerance": 1,
       "unit": "₫",
       "explanation": "Annual interest = principal × rate = 5,000,000,000 × 15% = 750,000,000.",
@@ -5278,7 +5924,7 @@ const FINANCE_DATA = {
       "difficulty": "Standard",
       "origin": "Generated Practice",
       "prompt": "A stock pays a constant dividend of $4 forever and the required return is 8%. What is its zero-growth value?",
-      "answer": 50.0,
+      "answer": 50,
       "tolerance": 0.02,
       "unit": "$",
       "explanation": "Zero-growth model: P = Div/r = 4/0.08 = 50.",
@@ -10549,6 +11195,6456 @@ const FINANCE_DATA = {
       "source": "2023 Analyzing Firm Performance.pdf · Time-Series/Cross-Sectional Analysis and Cautions",
       "mistakeType": "Application / reasoning error",
       "examTip": "Identify the concept first, then use the course relationship or formula; do not answer from surface wording."
+    },
+    {
+      "id": "q1215",
+      "module": "intro",
+      "concept": "money-functions-payment",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which function of money is illustrated when a restaurant lists a meal at 120,000 VND?",
+      "answer": 1,
+      "explanation": "Posting a price uses money as a common unit for measuring and comparing value.",
+      "source": "LTTC_Financial market_HKT.pdf · Unit of account",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Medium of exchange",
+        "Unit of account",
+        "Store of value",
+        "Risk transfer"
+      ]
+    },
+    {
+      "id": "q1216",
+      "module": "intro",
+      "concept": "money-functions-payment",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Why does money reduce transaction costs relative to barter?",
+      "answer": 2,
+      "explanation": "Money removes the need to find a counterparty who simultaneously wants what you offer and offers what you want—the double coincidence of wants.",
+      "source": "LTTC_Financial market_HKT.pdf · Medium of exchange",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "It guarantees zero inflation",
+        "It always earns interest",
+        "It removes the double coincidence of wants",
+        "It eliminates all default risk"
+      ]
+    },
+    {
+      "id": "q1217",
+      "module": "intro",
+      "concept": "money-functions-payment",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "A person says “I earn 18 million VND per month.” This statement describes:",
+      "answer": 2,
+      "explanation": "Income is a flow measured per unit of time; money/wealth are stocks at a point in time.",
+      "source": "LTTC_Financial market_HKT.pdf · Money–wealth–income",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Money only",
+        "Wealth",
+        "Income",
+        "Liquidity"
+      ]
+    },
+    {
+      "id": "q1218",
+      "module": "intro",
+      "concept": "money-functions-payment",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "During very high inflation, which money function is most directly weakened?",
+      "answer": 2,
+      "explanation": "Rapidly rising prices reduce the purchasing power that money carries into the future, weakening its store-of-value function.",
+      "source": "LTTC_Financial market_HKT.pdf · Store of value",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Medium of exchange only",
+        "Unit of account only",
+        "Store of value",
+        "Legal enforceability"
+      ]
+    },
+    {
+      "id": "q1219",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Which description best captures a financial instrument?",
+      "answer": 2,
+      "explanation": "The supporting notes define it as an enforceable written obligation specifying a transfer of value at a future date/event under stated conditions.",
+      "source": "LTTC_Financial market_HKT.pdf · Financial instruments; past-final pattern",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Any physical asset used by a firm",
+        "Only a promise with a specified calendar date",
+        "An enforceable obligation to transfer value under specified future conditions",
+        "Any asset with a market price"
+      ]
+    },
+    {
+      "id": "q1220",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Holding all else constant, which change should make a promised payment more valuable?",
+      "answer": 1,
+      "explanation": "Receiving the same payment sooner increases value because waiting has an opportunity cost.",
+      "source": "LTTC_Financial market_HKT.pdf · What makes a financial instrument valuable",
+      "skill": "Relationship Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "A later payment date",
+        "An earlier payment date",
+        "A lower probability of payment",
+        "A smaller promised payment"
+      ]
+    },
+    {
+      "id": "q1221",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Why can standardization increase the usability of financial instruments?",
+      "answer": 2,
+      "explanation": "Standardization lowers complexity and contracting/search costs and makes instruments easier to compare.",
+      "source": "LTTC_Financial market_HKT.pdf · Standardization",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "It removes every financial risk",
+        "It prevents secondary trading",
+        "It lowers complexity and contracting costs",
+        "It makes every issuer equally safe"
+      ]
+    },
+    {
+      "id": "q1222",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "An insurance contract pays only if a specified accident occurs. Which element of a financial instrument is most clearly illustrated?",
+      "answer": 3,
+      "explanation": "The payment depends on a stated contingency/event rather than occurring unconditionally.",
+      "source": "LTTC_Financial market_HKT.pdf · Financial instrument conditions",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Standardization",
+        "Unit of account",
+        "Maturity only",
+        "Contingency"
+      ]
+    },
+    {
+      "id": "q1223",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which instrument feature most directly addresses the problem that a borrower may know more about its project than the lender?",
+      "answer": 2,
+      "explanation": "Information provisions, reporting, screening, and monitoring are designed to reduce the cost of asymmetric information.",
+      "source": "LTTC_Financial market_HKT.pdf · Information characteristic",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Large denomination",
+        "Long maturity",
+        "Information and monitoring provisions",
+        "Physical weight"
+      ]
+    },
+    {
+      "id": "q1224",
+      "module": "intro",
+      "concept": "money-functions-payment",
+      "type": "mcq",
+      "difficulty": "Challenge",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which statement is most accurate?",
+      "answer": 3,
+      "explanation": "Money is the most liquid asset because it is already the medium of exchange, but other assets may offer higher expected returns as stores of value.",
+      "source": "LTTC_Financial market_HKT.pdf · Store of value and liquidity",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Money is the only asset that can store value",
+        "The most liquid asset must always have the highest expected return",
+        "Inflation increases money’s real purchasing power",
+        "Money can be the most liquid asset without being the highest-return store of value"
+      ]
+    },
+    {
+      "id": "q1225",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "You deposit 2,000,000 VND today for 3 years at 5.6% APR compounded monthly. What is the future value?",
+      "answer": 2364948.85,
+      "explanation": "Use the monthly periodic rate 0.056/12 and 36 compounding periods: FV = 2,000,000(1+0.056/12)^36.",
+      "source": "5 bộ đề năm trước LTTC.pdf · monthly compounding pattern",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Rate/period mismatch",
+      "examTip": "Convert APR to the rate per compounding period and convert years to the matching number of periods.",
+      "unit": "₫",
+      "tolerance": 2
+    },
+    {
+      "id": "q1226",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A bank quotes 4.00% APR compounded quarterly. What is the EAR (in percent)?",
+      "answer": 4.0604,
+      "explanation": "EAR = (1 + APR/4)^4 − 1.",
+      "source": "5 bộ đề năm trước LTTC.pdf · APR/EAR recognition pattern",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "APR/EAR confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.001
+    },
+    {
+      "id": "q1227",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "A 10,000 deposit earns a continuously compounded annual rate of 5% for six months. What is its future value?",
+      "answer": 10253.15,
+      "explanation": "For continuous compounding, FV = PV·e^(rt) = 10,000e^(0.05×0.5).",
+      "source": "LTTC_Time value and money_HKT.pdf · continuous compounding",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Compounding convention error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1228",
+      "module": "tvm",
+      "concept": "multiple-cash-flows",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "You deposit $2,000 today, $3,000 at the end of year 1, $4,000 at the end of year 2, and $5,000 at the end of year 3. At 5%, how much is in the account at the end of year 4?",
+      "answer": 15563.89,
+      "explanation": "Compound each cash flow from its own date to year 4 and then add the four year-4 values.",
+      "source": "LTTC_Time value and money_HKT.pdf · multiple cash-flow example",
+      "skill": "Timeline Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Cash-flow timing error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1229",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "An insurer promises $1,000 at the end of each year for 15 years. At an 8% discount rate, what is the present value of the payments?",
+      "answer": 8559.48,
+      "explanation": "This is an ordinary annuity: PV = 1,000[1 − (1.08)^−15]/0.08.",
+      "source": "LTTC_Time value and money_HKT.pdf · annuity example",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Annuity timing error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1230",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "You will deposit $1,000 monthly for 60 months, with the first deposit one month later than a standard ordinary annuity (first deposit at month 2). At 12% APR compounded monthly, what is the present value today?",
+      "answer": 44509.94,
+      "explanation": "Value the 60-payment ordinary annuity at month 1, one period before its first payment, then discount that value one more month to today.",
+      "source": "5 bộ đề năm trước LTTC.pdf · deferred-annuity pattern",
+      "skill": "Timeline Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Deferred-annuity timing error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.05
+    },
+    {
+      "id": "q1231",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A 5 billion VND loan is amortized with monthly payments over 10 years at 12% APR compounded monthly. What is the monthly payment?",
+      "answer": 71735474.2,
+      "explanation": "Set the loan amount equal to the PV of 120 monthly payments at 1% per month.",
+      "source": "5 bộ đề năm trước LTTC.pdf · loan-payment question",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Loan payment setup error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "₫",
+      "tolerance": 5
+    },
+    {
+      "id": "q1232",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Using the same 5 billion VND, 10-year, 12% APR monthly loan, what is the payoff immediately after the 12th payment?",
+      "answer": 4724339782.95,
+      "explanation": "Immediately after payment 12, 108 payments remain. Discount those remaining payments at 1% per month.",
+      "source": "5 bộ đề năm trước LTTC.pdf · loan-payoff question",
+      "skill": "Multi-step Problem",
+      "examPriority": "Frequent",
+      "mistakeType": "Remaining-balance timing error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "₫",
+      "tolerance": 20
+    },
+    {
+      "id": "q1233",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A $100,000 mortgage has a 30-year term and 8.25% APR with monthly payments. What is the interest portion of the 25th payment?",
+      "answer": 676.1,
+      "explanation": "Compute the monthly payment, then the balance immediately after payment 24. Interest in payment 25 equals the monthly rate times that balance.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · mortgage amortization pattern",
+      "skill": "Multi-step Problem",
+      "examPriority": "Frequent",
+      "mistakeType": "Interest/principal split error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.03
+    },
+    {
+      "id": "q1234",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "For the same $100,000, 30-year, 8.25% APR mortgage, what is the principal portion of the 25th payment?",
+      "answer": 75.16,
+      "explanation": "Principal repaid in payment 25 equals PMT minus the interest charged on the balance after payment 24.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · mortgage amortization pattern",
+      "skill": "Multi-step Problem",
+      "examPriority": "Frequent",
+      "mistakeType": "Interest/principal split error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.03
+    },
+    {
+      "id": "q1235",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Why is “total interest over the year ÷ original loan principal” generally not the true annual borrowing rate for an amortizing loan?",
+      "answer": 1,
+      "explanation": "Because principal is repaid throughout the year, the lender does not have the full original principal outstanding for the whole year.",
+      "source": "LTTC_Time value and money_HKT.pdf · amortization fallacy example",
+      "skill": "Error Diagnosis",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Because interest is never paid on loans",
+        "Because the outstanding principal declines as payments are made",
+        "Because APR can only be used for bonds",
+        "Because principal repayments are interest"
+      ]
+    },
+    {
+      "id": "q1236",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "numeric",
+      "difficulty": "Challenge",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Projects A–G require investments [124, 54, 94, 84, 184, 74, 54] and have NPVs [174, 104, 99, −44, 64, 66, 44], all in millions. If the capital budget is 346 million, what maximum total NPV can be achieved?",
+      "answer": 443,
+      "explanation": "Under a binding capital budget, compare feasible project combinations and choose the combination with the largest total NPV.",
+      "source": "5 bộ đề năm trước LTTC.pdf · capital-rationing question",
+      "skill": "Multi-step Problem",
+      "examPriority": "Frequent",
+      "mistakeType": "Capital-rationing selection error",
+      "examTip": "Do not rank only by individual NPV. Test feasible combinations under the budget constraint.",
+      "unit": "$",
+      "tolerance": 0.01
+    },
+    {
+      "id": "q1237",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "If two mutually exclusive investments have positive NPVs at the correct opportunity cost of capital, which rule is consistent with value maximization?",
+      "answer": 2,
+      "explanation": "For mutually exclusive projects, choose the project with the higher NPV when both are measured at the appropriate opportunity cost of capital.",
+      "source": "LTTC_Time value and money_HKT.pdf · NPV decision rule",
+      "skill": "Decision Rule",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Accept both automatically",
+        "Choose the lower initial cost",
+        "Choose the higher NPV",
+        "Choose the project with the longest life"
+      ]
+    },
+    {
+      "id": "q1238",
+      "module": "tvm",
+      "concept": "irr",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "The IRR of a conventional investment is the discount rate that:",
+      "answer": 1,
+      "explanation": "IRR is the rate that makes NPV equal to zero, equivalently making the PV of benefits equal the PV of costs.",
+      "source": "5 bộ đề năm trước LTTC.pdf · IRR question",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Maximizes the initial investment",
+        "Makes NPV equal to zero",
+        "Always equals the coupon rate",
+        "Makes future value equal zero"
+      ]
+    },
+    {
+      "id": "q1239",
+      "module": "tvm",
+      "concept": "tvm-intuition",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A one-year loan has a 7% nominal rate based on expected inflation of 3%. Actual inflation turns out to be 2%. Who benefits from the unexpected inflation outcome?",
+      "answer": 0,
+      "explanation": "Actual inflation is lower than expected, so the realized real interest rate is higher than anticipated. The lender receives more purchasing power than expected and benefits; the borrower is disadvantaged.",
+      "source": "5 bộ đề năm trước LTTC.pdf · unexpected-inflation essay",
+      "skill": "Interpretation",
+      "examPriority": "Frequent",
+      "mistakeType": "Nominal/real rate confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "The lender",
+        "The borrower",
+        "Both equally",
+        "Neither because the nominal rate is fixed"
+      ]
+    },
+    {
+      "id": "q1240",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "A stream of equal annual payments begins today rather than one year from today. Relative to an otherwise identical ordinary annuity, its present value is:",
+      "answer": 0,
+      "explanation": "Each payment in the annuity-due timing occurs one period earlier, so each is discounted for one fewer period and the PV is higher.",
+      "source": "LTTC_Time value and money_HKT.pdf · annuity timing",
+      "skill": "Relationship Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Higher",
+        "Lower",
+        "Exactly the same",
+        "Zero"
+      ]
+    },
+    {
+      "id": "q1241",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "When comparing a two-year CD with rolling over one-year CDs, which extra input is required for the rollover strategy?",
+      "answer": 2,
+      "explanation": "The second year’s reinvestment rate determines the value of the proceeds reinvested after year 1.",
+      "source": "LTTC_Time value and money_HKT.pdf · reinvestment-rate example",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "The original face value of money",
+        "The inflation rate only",
+        "The expected one-year reinvestment rate next year",
+        "The accounting tax rate only"
+      ]
+    },
+    {
+      "id": "q1242",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "John borrows 10 billion VND for 20 years at 8% with equal annual end-of-year payments. What is the annual payment?",
+      "answer": 1018522088.23,
+      "explanation": "Use the ordinary-annuity loan formula with PV = 10 billion, r = 8%, n = 20.",
+      "source": "5 bộ đề năm trước LTTC.pdf · written loan problem",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Loan payment setup error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "₫",
+      "tolerance": 5
+    },
+    {
+      "id": "q1243",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "For the 10 billion VND, 20-year, 8% annual-payment loan, what is the remaining balance immediately after the 10th payment?",
+      "answer": 6834366118.65,
+      "explanation": "Immediately after payment 10, ten annual payments remain. The payoff is the PV of those remaining payments at year 10.",
+      "source": "5 bộ đề năm trước LTTC.pdf · written loan payoff",
+      "skill": "Multi-step Problem",
+      "examPriority": "Frequent",
+      "mistakeType": "Remaining-balance timing error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "₫",
+      "tolerance": 10
+    },
+    {
+      "id": "q1244",
+      "module": "personal",
+      "concept": "credit-card-mechanics",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A credit-card balance is due on May 5 and no interest is charged if paid by the due date. From a pure cash-cycle perspective, when is payment usually best?",
+      "answer": 2,
+      "explanation": "Holding cash until near the due date preserves liquidity/interest without creating a late fee, provided operational risk is controlled.",
+      "source": "5 bộ đề năm trước LTTC.pdf · cash-cycle essay",
+      "skill": "Application / Judgment",
+      "examPriority": "Frequent",
+      "mistakeType": "Cash-cycle timing error",
+      "examTip": "State both the economic benefit of delaying payment and the operational danger of paying too late.",
+      "options": [
+        "Immediately on statement date in every case",
+        "After the due date",
+        "Near the due date but early enough to avoid processing/late-payment risk",
+        "Never pay the balance"
+      ]
+    },
+    {
+      "id": "q1245",
+      "module": "personal",
+      "concept": "credit-card-mechanics",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "What is the main danger of deliberately waiting until the last possible day to pay a credit-card bill?",
+      "answer": 1,
+      "explanation": "Processing delays, forgotten payments, or operational errors can cause late fees or interest even if delaying payment improves cash management in principle.",
+      "source": "5 bộ đề năm trước LTTC.pdf · cash-cycle essay",
+      "skill": "Risk Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "The card issuer must reduce the credit limit",
+        "A processing delay can make the payment late",
+        "The nominal APR automatically becomes zero",
+        "The balance becomes an asset"
+      ]
+    },
+    {
+      "id": "q1246",
+      "module": "personal",
+      "concept": "interest-only-personal",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "On a 5-year interest-only loan, what happens to principal during years 1–4 if the contract requires only annual interest before maturity?",
+      "answer": 2,
+      "explanation": "Interest-only payments do not amortize principal; the original principal remains outstanding until the final repayment unless the contract states otherwise.",
+      "source": "LTTC_Time value and money_HKT.pdf · interest-only loan example",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "It falls to zero evenly",
+        "It rises by the coupon amount",
+        "It remains outstanding",
+        "It is converted into equity"
+      ]
+    },
+    {
+      "id": "q1247",
+      "module": "personal",
+      "concept": "retirement-annuity",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "An annuity costs $10,000 and pays $1,000 at each year-end for 15 years. If your opportunity cost is 8%, the PV of payments is about $8,559. Based only on NPV, should you buy it?",
+      "answer": 1,
+      "explanation": "NPV ≈ 8,559 − 10,000 = −1,441, so the investment is unattractive at an 8% opportunity cost, ignoring insurance/utility features outside the calculation.",
+      "source": "LTTC_Time value and money_HKT.pdf · insurance annuity example",
+      "skill": "Decision Rule",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Yes, because total nominal payments are $15,000",
+        "No, because NPV is negative",
+        "Yes, because 15 years is long",
+        "Indifferent because PV is always equal to price"
+      ]
+    },
+    {
+      "id": "q1248",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Immediately after the 12th payment on a 120-payment mortgage, how many scheduled payments remain?",
+      "answer": 1,
+      "explanation": "After 12 payments have actually been made, 120 − 12 = 108 payments remain.",
+      "source": "5 bộ đề năm trước LTTC.pdf · payoff timing pattern",
+      "skill": "Timeline Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "107",
+        "108",
+        "109",
+        "120"
+      ]
+    },
+    {
+      "id": "q1249",
+      "module": "personal",
+      "concept": "financing-rebate",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "When comparing two financing plans with different payment dates and rates, what is the safest common comparison basis?",
+      "answer": 3,
+      "explanation": "Bring all cash flows to a common valuation date using the appropriate opportunity/financing rate before comparing economic cost.",
+      "source": "LTTC_Time value and money_HKT.pdf · financing comparisons",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Total nominal dollars only",
+        "Number of payments only",
+        "Largest advertised APR only",
+        "Present value at a common date"
+      ]
+    },
+    {
+      "id": "q1250",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Which set contains only classic money-market instruments?",
+      "answer": 3,
+      "explanation": "Bankers’ acceptances, negotiable CDs, and Treasury bills are short-term debt instruments associated with the money market.",
+      "source": "5 bộ đề năm trước LTTC.pdf · money-market classification",
+      "skill": "Classification",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Common stock, T-bills, CDs",
+        "Corporate bonds, repos, common stock",
+        "Government long-term bonds, commercial paper, CDs",
+        "Bankers’ acceptances, negotiable CDs, Treasury bills"
+      ]
+    },
+    {
+      "id": "q1251",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "FPT issues new common shares to raise operating capital. This transaction occurs in the:",
+      "answer": 2,
+      "explanation": "New securities are sold in the primary market; common shares are capital-market instruments.",
+      "source": "5 bộ đề năm trước LTTC.pdf · primary/capital classification",
+      "skill": "Classification",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Secondary money market",
+        "Secondary capital market",
+        "Primary capital market",
+        "Primary money market"
+      ]
+    },
+    {
+      "id": "q1252",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A dealer network in which securities are traded without a centralized exchange floor is best described as:",
+      "answer": 0,
+      "explanation": "An OTC market is organized through dealers who stand ready to buy/sell rather than through a centralized exchange floor.",
+      "source": "LTTC_Financial market_HKT.pdf + past-paper OTC questions",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Over-the-counter market",
+        "Primary market only",
+        "Money supply market",
+        "Capital budgeting market"
+      ]
+    },
+    {
+      "id": "q1253",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Why can a higher secondary-market share price help a firm raise more capital in a future primary issue?",
+      "answer": 1,
+      "explanation": "Secondary-market prices provide valuation information and affect the price investors may be willing to pay in a new issue; the firm does not receive cash from ordinary secondary trades themselves.",
+      "source": "5 bộ đề năm trước LTTC.pdf · secondary-market role",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Because the firm receives every secondary-market trade directly",
+        "Because investors may pay a higher price in a future new issue",
+        "Because secondary markets convert debt into money supply",
+        "Because a high secondary price removes all issuance costs"
+      ]
+    },
+    {
+      "id": "q1254",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "When one investor sells existing shares to another investor on an exchange, who normally receives the purchase cash?",
+      "answer": 2,
+      "explanation": "The seller receives the cash. The issuing company raised funds when it sold securities in the primary market, not in this secondary transaction.",
+      "source": "5 bộ đề năm trước LTTC.pdf · role of secondary market",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "The issuing company only",
+        "The central bank",
+        "The selling investor",
+        "The securities regulator"
+      ]
+    },
+    {
+      "id": "q1255",
+      "module": "markets",
+      "concept": "financial-institutions",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Which statement best describes a commercial bank?",
+      "answer": 0,
+      "explanation": "A commercial bank accepts deposits/raises deposit funding and uses funds for loans and securities.",
+      "source": "LTTC_Financial market_HKT.pdf · commercial banks",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "A depository intermediary that takes deposits and makes loans",
+        "A regulator that licenses all firms",
+        "A market where stocks are traded",
+        "An institution that only underwrites new securities and takes no deposits"
+      ]
+    },
+    {
+      "id": "q1256",
+      "module": "markets",
+      "concept": "financial-institutions",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "What distinguishes an investment bank from a traditional deposit-taking commercial bank in the supporting notes?",
+      "answer": 2,
+      "explanation": "Investment banks advise on securities issuance and underwrite/distribute securities rather than primarily taking deposits and making loans.",
+      "source": "LTTC_Financial market_HKT.pdf · Investment bank",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "It issues the national currency",
+        "It only sells insurance",
+        "It advises/underwrites securities rather than primarily taking deposits and lending",
+        "It is the same as a credit union"
+      ]
+    },
+    {
+      "id": "q1257",
+      "module": "markets",
+      "concept": "financial-institutions",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Small or informationally opaque firms are often more likely than large well-known firms to rely on bank financing because banks can:",
+      "answer": 1,
+      "explanation": "Banks specialize in screening and monitoring borrowers, which helps when public-market investors face larger information problems.",
+      "source": "5 bộ đề năm trước LTTC.pdf · bank-financing written question; Mishkin intermediation logic",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Eliminate every business risk",
+        "Screen and monitor borrowers",
+        "Guarantee all projects earn profits",
+        "Issue common stock on behalf of the government"
+      ]
+    },
+    {
+      "id": "q1258",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A lender cannot distinguish a safe borrower from a very risky borrower before making a loan. This is primarily:",
+      "answer": 0,
+      "explanation": "Hidden borrower type before the transaction is the classic adverse-selection problem.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · adverse-selection MCQ",
+      "skill": "Classification",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Adverse selection",
+        "Moral hazard",
+        "Diversification",
+        "Market liquidity"
+      ]
+    },
+    {
+      "id": "q1259",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "After receiving a loan, a borrower uses the money for a much riskier project than promised. This is primarily:",
+      "answer": 1,
+      "explanation": "The hidden action occurs after financing, so it is a moral-hazard problem.",
+      "source": "LTTC_Financial market_HKT.pdf + past papers",
+      "skill": "Classification",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Adverse selection",
+        "Moral hazard",
+        "Unit of account",
+        "Primary-market pricing"
+      ]
+    },
+    {
+      "id": "q1260",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Which action most directly reduces adverse selection before a loan is made?",
+      "answer": 2,
+      "explanation": "Screening and requiring information before lending helps the lender distinguish borrower quality.",
+      "source": "5 bộ đề năm trước LTTC.pdf · adverse-selection solutions",
+      "skill": "Mitigation Strategy",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Ignoring borrower information",
+        "Paying dividends after the loan",
+        "Screening applicants and verifying information",
+        "Allowing the borrower to change projects freely"
+      ]
+    },
+    {
+      "id": "q1261",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Why can collateral reduce an asymmetric-information problem?",
+      "answer": 1,
+      "explanation": "Collateral gives the borrower more value at risk and gives the lender an asset to seize if repayment fails, improving incentives and loss protection.",
+      "source": "5 bộ đề năm trước LTTC.pdf · collateral essay",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "It makes all borrowers identical",
+        "It raises the borrower’s stake and protects the lender if default occurs",
+        "It eliminates the need for a contract",
+        "It guarantees the collateral price never falls"
+      ]
+    },
+    {
+      "id": "q1262",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Challenge",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Why might collateral become a weak solution exactly during a crisis?",
+      "answer": 3,
+      "explanation": "If collateral values fall sharply or are correlated with borrower distress, the lender’s recovery value can disappear when default risk is highest.",
+      "source": "5 bộ đề năm trước LTTC.pdf · collateral limitation essay",
+      "skill": "Application / Judgment",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Because collateral cannot be legally owned",
+        "Because collateral always increases moral hazard",
+        "Because collateral is never marketable",
+        "Because collateral value can fall when borrower default risk rises"
+      ]
+    },
+    {
+      "id": "q1263",
+      "module": "markets",
+      "concept": "market-quality-regulation",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "According to the supporting notes, two central reasons for financial regulation are to:",
+      "answer": 1,
+      "explanation": "The notes emphasize increasing information available to investors and ensuring the soundness of the financial system/intermediaries.",
+      "source": "LTTC_Financial market_HKT.pdf · §5 Regulation",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Set every market price and eliminate competition",
+        "Increase investor information and promote financial-system soundness",
+        "Guarantee every security has positive returns",
+        "Replace all private financial institutions"
+      ]
+    },
+    {
+      "id": "q1264",
+      "module": "markets",
+      "concept": "market-quality-regulation",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which feature is LEAST consistent with a well-run financial market in the uploaded notes?",
+      "answer": 3,
+      "explanation": "Well-run markets aim for low transaction cost, widely available accurate information, and enforceable investor rights—not deliberately high trading friction.",
+      "source": "LTTC_Financial market_HKT.pdf · §3.3",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Low transaction costs",
+        "Accurate and widely available information",
+        "Credible and enforceable repayment rights",
+        "Deliberately high costs of buying and selling"
+      ]
+    },
+    {
+      "id": "q1265",
+      "module": "markets",
+      "concept": "finance-companies-securities",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A corporation wants to raise capital without giving common shareholders additional voting control. Which financing choices can achieve that most directly?",
+      "answer": 3,
+      "explanation": "Debt and preferred stock can raise funds without granting the same ordinary voting rights as common stock; exact rights depend on contract terms.",
+      "source": "5 bộ đề năm trước LTTC.pdf · financing/control MCQ",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Common stock only",
+        "Common stock and retained earnings only",
+        "Only cash",
+        "Debt or preferred stock"
+      ]
+    },
+    {
+      "id": "q1266",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Why do corporations often use money markets for temporary surplus cash?",
+      "answer": 0,
+      "explanation": "Money-market instruments are short term and usually liquid, which fits temporary cash management needs.",
+      "source": "LTTC_Financial market_HKT.pdf · Why money markets",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "They provide short-term liquid instruments for temporary funds",
+        "They guarantee the highest return in finance",
+        "They contain only common stocks",
+        "They have maturities longer than ten years"
+      ]
+    },
+    {
+      "id": "q1267",
+      "module": "markets",
+      "concept": "financial-institutions",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "What is “maturity transformation” in commercial banking?",
+      "answer": 2,
+      "explanation": "Banks can fund with relatively short-term deposits and make longer-term loans, transforming the maturity profile of funds.",
+      "source": "LTTC_Financial market_HKT.pdf · depository institutions",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Turning equity into currency",
+        "Changing coupon bonds into stocks",
+        "Funding with shorter-term liabilities and holding longer-term assets",
+        "Converting all loans into cash immediately"
+      ]
+    },
+    {
+      "id": "q1268",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which statement about OTC markets is most accurate in the supporting Mishkin/notes framing?",
+      "answer": 3,
+      "explanation": "OTC markets use geographically dispersed dealers connected by communications systems; they can still be highly competitive.",
+      "source": "Mishkin & Serletis Chapter 2; LTTC_Financial market_HKT.pdf",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "OTC means securities are illegal",
+        "OTC has no dealers or quoted prices",
+        "OTC is necessarily less competitive than an exchange",
+        "OTC can be a competitive dealer market without a centralized floor"
+      ]
+    },
+    {
+      "id": "q1269",
+      "module": "markets",
+      "concept": "market-quality-regulation",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "A disclosure rule that forces issuers to publish reliable financial information most directly targets:",
+      "answer": 0,
+      "explanation": "Better pre-transaction information helps investors distinguish issuer quality and therefore reduces adverse-selection problems.",
+      "source": "LTTC_Financial market_HKT.pdf · regulation and information",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Adverse selection",
+        "Compounding frequency",
+        "Currency denomination",
+        "Annuity timing"
+      ]
+    },
+    {
+      "id": "q1270",
+      "module": "valuation",
+      "concept": "money-market-instruments",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Which instrument is an overnight or very short-term loan of reserve balances between banks rather than a loan from the government?",
+      "answer": 2,
+      "explanation": "Federal funds/interbank funds are loans between banks, not loans made by the federal government or central bank itself.",
+      "source": "LTTC_Financial market_HKT.pdf · Federal funds",
+      "skill": "Classification",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Treasury bond",
+        "Commercial paper",
+        "Federal funds",
+        "Preferred stock"
+      ]
+    },
+    {
+      "id": "q1271",
+      "module": "valuation",
+      "concept": "money-market-instruments",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "A repurchase agreement is economically closest to:",
+      "answer": 1,
+      "explanation": "A repo is effectively a short-term collateralized loan: securities are sold with an agreement to repurchase them.",
+      "source": "LTTC_Financial market_HKT.pdf · Repos",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "A perpetual equity claim",
+        "A short-term collateralized loan",
+        "A common-stock dividend",
+        "An unsecured long-term mortgage"
+      ]
+    },
+    {
+      "id": "q1272",
+      "module": "valuation",
+      "concept": "money-market-instruments",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which statement best describes commercial paper?",
+      "answer": 3,
+      "explanation": "Commercial paper is short-term unsecured debt issued by large, well-known corporations or financial institutions.",
+      "source": "LTTC_Financial market_HKT.pdf · Commercial paper",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Long-term secured government debt",
+        "Common stock issued by banks",
+        "A retail savings deposit only",
+        "Short-term unsecured corporate debt"
+      ]
+    },
+    {
+      "id": "q1273",
+      "module": "valuation",
+      "concept": "money-market-instruments",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "What makes a bankers’ acceptance more marketable than an unsupported trade obligation?",
+      "answer": 0,
+      "explanation": "Bank acceptance adds the bank’s commitment/credit to the payment obligation, improving credibility.",
+      "source": "LTTC_Financial market_HKT.pdf · Banker’s acceptance",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "A bank guarantees/accepts the payment obligation",
+        "It becomes common stock",
+        "Its maturity becomes infinite",
+        "It cannot be traded"
+      ]
+    },
+    {
+      "id": "q1274",
+      "module": "valuation",
+      "concept": "bond-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A $1,000 par bond pays a 6% annual coupon, matures in 10 years, and has an 8% YTM. What is its price?",
+      "answer": 865.8,
+      "explanation": "Discount the ten $60 coupons and the $1,000 principal at 8%. Because coupon rate < YTM, the price is below par.",
+      "source": "5 bộ đề năm trước LTTC.pdf · bond valuation written problem",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Bond cash-flow setup error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1275",
+      "module": "valuation",
+      "concept": "ytm-bond-types",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A bond’s coupon rate is 6% and its YTM is 8%. All else equal, the bond should trade:",
+      "answer": 1,
+      "explanation": "When YTM exceeds coupon rate, investors require more return than the coupon provides, so price must fall below par.",
+      "source": "5 bộ đề năm trước LTTC.pdf · bond valuation pattern",
+      "skill": "Relationship Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Above par",
+        "Below par",
+        "Exactly at par",
+        "At zero"
+      ]
+    },
+    {
+      "id": "q1276",
+      "module": "valuation",
+      "concept": "bond-price-rates",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "If required market yields rise while a bond’s promised cash flows are unchanged, its price will generally:",
+      "answer": 1,
+      "explanation": "Discounting unchanged future cash flows at a higher rate produces a lower present value.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · bond-price MCQ",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Rise",
+        "Fall",
+        "Remain fixed",
+        "Become equal to coupon payment"
+      ]
+    },
+    {
+      "id": "q1277",
+      "module": "valuation",
+      "concept": "bond-price-rates",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A company’s credit rating improves and investors lower the required return on its existing bond. What happens to the bond price, other things equal?",
+      "answer": 0,
+      "explanation": "Lower required return means less discounting of the same promised cash flows, so price rises.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · rating-upgrade written problem",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "It rises",
+        "It falls",
+        "It must equal zero",
+        "It becomes unrelated to YTM"
+      ]
+    },
+    {
+      "id": "q1278",
+      "module": "valuation",
+      "concept": "bond-ratings-international",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Under the common S&P convention used in the course questions, speculative-grade bonds are generally rated:",
+      "answer": 2,
+      "explanation": "Investment grade is BBB−/BBB or above depending on notation; ratings below BBB category are speculative grade in the simplified course framing.",
+      "source": "5 bộ đề năm trước LTTC.pdf · credit-rating MCQ",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "AAA only",
+        "Above AA",
+        "Below BBB category",
+        "Exactly A"
+      ]
+    },
+    {
+      "id": "q1279",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "An 18-year coupon bond pays coupons semiannually and is stripped into separate zero-coupon claims for every payment, including principal. How many separate claims result?",
+      "answer": 3,
+      "explanation": "There are 18×2 = 36 coupon payments plus one principal payment = 37 separate cash-flow claims.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · STRIPS MCQ",
+      "skill": "Numerical Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "18",
+        "19",
+        "36",
+        "37"
+      ]
+    },
+    {
+      "id": "q1280",
+      "module": "valuation",
+      "concept": "money-market-yields",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "For a bond dealer quote, the bid price is the price at which the dealer is willing to:",
+      "answer": 1,
+      "explanation": "Bid is the dealer’s purchase price—the amount the dealer bids to buy the security from an investor.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · bid-price MCQ",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Sell the bond to an investor",
+        "Buy the bond from an investor",
+        "Pay the coupon to the issuer",
+        "Redeem the bond at maturity"
+      ]
+    },
+    {
+      "id": "q1281",
+      "module": "valuation",
+      "concept": "money-market-yields",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A $10,000 Treasury bill has 180 days to maturity. Using a 360-day bank-discount convention, the ask discount quote is 2.65%. What price does an investor pay to buy the T-bill?",
+      "answer": 9867.5,
+      "explanation": "Price = Face × [1 − d × days/360] = 10,000[1 − 0.0265×180/360].",
+      "source": "5 bộ đề năm trước LTTC.pdf · T-bill bid/ask question",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Money-market quote convention error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1282",
+      "module": "valuation",
+      "concept": "money-market-yields",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "The same $10,000, 180-day T-bill has a 2.75% bid discount quote. Using the 360-day bank-discount convention, what price would the dealer pay to buy the bill from the investor?",
+      "answer": 9862.5,
+      "explanation": "Use the bid discount quote in the same discount-price formula. A higher discount quote means a lower dollar price.",
+      "source": "5 bộ đề năm trước LTTC.pdf · T-bill bid/ask question",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Bid/ask direction error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1283",
+      "module": "valuation",
+      "concept": "money-market-yields",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Commercial paper has face value $10.0 million, price $9.55 million, and 270 days to maturity. Using a 365-day bond-equivalent/simple investment-yield convention, what annualized yield (%) is earned if held to maturity?",
+      "answer": 6.37,
+      "explanation": "First compute holding-period return = (10.0−9.55)/9.55, then annualize by 365/270.",
+      "source": "5 bộ đề năm trước LTTC.pdf · commercial-paper BEY question",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Yield denominator/day-count error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.01
+    },
+    {
+      "id": "q1284",
+      "module": "valuation",
+      "concept": "money-market-yields",
+      "type": "numeric",
+      "difficulty": "Challenge",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A 28-day T-bill has a 0.25% bank-discount quote on a 360-day basis. What is its bond-equivalent/simple annualized yield on a 365-day basis (in %)?",
+      "answer": 0.2535,
+      "explanation": "Convert the discount quote to price, compute the holding-period return on price, then annualize HPR by 365/28.",
+      "source": "5 bộ đề năm trước LTTC.pdf · 28-day T-bill yield question",
+      "skill": "Multi-step Problem",
+      "examPriority": "Frequent",
+      "mistakeType": "Yield-convention conversion error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.005
+    },
+    {
+      "id": "q1285",
+      "module": "valuation",
+      "concept": "money-market-yields",
+      "type": "numeric",
+      "difficulty": "Challenge",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "For the same 28-day T-bill with a 0.25% bank-discount quote, what is the effective annual return (in %), assuming repeated investment at the same 28-day holding-period return?",
+      "answer": 0.2538,
+      "explanation": "EAR = (1 + HPR)^(365/28) − 1 after converting the discount quote to the actual 28-day HPR on invested price.",
+      "source": "5 bộ đề năm trước LTTC.pdf · 28-day T-bill yield question",
+      "skill": "Multi-step Problem",
+      "examPriority": "Frequent",
+      "mistakeType": "Simple annualization vs compounding error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.005
+    },
+    {
+      "id": "q1286",
+      "module": "valuation",
+      "concept": "money-market-instruments",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Why are Treasury bills commonly described as especially liquid money-market instruments?",
+      "answer": 2,
+      "explanation": "They are actively traded short-term government instruments, so investors can generally buy or sell them with relatively low trading friction.",
+      "source": "LTTC_Financial market_HKT.pdf · Treasury bills",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "They have no maturity date",
+        "They are equity claims",
+        "They are actively traded short-term government instruments",
+        "They always offer the highest yield"
+      ]
+    },
+    {
+      "id": "q1287",
+      "module": "valuation",
+      "concept": "money-market-instruments",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which statement about negotiable CDs is most accurate?",
+      "answer": 0,
+      "explanation": "A negotiable CD is a bank debt/time-deposit instrument that can be sold in a secondary market.",
+      "source": "LTTC_Financial market_HKT.pdf · Negotiable CDs",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "It is a bank-issued debt/time-deposit instrument that can be traded",
+        "It is common stock issued by a bank",
+        "It is a Treasury bill issued by the government",
+        "It is an insurance policy"
+      ]
+    },
+    {
+      "id": "q1288",
+      "module": "valuation",
+      "concept": "bond-ratings-international",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Other things equal, which bond should normally offer the higher yield?",
+      "answer": 1,
+      "explanation": "Greater default risk generally requires a higher promised yield to compensate investors.",
+      "source": "5 bộ đề năm trước LTTC.pdf · risk/yield relationship",
+      "skill": "Relationship Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "A less risky bond with the same maturity and tax treatment",
+        "A more default-risky bond with the same maturity and tax treatment",
+        "A more liquid bond with identical risk",
+        "A tax-advantaged bond with identical risk and liquidity"
+      ]
+    },
+    {
+      "id": "q1289",
+      "module": "valuation",
+      "concept": "bond-ratings-international",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Other things equal, greater bond liquidity should generally be associated with:",
+      "answer": 0,
+      "explanation": "Investors value liquidity, so they normally accept a lower required yield for a more liquid otherwise-comparable bond.",
+      "source": "5 bộ đề năm trước LTTC.pdf · determinants of yields",
+      "skill": "Relationship Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "A lower required yield",
+        "A higher required yield",
+        "No value to investors",
+        "A mandatory coupon increase"
+      ]
+    },
+    {
+      "id": "q1290",
+      "module": "valuation",
+      "concept": "bond-valuation",
+      "type": "mcq",
+      "difficulty": "Challenge",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "A bond’s market price is above par. Which relationship is most likely if default risk and optionality are ignored?",
+      "answer": 3,
+      "explanation": "A premium bond has a coupon rate above the market-required YTM for comparable risk and maturity.",
+      "source": "2023 Valuation of securities.pdf + past-paper bond patterns",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Coupon rate = 0",
+        "YTM > coupon rate",
+        "Price must equal accrued interest",
+        "Coupon rate > YTM"
+      ]
+    },
+    {
+      "id": "q1291",
+      "module": "risk",
+      "concept": "probability-expected-value",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A project payoff is $0 with probability 25% and $1,000 with probability 75%. What is the expected payoff?",
+      "answer": 750,
+      "explanation": "Expected payoff is the probability-weighted average: 0.25×0 + 0.75×1,000.",
+      "source": "5 bộ đề năm trước LTTC.pdf · discrete-risk pattern (normalized to payoff, not net profit)",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Expected-value setup error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.01
+    },
+    {
+      "id": "q1292",
+      "module": "risk",
+      "concept": "variance-standard-deviation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "For the same payoff distribution ($0 with 25%, $1,000 with 75%), what is the standard deviation of payoff?",
+      "answer": 433.01,
+      "explanation": "Compute EV = 750, then variance = 0.25(0−750)^2 + 0.75(1000−750)^2 and take the square root.",
+      "source": "5 bộ đề năm trước LTTC.pdf · discrete-risk pattern (normalized)",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Variance/standard-deviation error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "$",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1293",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "A portfolio invests 30% in X (σ=20%) and 70% in Y (σ=10%). Correlation is −0.50. What is portfolio standard deviation (in %)?",
+      "answer": 6.5574,
+      "explanation": "Cov = −0.50×0.20×0.10 = −0.01. Then apply the two-asset variance formula and take the square root.",
+      "source": "5 bộ đề năm trước LTTC.pdf · portfolio-risk pattern, normalized inputs",
+      "skill": "Multi-step Problem",
+      "examPriority": "Frequent",
+      "mistakeType": "Portfolio covariance error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.01
+    },
+    {
+      "id": "q1294",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "If two risky assets have perfectly positive correlation (+1), combining them generally provides:",
+      "answer": 2,
+      "explanation": "With perfect positive correlation, returns move together exactly; there is no offsetting co-movement to create diversification benefit.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · diversification MCQ",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Maximum possible diversification",
+        "A guaranteed higher expected return",
+        "No diversification benefit from imperfect co-movement",
+        "Zero portfolio risk"
+      ]
+    },
+    {
+      "id": "q1295",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Holding weights and individual volatilities fixed, portfolio variance falls when correlation moves from +0.8 to +0.2 because:",
+      "answer": 1,
+      "explanation": "The covariance cross term 2wXwYρσXσY becomes smaller.",
+      "source": "Two-asset portfolio relation derived from past-paper pattern + risk concepts",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Expected returns automatically become zero",
+        "The covariance contribution becomes smaller",
+        "The weights disappear",
+        "Each asset’s variance becomes negative"
+      ]
+    },
+    {
+      "id": "q1296",
+      "module": "risk",
+      "concept": "leverage-risk",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Which statement about financial leverage is most consistently supported by the course risk logic?",
+      "answer": 1,
+      "explanation": "More debt increases fixed obligations and therefore raises default/financial-distress risk, even though equity outcomes may also become more amplified.",
+      "source": "5 bộ đề năm trước LTTC.pdf · leverage-risk MCQ",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Leverage always reduces default risk",
+        "Leverage increases default risk",
+        "Leverage guarantees a higher realized profit",
+        "Leverage eliminates business risk"
+      ]
+    },
+    {
+      "id": "q1297",
+      "module": "risk",
+      "concept": "risk-aversion-premium",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Why do risk-averse investors still hold risky assets?",
+      "answer": 2,
+      "explanation": "Risk aversion does not mean avoiding all risk; investors may accept risk when expected compensation/risk premium is sufficient.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · risk-aversion MCQ",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "They secretly prefer losses",
+        "Risky assets have zero variance",
+        "They may be compensated with a sufficient risk premium",
+        "Treasury securities cannot be purchased"
+      ]
+    },
+    {
+      "id": "q1298",
+      "module": "risk",
+      "concept": "defining-risk",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "The measure that focuses on the worst potential loss over a specified horizon and confidence framework is:",
+      "answer": 2,
+      "explanation": "Value at Risk is designed to summarize potential loss over a horizon at a stated confidence level.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · risk-measure pattern",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Expected return",
+        "Dividend yield",
+        "Value at Risk",
+        "Asset turnover"
+      ]
+    },
+    {
+      "id": "q1299",
+      "module": "risk",
+      "concept": "systematic-idiosyncratic",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which risk is most directly reduced by holding many unrelated firms in a diversified portfolio?",
+      "answer": 0,
+      "explanation": "Firm-specific/idiosyncratic risk can be diversified away; broad systematic risk remains.",
+      "source": "2023 Understanding risk.pdf · diversification concepts",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Idiosyncratic risk",
+        "Systematic market risk",
+        "Inflation in every asset simultaneously",
+        "Risk-free rate"
+      ]
+    },
+    {
+      "id": "q1300",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Asset X has σ=15%, asset Y has σ=25%, and their correlation is 0.40. What is their covariance in decimal units?",
+      "answer": 0.015,
+      "explanation": "Cov(X,Y) = ρσXσY = 0.40×0.15×0.25.",
+      "source": "Portfolio-risk extension from past-paper pattern",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Correlation/covariance conversion error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "tolerance": 1e-06
+    },
+    {
+      "id": "q1301",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "mcq",
+      "difficulty": "Challenge",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "A portfolio’s expected return can remain unchanged while its risk falls through diversification because:",
+      "answer": 3,
+      "explanation": "Expected return is a weighted average of expected returns, while variance also depends on covariance/correlation. Changing co-movement can lower risk without changing the weighted expected-return inputs.",
+      "source": "Risk diversification relation; past-paper portfolio pattern",
+      "skill": "Interpretation",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Expected return and variance are the same formula",
+        "Diversification always raises each asset’s return",
+        "Correlation changes the face value of each asset",
+        "Portfolio variance depends on covariance in addition to individual expected returns"
+      ]
+    },
+    {
+      "id": "q1302",
+      "module": "risk",
+      "concept": "variance-standard-deviation",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Why is standard deviation often easier to interpret than variance?",
+      "answer": 0,
+      "explanation": "Standard deviation is in the same units as the underlying payoff/return, whereas variance is in squared units.",
+      "source": "2023 Understanding risk.pdf · variance and standard deviation",
+      "skill": "Interpretation",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "It is expressed in the original units",
+        "It can never be zero",
+        "It ignores probabilities",
+        "It is always smaller than expected value"
+      ]
+    },
+    {
+      "id": "q1303",
+      "module": "risk",
+      "concept": "leverage-risk",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Why can leverage amplify equity return variability?",
+      "answer": 1,
+      "explanation": "Debt creates fixed claims. After those claims are paid, a given change in firm asset value is absorbed by a smaller equity base, magnifying percentage changes in equity outcomes.",
+      "source": "2023 Understanding risk.pdf · leverage and risk",
+      "skill": "Cause–Effect",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Debt makes asset cash flows risk-free",
+        "Fixed debt claims concentrate residual variability in equity",
+        "Debt converts all liabilities into equity",
+        "Debt removes default risk"
+      ]
+    },
+    {
+      "id": "q1304",
+      "module": "risk",
+      "concept": "hedging-diversification",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Which statement best distinguishes hedging from diversification?",
+      "answer": 2,
+      "explanation": "Hedging offsets a specific exposure using an opposing position/contract; diversification spreads exposure across imperfectly related risks.",
+      "source": "2023 Understanding risk.pdf · risk management concepts",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Both require perfect positive correlation",
+        "Diversification always uses derivatives",
+        "Hedging offsets an exposure; diversification spreads across risks",
+        "Hedging is identical to insurance premiums"
+      ]
+    },
+    {
+      "id": "q1305",
+      "module": "health",
+      "concept": "leverage-coverage-ratios",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "The debt-to-equity ratio is defined as:",
+      "answer": 2,
+      "explanation": "Debt-to-equity compares total debt with total equity.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · ratio MCQ",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Equity minus debt",
+        "Equity divided by debt",
+        "Debt divided by equity",
+        "Debt plus equity divided by equity"
+      ]
+    },
+    {
+      "id": "q1306",
+      "module": "health",
+      "concept": "profitability-market-ratios",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Net income divided by sales is the firm’s:",
+      "answer": 0,
+      "explanation": "Net profit margin = net income / sales.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · ratio MCQ",
+      "skill": "Definition Recall",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Net profit margin",
+        "Return on assets",
+        "Return on equity",
+        "Asset turnover"
+      ]
+    },
+    {
+      "id": "q1307",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Company ABC reports ROE 19.8%, ROA 8.1%, and asset turnover 2.0 in 2020. What is the equity multiplier?",
+      "answer": 2.4444,
+      "explanation": "Use ROE = ROA × Equity Multiplier, so Equity Multiplier = ROE/ROA.",
+      "source": "5 bộ đề năm trước LTTC.pdf · DuPont missing-value table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "tolerance": 0.001
+    },
+    {
+      "id": "q1308",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Company ABC reports ROA 8.1% and asset turnover 2.0 in 2020. What is net profit margin (in %)?",
+      "answer": 4.05,
+      "explanation": "Use ROA = Net Profit Margin × Asset Turnover, so margin = ROA/Asset Turnover.",
+      "source": "5 bộ đề năm trước LTTC.pdf · DuPont missing-value table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.01
+    },
+    {
+      "id": "q1309",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Company ABC reports ROE 20.0%, ROA 8.0%, and asset turnover 2.0 in 2021. What is the equity multiplier?",
+      "answer": 2.5,
+      "explanation": "Use ROE = ROA × Equity Multiplier, so Equity Multiplier = ROE/ROA.",
+      "source": "5 bộ đề năm trước LTTC.pdf · DuPont missing-value table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "tolerance": 0.001
+    },
+    {
+      "id": "q1310",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Company ABC reports ROA 8.0% and asset turnover 2.0 in 2021. What is net profit margin (in %)?",
+      "answer": 4,
+      "explanation": "Use ROA = Net Profit Margin × Asset Turnover, so margin = ROA/Asset Turnover.",
+      "source": "5 bộ đề năm trước LTTC.pdf · DuPont missing-value table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.01
+    },
+    {
+      "id": "q1311",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Company ABC reports ROE 22.0%, ROA 7.9%, and asset turnover 2.1 in 2022. What is the equity multiplier?",
+      "answer": 2.7848,
+      "explanation": "Use ROE = ROA × Equity Multiplier, so Equity Multiplier = ROE/ROA.",
+      "source": "5 bộ đề năm trước LTTC.pdf · DuPont missing-value table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "tolerance": 0.001
+    },
+    {
+      "id": "q1312",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Company ABC reports ROA 7.9% and asset turnover 2.1 in 2022. What is net profit margin (in %)?",
+      "answer": 3.7619,
+      "explanation": "Use ROA = Net Profit Margin × Asset Turnover, so margin = ROA/Asset Turnover.",
+      "source": "5 bộ đề năm trước LTTC.pdf · DuPont missing-value table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.01
+    },
+    {
+      "id": "q1313",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Hermès has ROA 23.14% and asset turnover 1.09. Using DuPont, what is its net profit margin (in %)?",
+      "answer": 21.229,
+      "explanation": "Net profit margin = ROA / asset turnover.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · luxury-company DuPont table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1314",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Burberry has ROA 15.93% and asset turnover 1.23. Using DuPont, what is its net profit margin (in %)?",
+      "answer": 12.951,
+      "explanation": "Net profit margin = ROA / asset turnover.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · luxury-company DuPont table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1315",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Kering has ROA 4.19% and asset turnover 0.39. Using DuPont, what is its net profit margin (in %)?",
+      "answer": 10.744,
+      "explanation": "Net profit margin = ROA / asset turnover.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · luxury-company DuPont table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1316",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "LVMH has ROA 6.94% and asset turnover 0.57. Using DuPont, what is its net profit margin (in %)?",
+      "answer": 12.175,
+      "explanation": "Net profit margin = ROA / asset turnover.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · luxury-company DuPont table",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "DuPont reverse-engineering error",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "unit": "%",
+      "tolerance": 0.02
+    },
+    {
+      "id": "q1317",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Using the reported ROA and asset-turnover values for Hermès, Burberry, Kering, and LVMH in the past-paper table, which company has the highest implied net profit margin?",
+      "answer": 0,
+      "explanation": "Net margin = ROA/asset turnover. The implied margins are highest for Hermès among the four reported firms.",
+      "source": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf · DuPont table",
+      "skill": "Interpretation",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Hermès",
+        "Burberry",
+        "Kering",
+        "LVMH"
+      ]
+    },
+    {
+      "id": "q1318",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "A firm’s ROE rises while ROA is unchanged. In the DuPont identity, which component must have increased?",
+      "answer": 2,
+      "explanation": "Since ROE = ROA × Equity Multiplier, if ROA is unchanged and ROE rises, the equity multiplier must rise.",
+      "source": "2023 Analyzing Firm Performance.pdf + past-paper DuPont pattern",
+      "skill": "Relationship Reasoning",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Net income must be zero",
+        "Asset turnover must fall",
+        "Equity multiplier",
+        "Current ratio"
+      ]
+    },
+    {
+      "id": "q1319",
+      "module": "health",
+      "concept": "benchmarking-cautions",
+      "type": "mcq",
+      "difficulty": "Challenge",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "Why is comparing one company’s debt ratio with another company’s ratio potentially misleading without further analysis?",
+      "answer": 3,
+      "explanation": "Accounting policies, business models, asset risk, off-balance-sheet obligations, and book-versus-market measurement can make superficially identical ratios economically different.",
+      "source": "5 bộ đề năm trước LTTC.pdf · leverage-measurement essay",
+      "skill": "Application / Judgment",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Ratios never use accounting numbers",
+        "Debt has no economic meaning",
+        "All industries use identical capital structures",
+        "Measurement basis and off-balance-sheet obligations can differ"
+      ]
+    },
+    {
+      "id": "q1320",
+      "module": "health",
+      "concept": "benchmarking-cautions",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Past Exam — normalized/adapted",
+      "prompt": "When measuring leverage for a market-value analysis, why might market equity be more informative than book equity?",
+      "answer": 1,
+      "explanation": "Market equity reflects current investor valuation, while book equity is an accounting measure based on historical transactions and rules. The appropriate measure depends on the purpose of analysis.",
+      "source": "5 bộ đề năm trước LTTC.pdf · leverage-measurement essay",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Book equity is always zero",
+        "Market equity reflects current market valuation",
+        "Market equity cannot change",
+        "Book equity is a cash-flow measure"
+      ]
+    },
+    {
+      "id": "q1321",
+      "module": "health",
+      "concept": "profitability-market-ratios",
+      "type": "mcq",
+      "difficulty": "Advanced",
+      "origin": "Generated Practice · New Notes",
+      "prompt": "Two firms have the same ROA, but Firm A has a much higher ROE. A likely explanation is that Firm A has:",
+      "answer": 2,
+      "explanation": "ROE = ROA × equity multiplier. With the same ROA, a higher ROE is consistent with greater financial leverage/higher equity multiplier.",
+      "source": "DuPont identity; 2023 Analyzing Firm Performance.pdf",
+      "skill": "Interpretation",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the concept first, then apply the relationship stated in the source.",
+      "options": [
+        "Lower equity multiplier",
+        "Lower sales",
+        "Higher equity multiplier",
+        "Zero debt"
+      ]
+    },
+    {
+      "id": "v06_intro_01",
+      "module": "intro",
+      "concept": "real-vs-financial",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A machine used in production is best classified as:",
+      "options": [
+        "A financial asset",
+        "A real asset",
+        "A liability",
+        "A derivative"
+      ],
+      "answer": 1,
+      "explanation": "A machine is a productive physical resource, so it is a real asset.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_02",
+      "module": "intro",
+      "concept": "real-vs-financial",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A corporate bond held by an investor is best classified as:",
+      "options": [
+        "A real asset",
+        "A financial asset",
+        "A physical liability",
+        "Inventory"
+      ],
+      "answer": 1,
+      "explanation": "A bond is a financial claim on the issuer.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_03",
+      "module": "intro",
+      "concept": "defining-finance",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which decision is most central to finance?",
+      "options": [
+        "Allocating scarce resources over time under uncertainty",
+        "Recording historical transactions only",
+        "Choosing tax forms only",
+        "Designing production machinery"
+      ],
+      "answer": 0,
+      "explanation": "Finance focuses on allocating resources over time, often under uncertainty.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_04",
+      "module": "intro",
+      "concept": "household-decisions",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A household deciding how much income to save is making which financial decision?",
+      "options": [
+        "Consumption and saving",
+        "Production",
+        "Auditing",
+        "Inventory control"
+      ],
+      "answer": 0,
+      "explanation": "The course groups this under consumption and saving decisions.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_05",
+      "module": "intro",
+      "concept": "firm-decisions",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A firm choosing whether to build a new factory is primarily making a:",
+      "options": [
+        "Financing decision",
+        "Investment decision",
+        "Dividend bookkeeping decision",
+        "Tax filing decision"
+      ],
+      "answer": 1,
+      "explanation": "Selecting real investment projects is an investment decision.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_06",
+      "module": "intro",
+      "concept": "firm-decisions",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A firm deciding between issuing debt and equity is making a:",
+      "options": [
+        "Financing decision",
+        "Production decision",
+        "Consumption decision",
+        "Inventory decision"
+      ],
+      "answer": 0,
+      "explanation": "Debt versus equity is a financing choice.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_07",
+      "module": "intro",
+      "concept": "business-organization",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which form generally provides limited liability to owners?",
+      "options": [
+        "Sole proprietorship only",
+        "Corporation",
+        "Informal partnership only",
+        "None"
+      ],
+      "answer": 1,
+      "explanation": "A corporation is a separate legal entity and shareholders generally have limited liability.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_08",
+      "module": "intro",
+      "concept": "goal-management",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which action is most consistent with value maximization?",
+      "options": [
+        "Accept every project with positive accounting income",
+        "Choose projects that increase owners’ wealth after considering timing and risk",
+        "Maximize sales regardless of cost",
+        "Avoid all risky projects"
+      ],
+      "answer": 1,
+      "explanation": "Value maximization requires considering cash-flow timing, risk, and opportunity cost.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_09",
+      "module": "intro",
+      "concept": "financial-system",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "The main economic role of the financial system is to:",
+      "options": [
+        "Eliminate all risk",
+        "Channel funds from surplus units to deficit units",
+        "Fix all market prices",
+        "Replace all banks with markets"
+      ],
+      "answer": 1,
+      "explanation": "The financial system channels funds from savers to users of funds.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_10",
+      "module": "intro",
+      "concept": "financial-system",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "In direct finance, funds move from savers to borrowers primarily through:",
+      "options": [
+        "A financial market",
+        "Only a commercial bank balance sheet",
+        "A tax authority",
+        "A payment processor only"
+      ],
+      "answer": 0,
+      "explanation": "Direct finance uses financial markets rather than an intermediary standing between saver and borrower.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_11",
+      "module": "intro",
+      "concept": "money-functions-payment",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which function of money is illustrated when prices are quoted in VND?",
+      "options": [
+        "Medium of exchange",
+        "Unit of account",
+        "Store of value only",
+        "Risk transfer"
+      ],
+      "answer": 1,
+      "explanation": "Quoting prices uses money as a unit of account.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_12",
+      "module": "intro",
+      "concept": "money-functions-payment",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Why does barter create high transaction costs?",
+      "options": [
+        "It requires a double coincidence of wants",
+        "Money earns interest",
+        "Assets are standardized",
+        "Prices never change"
+      ],
+      "answer": 0,
+      "explanation": "Barter requires finding a counterparty whose wants match yours.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_13",
+      "module": "intro",
+      "concept": "money-functions-payment",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which property makes money especially useful as a store of value for transactions?",
+      "options": [
+        "Liquidity",
+        "Illiquidity",
+        "Non-divisibility",
+        "High default risk"
+      ],
+      "answer": 0,
+      "explanation": "Money is the most liquid asset because it is already the medium of exchange.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_14",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A financial instrument is valuable partly because of all EXCEPT:",
+      "options": [
+        "Size of promised payment",
+        "Timing of payment",
+        "Likelihood of payment",
+        "The color of the contract"
+      ],
+      "answer": 3,
+      "explanation": "Value depends on size, timing, likelihood, and circumstances—not irrelevant physical features.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_15",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Holding everything else constant, a promised payment becomes more valuable when it is:",
+      "options": [
+        "Paid later",
+        "Less likely",
+        "Paid sooner",
+        "More uncertain"
+      ],
+      "answer": 2,
+      "explanation": "Earlier and more certain payments are more valuable.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_16",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Standardization of financial instruments mainly helps by:",
+      "options": [
+        "Increasing complexity",
+        "Reducing creation and understanding costs",
+        "Eliminating all default risk",
+        "Making every instrument identical in risk"
+      ],
+      "answer": 1,
+      "explanation": "Standardization reduces complexity and transaction costs.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_17",
+      "module": "intro",
+      "concept": "financial-system",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bank deposit is best viewed from the bank’s perspective as a:",
+      "options": [
+        "Liability",
+        "Real asset",
+        "Equity claim",
+        "Revenue"
+      ],
+      "answer": 0,
+      "explanation": "The bank owes the depositor, so the deposit is the bank’s liability.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_18",
+      "module": "intro",
+      "concept": "financial-system",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A loan already advanced to a borrower is best viewed by the lender as a:",
+      "options": [
+        "Liability",
+        "Asset",
+        "Expense only",
+        "Equity"
+      ],
+      "answer": 1,
+      "explanation": "The lender has a claim on future repayment, so the loan is an asset.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_19",
+      "module": "intro",
+      "concept": "goal-management",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Why can separation of ownership and management create an agency problem?",
+      "options": [
+        "Managers may have objectives different from owners",
+        "Owners always know more than managers",
+        "Debt cannot be issued",
+        "Markets stop trading"
+      ],
+      "answer": 0,
+      "explanation": "Managers may pursue actions that do not fully align with owners’ interests.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_intro_20",
+      "module": "intro",
+      "concept": "financial-instruments-deep",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which example most clearly illustrates risk transfer by a financial instrument?",
+      "options": [
+        "Insurance contract",
+        "Cash in a wallet",
+        "A price tag",
+        "A receipt"
+      ],
+      "answer": 0,
+      "explanation": "Insurance transfers specified risks in exchange for a premium.",
+      "source": "2024 Introduction to Finance.pdf + LTTC_Financial market_HKT.pdf · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c01",
+      "module": "tvm",
+      "concept": "tvm-intuition",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Why is $1 today generally worth more than $1 one year from now?",
+      "options": [
+        "Today’s dollar can earn a return before next year",
+        "Future money is always illegal",
+        "Inflation can never occur",
+        "Risk is always zero"
+      ],
+      "answer": 0,
+      "explanation": "Current money can be invested; inflation and uncertainty also contribute.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c02",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compounding moves a cash flow:",
+      "options": [
+        "From future to present",
+        "From present to future",
+        "Between currencies only",
+        "From equity to debt"
+      ],
+      "answer": 1,
+      "explanation": "Compounding translates present value into future value.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c03",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Discounting moves a cash flow:",
+      "options": [
+        "From future to present",
+        "From present to future",
+        "Only between accounts",
+        "Only between firms"
+      ],
+      "answer": 0,
+      "explanation": "Discounting translates future cash flow into present value.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c04",
+      "module": "tvm",
+      "concept": "multiple-cash-flows",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Before adding cash flows at different dates, you should:",
+      "options": [
+        "Convert them to a common date",
+        "Add them directly",
+        "Ignore timing",
+        "Use different discount rates randomly"
+      ],
+      "answer": 0,
+      "explanation": "Cash flows must be expressed at the same point in time before aggregation.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c05",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An ordinary annuity has payments occurring:",
+      "options": [
+        "At the beginning of each period",
+        "At the end of each period",
+        "At random dates",
+        "Only once"
+      ],
+      "answer": 1,
+      "explanation": "Ordinary annuity payments occur at period-end.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c06",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An annuity due differs from an ordinary annuity because payments occur:",
+      "options": [
+        "One period earlier",
+        "One period later",
+        "At maturity only",
+        "At irregular intervals"
+      ],
+      "answer": 0,
+      "explanation": "Annuity-due payments are shifted one period earlier.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c07",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "If APR is fixed, more frequent compounding generally makes EAR:",
+      "options": [
+        "Lower",
+        "Higher",
+        "Always zero",
+        "Unrelated to compounding"
+      ],
+      "answer": 1,
+      "explanation": "More frequent compounding raises the effective annual rate for a positive APR.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c08",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "To discount monthly cash flows quoted with a nominal APR, use:",
+      "options": [
+        "APR directly as monthly rate",
+        "APR/12 per month, if monthly compounding",
+        "EAR/365 always",
+        "A random annual rate"
+      ],
+      "answer": 1,
+      "explanation": "Rate and cash-flow period must match.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c09",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "In a fully amortizing fixed-payment loan, the interest component generally:",
+      "options": [
+        "Rises over time",
+        "Falls over time",
+        "Is constant in dollars",
+        "Is always zero"
+      ],
+      "answer": 1,
+      "explanation": "As outstanding principal falls, interest charged on that balance falls.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c10",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Immediately after a scheduled loan payment, the payoff balance equals:",
+      "options": [
+        "PV of remaining payments at the loan rate",
+        "Original principal",
+        "Total future payments without discounting",
+        "Only next period interest"
+      ],
+      "answer": 0,
+      "explanation": "The remaining balance is the present value of remaining contractual payments.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c11",
+      "module": "tvm",
+      "concept": "perpetuities",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A perpetuity is a stream of:",
+      "options": [
+        "Equal payments forever",
+        "One payment only",
+        "Payments for exactly 10 years",
+        "Random equity prices"
+      ],
+      "answer": 0,
+      "explanation": "A level perpetuity pays equal cash flows indefinitely.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c12",
+      "module": "tvm",
+      "concept": "growing-cash-flows",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "For a growing perpetuity formula C1/(r-g), a necessary condition is:",
+      "options": [
+        "g>r",
+        "r>g",
+        "r=0 always",
+        "C1=0"
+      ],
+      "answer": 1,
+      "explanation": "The standard growing perpetuity requires discount rate greater than growth rate.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c13",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A project with NPV > 0 should generally be:",
+      "options": [
+        "Accepted",
+        "Rejected automatically",
+        "Ignored",
+        "Accepted only if accounting profit is zero"
+      ],
+      "answer": 0,
+      "explanation": "Positive NPV means value created relative to the opportunity cost of capital.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c14",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "When comparing mutually exclusive projects with similar risk, the primary decision rule is generally to choose:",
+      "options": [
+        "Highest NPV",
+        "Highest initial cost",
+        "Lowest cash inflow",
+        "Shortest name"
+      ],
+      "answer": 0,
+      "explanation": "NPV directly measures value added.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c15",
+      "module": "tvm",
+      "concept": "irr",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "IRR is the discount rate that makes:",
+      "options": [
+        "NPV equal to zero",
+        "Future value equal to zero always",
+        "Coupon equal face value",
+        "Accounting profit maximum"
+      ],
+      "answer": 0,
+      "explanation": "IRR solves the rate at which discounted inflows equal discounted outflows.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c16",
+      "module": "tvm",
+      "concept": "irr",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A multiple-IRR problem can arise when project cash flows:",
+      "options": [
+        "Change sign more than once",
+        "Are all positive after one initial negative cash flow",
+        "Are constant forever",
+        "Have no time dimension"
+      ],
+      "answer": 0,
+      "explanation": "Non-conventional cash-flow sign changes can create multiple IRRs.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c17",
+      "module": "tvm",
+      "concept": "tvm-intuition",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Inflation matters for TVM because it can:",
+      "options": [
+        "Change purchasing power over time",
+        "Guarantee higher real wealth",
+        "Eliminate opportunity cost",
+        "Make discounting unnecessary"
+      ],
+      "answer": 0,
+      "explanation": "Inflation changes the real purchasing power of nominal money.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c18",
+      "module": "tvm",
+      "concept": "multiple-cash-flows",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A timeline is most useful because it:",
+      "options": [
+        "Makes timing and signs of cash flows explicit",
+        "Eliminates all calculations",
+        "Converts debt to equity",
+        "Sets market prices"
+      ],
+      "answer": 0,
+      "explanation": "A timeline helps prevent timing and sign errors.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c19",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Total scheduled interest on a fixed fully amortizing loan equals:",
+      "options": [
+        "Total payments minus original principal",
+        "Original principal minus total payments",
+        "Payment times interest rate only",
+        "Original principal"
+      ],
+      "answer": 0,
+      "explanation": "Total interest is total cash paid less the amount borrowed.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_c20",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "EAR is best described as:",
+      "options": [
+        "Equivalent annual rate with annual compounding",
+        "Monthly rate multiplied by 12 in all cases",
+        "Nominal rate before compounding",
+        "Coupon rate"
+      ],
+      "answer": 0,
+      "explanation": "EAR is the annual rate equivalent after accounting for compounding frequency.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Exam Trap",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_tvm_n01",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You invest $500 today at 6.0% per year for 4 years. What is the future value?",
+      "answer": 631.2384800000002,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "FV = 500(1+0.0600)^4 = 631.24.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n02",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You invest $1,200 today at 7.0% per year for 6 years. What is the future value?",
+      "answer": 1800.8764222188006,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "FV = 1,200(1+0.0700)^6 = 1,800.88.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n03",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You invest $2,500 today at 4.5% per year for 8 years. What is the future value?",
+      "answer": 3555.2515320915186,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "FV = 2,500(1+0.0450)^8 = 3,555.25.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n04",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You invest $10,000 today at 5.5% per year for 3 years. What is the future value?",
+      "answer": 11742.413749999998,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "FV = 10,000(1+0.0550)^3 = 11,742.41.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n05",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You invest $750 today at 9.0% per year for 10 years. What is the future value?",
+      "answer": 1775.5227559440893,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "FV = 750(1+0.0900)^10 = 1,775.52.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n06",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "What is the present value of $5,000 received in 5 years if the discount rate is 8.0%?",
+      "answer": 3402.9159851687646,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV = 5,000/(1+0.0800)^5 = 3,402.92.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n07",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "What is the present value of $20,000 received in 7 years if the discount rate is 6.0%?",
+      "answer": 13301.142272446723,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV = 20,000/(1+0.0600)^7 = 13,301.14.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n08",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "What is the present value of $1,500 received in 3 years if the discount rate is 10.0%?",
+      "answer": 1126.9722013523663,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV = 1,500/(1+0.1000)^3 = 1,126.97.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n09",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "What is the present value of $100,000 received in 12 years if the discount rate is 5.0%?",
+      "answer": 55683.74181775592,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV = 100,000/(1+0.0500)^12 = 55,683.74.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n10",
+      "module": "tvm",
+      "concept": "lump-sum",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "What is the present value of $8,000 received in 4 years if the discount rate is 7.2%?",
+      "answer": 6057.743015884822,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV = 8,000/(1+0.0720)^4 = 6,057.74.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n11",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute the EAR for an APR of 6.00% compounded 12 times per year. Enter a percentage.",
+      "answer": 6.167781186449828,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "EAR = (1+APR/m)^m−1 = 6.1678%.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n12",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute the EAR for an APR of 9.00% compounded 4 times per year. Enter a percentage.",
+      "answer": 9.308331878906229,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "EAR = (1+APR/m)^m−1 = 9.3083%.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n13",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute the EAR for an APR of 12.00% compounded 12 times per year. Enter a percentage.",
+      "answer": 12.682503013196978,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "EAR = (1+APR/m)^m−1 = 12.6825%.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n14",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute the EAR for an APR of 7.50% compounded 2 times per year. Enter a percentage.",
+      "answer": 7.640625000000023,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "EAR = (1+APR/m)^m−1 = 7.6406%.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n15",
+      "module": "tvm",
+      "concept": "apr-ear",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute the EAR for an APR of 5.20% compounded 365 times per year. Enter a percentage.",
+      "answer": 5.337184107191573,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "EAR = (1+APR/m)^m−1 = 5.3372%.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n16",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An ordinary annuity pays $1,000 at the end of each year for 5 years. If r=8.0%, what is its present value?",
+      "answer": 3992.7100370780886,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV = PMT[1−(1+r)^−n]/r = 3,992.71.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n17",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An ordinary annuity pays $2,500 at the end of each year for 8 years. If r=6.0%, what is its present value?",
+      "answer": 15524.484527423898,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV = PMT[1−(1+r)^−n]/r = 15,524.48.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n18",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You deposit $500 at the end of each year for 10 years at 5.0%. What is the future value immediately after the final deposit?",
+      "answer": 6288.9462677744195,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "FV = PMT[(1+r)^n−1]/r = 6,288.95.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n19",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You deposit $1,200 at the end of each year for 6 years at 7.0%. What is the future value immediately after the final deposit?",
+      "answer": 8583.948888840008,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "FV = PMT[(1+r)^n−1]/r = 8,583.95.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n20",
+      "module": "tvm",
+      "concept": "annuities",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An ordinary annuity pays $3,000 at the end of each year for 4 years. If r=4.0%, what is its present value?",
+      "answer": 10889.68567277057,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV = PMT[1−(1+r)^−n]/r = 10,889.69.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n21",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A loan of 100,000 is repaid with equal annual payments for 30 years at 8.0% per year. What is the annual payment?",
+      "answer": 8882.743338727227,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "PMT = PV·r/[1−(1+r)^−n] = 8,882.74.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n22",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A loan of 500,000 is repaid with equal annual payments for 15 years at 9.0% per year. What is the annual payment?",
+      "answer": 62029.44132515502,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "PMT = PV·r/[1−(1+r)^−n] = 62,029.44.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n23",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A loan of 3,000,000,000 is repaid with equal annual payments for 20 years at 15.0% per year. What is the annual payment?",
+      "answer": 479284411.21723163,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "PMT = PV·r/[1−(1+r)^−n] = 479,284,411.22.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n24",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A loan of 10,000,000,000 is repaid with equal annual payments for 20 years at 8.0% per year. What is the annual payment?",
+      "answer": 1018522088.2315058,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "PMT = PV·r/[1−(1+r)^−n] = 1,018,522,088.23.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n25",
+      "module": "tvm",
+      "concept": "loans",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A loan of 250,000 is repaid with equal annual payments for 10 years at 7.0% per year. What is the annual payment?",
+      "answer": 35594.37568184116,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "PMT = PV·r/[1−(1+r)^−n] = 35,594.38.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n26",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A project costs $5,000 today and pays $2,000, $2,200, $2,500 at the ends of years 1 through 3. At 10.0%, what is NPV?",
+      "answer": 514.6506386175797,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "NPV = Σ CFt/(1+r)^t − initial cost = 514.65.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n27",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A project costs $10,000 today and pays $4,000, $4,000, $4,000 at the ends of years 1 through 3. At 8.0%, what is NPV?",
+      "answer": 308.38794899151435,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "NPV = Σ CFt/(1+r)^t − initial cost = 308.39.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n28",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A project costs $25,000 today and pays $9,000, $10,000, $11,000 at the ends of years 1 through 3. At 12.0%, what is NPV?",
+      "answer": -1162.7642128279913,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "NPV = Σ CFt/(1+r)^t − initial cost = -1,162.76.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n29",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A project costs $8,000 today and pays $3,000, $3,500, $4,000 at the ends of years 1 through 3. At 9.0%, what is NPV?",
+      "answer": 786.9074746588667,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "NPV = Σ CFt/(1+r)^t − initial cost = 786.91.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_tvm_n30",
+      "module": "tvm",
+      "concept": "npv",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A project costs $12,000 today and pays $5,000, $5,000, $5,000 at the ends of years 1 through 3. At 7.0%, what is NPV?",
+      "answer": 1121.5802220819987,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "NPV = Σ CFt/(1+r)^t − initial cost = 1,121.58.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_c01",
+      "module": "personal",
+      "concept": "mortgage-arm",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "When an ARM resets after one year, the new payment should be based on:",
+      "options": [
+        "Original principal and original maturity",
+        "Remaining balance, new rate, remaining maturity",
+        "Original principal and new rate only",
+        "Remaining balance and original full maturity"
+      ],
+      "answer": 1,
+      "explanation": "Recalculate using the remaining loan balance, reset rate, and remaining term.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c02",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A borrower repays a mortgage immediately after the 60th payment. The payoff is best measured as:",
+      "options": [
+        "PV at month 60 of payments 61 onward",
+        "Original principal",
+        "Sum of all remaining payments without discounting",
+        "Payment 60 only"
+      ],
+      "answer": 0,
+      "explanation": "The payoff immediately after payment 60 is the present value of remaining payments at that date.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c03",
+      "module": "personal",
+      "concept": "financing-rebate",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "To compare a low-rate financing offer with a cash rebate, you should primarily compare:",
+      "options": [
+        "Present values of the alternatives",
+        "Advertised APR only",
+        "Monthly payments only",
+        "Sticker prices only"
+      ],
+      "answer": 0,
+      "explanation": "The alternatives must be valued on a common-date basis.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c04",
+      "module": "personal",
+      "concept": "interest-only-personal",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "For an interest-only loan, the periodic payment before maturity usually consists of:",
+      "options": [
+        "Interest only",
+        "Principal only",
+        "Equal principal plus interest",
+        "No cash flow"
+      ],
+      "answer": 0,
+      "explanation": "Periodic payments cover interest; principal is due at maturity.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c05",
+      "module": "personal",
+      "concept": "retirement-annuity",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A retirement annuity starting one period from now is valued as:",
+      "options": [
+        "Ordinary annuity",
+        "Annuity due",
+        "Perpetuity always",
+        "Zero-coupon bond"
+      ],
+      "answer": 0,
+      "explanation": "First payment one period from now implies an ordinary annuity.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c06",
+      "module": "personal",
+      "concept": "retirement-annuity",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A retirement annuity with first payment today is valued as:",
+      "options": [
+        "Annuity due",
+        "Ordinary annuity",
+        "Perpetuity always",
+        "Zero-coupon bond"
+      ],
+      "answer": 0,
+      "explanation": "First payment today implies annuity due.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c07",
+      "module": "personal",
+      "concept": "credit-card-mechanics",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "If no new purchases are made, a credit-card balance grows when:",
+      "options": [
+        "Interest charged exceeds payment",
+        "Payment exceeds interest",
+        "APR is zero",
+        "Balance is zero"
+      ],
+      "answer": 0,
+      "explanation": "If the payment is smaller than interest plus fees, the balance can rise.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c08",
+      "module": "personal",
+      "concept": "loan-consolidation",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "When converting an EAR to a monthly rate, the correct relationship is:",
+      "options": [
+        "(1+rm)^12=1+EAR",
+        "rm=EAR/12 exactly in all cases",
+        "rm=APR×12",
+        "rm=EAR"
+      ],
+      "answer": 0,
+      "explanation": "Effective rates convert through compounding equivalence.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c09",
+      "module": "personal",
+      "concept": "growing-savings",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A growing savings plan differs from a level annuity because:",
+      "options": [
+        "Deposits change over time",
+        "There is only one cash flow",
+        "The discount rate is always zero",
+        "It has no timing"
+      ],
+      "answer": 0,
+      "explanation": "Deposits grow rather than remain equal.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_c10",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A loan payoff quoted immediately before a scheduled payment generally includes:",
+      "options": [
+        "That imminent scheduled payment plus value of later payments",
+        "Only later payments after skipping the imminent payment",
+        "Original principal only",
+        "No interest component"
+      ],
+      "answer": 0,
+      "explanation": "Timing relative to the scheduled payment matters.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_personal_n01",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A mortgage of 100,000 has an APR of 8.25% with monthly payments over 30 years. What is the monthly payment?",
+      "answer": 751.2666040509247,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Monthly rate=0.006875; n=360; PMT = 751.27.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n02",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A mortgage of 300,000 has an APR of 7.00% with monthly payments over 25 years. What is the monthly payment?",
+      "answer": 2120.337591825272,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Monthly rate=0.005833; n=300; PMT = 2,120.34.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n03",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A mortgage of 2,000,000,000 has an APR of 9.00% with monthly payments over 20 years. What is the monthly payment?",
+      "answer": 17994519.117003407,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Monthly rate=0.007500; n=240; PMT = 17,994,519.12.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n04",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A mortgage of 500,000 has an APR of 6.50% with monthly payments over 15 years. What is the monthly payment?",
+      "answer": 4355.5368264868275,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Monthly rate=0.005417; n=180; PMT = 4,355.54.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n05",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A mortgage of 150,000 has an APR of 7.50% with monthly payments over 30 years. What is the monthly payment?",
+      "answer": 1048.8217628291648,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Monthly rate=0.006250; n=360; PMT = 1,048.82.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n06",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A 30-year mortgage of 100,000 at 8.25% APR has monthly payments. What is the remaining balance immediately after payment 24?",
+      "answer": 98342.27772868313,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "First compute PMT=751.27. Then remaining balance = PV of 336 remaining payments = 98,342.28.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n07",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A 25-year mortgage of 300,000 at 7.00% APR has monthly payments. What is the remaining balance immediately after payment 60?",
+      "answer": 273486.45721185434,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "First compute PMT=2,120.34. Then remaining balance = PV of 240 remaining payments = 273,486.46.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n08",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A 15-year mortgage of 500,000 at 6.50% APR has monthly payments. What is the remaining balance immediately after payment 36?",
+      "answer": 434718.55005994625,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "First compute PMT=4,355.54. Then remaining balance = PV of 144 remaining payments = 434,718.55.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n09",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A 30-year mortgage of 150,000 at 7.50% APR has monthly payments. What is the remaining balance immediately after payment 120?",
+      "answer": 130192.48067439414,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "First compute PMT=1,048.82. Then remaining balance = PV of 240 remaining payments = 130,192.48.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n10",
+      "module": "personal",
+      "concept": "mortgage-payoff",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A 20-year mortgage of 2,000,000,000 at 9.00% APR has monthly payments. What is the remaining balance immediately after payment 48?",
+      "answer": 1827753130.9619823,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "First compute PMT=17,994,519.12. Then remaining balance = PV of 192 remaining payments = 1,827,753,130.96.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n11",
+      "module": "personal",
+      "concept": "interest-only-personal",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An interest-only loan has principal 200,000 and annual rate 9.0%. What is the annual interest payment before maturity?",
+      "answer": 18000.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Interest-only payment = principal × rate = 18,000.00.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n12",
+      "module": "personal",
+      "concept": "interest-only-personal",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An interest-only loan has principal 500,000 and annual rate 7.5%. What is the annual interest payment before maturity?",
+      "answer": 37500.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Interest-only payment = principal × rate = 37,500.00.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n13",
+      "module": "personal",
+      "concept": "retirement-annuity",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You need $30,000 at the end of each year for 20 years in retirement. If the retirement discount rate is 6.0%, how much is needed at retirement?",
+      "answer": 344097.6365569579,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV of ordinary annuity = 344,097.64.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n14",
+      "module": "personal",
+      "concept": "retirement-annuity",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You need $50,000 at the end of each year for 15 years in retirement. If the retirement discount rate is 7.0%, how much is needed at retirement?",
+      "answer": 455395.7002554575,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "PV of ordinary annuity = 455,395.70.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_personal_n15",
+      "module": "personal",
+      "concept": "loan-consolidation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "What effective monthly rate corresponds to an 8% EAR? Enter a percentage.",
+      "answer": 0.643403011000343,
+      "tolerance": 0.003,
+      "unit": "%",
+      "explanation": "rm=(1.08)^(1/12)−1=0.6434%.",
+      "source": "2023 Time Value of Money.pdf + LTTC_Time value and money_HKT.pdf · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_markets_c01",
+      "module": "markets",
+      "concept": "market-role",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Financial markets improve economic efficiency mainly by:",
+      "options": [
+        "Channeling funds toward productive uses",
+        "Eliminating all borrowing",
+        "Fixing all prices by law",
+        "Preventing saving"
+      ],
+      "answer": 0,
+      "explanation": "Markets channel funds from surplus units to users with productive opportunities.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c02",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A newly issued corporate bond is sold in the:",
+      "options": [
+        "Primary market",
+        "Secondary market",
+        "Only OTC secondary market",
+        "Foreign exchange market"
+      ],
+      "answer": 0,
+      "explanation": "New securities are sold in primary markets.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c03",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An investor sells existing shares to another investor. This occurs in the:",
+      "options": [
+        "Secondary market",
+        "Primary market",
+        "Money creation market",
+        "Insurance market"
+      ],
+      "answer": 0,
+      "explanation": "Existing securities trade in secondary markets.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c04",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which statement about secondary markets is correct?",
+      "options": [
+        "They provide liquidity and price discovery",
+        "Issuers receive proceeds from every secondary trade",
+        "They only trade government bonds",
+        "They eliminate primary markets"
+      ],
+      "answer": 0,
+      "explanation": "Secondary markets support liquidity and market pricing even though issuers do not receive trade proceeds.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c05",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A 90-day Treasury bill belongs to the:",
+      "options": [
+        "Money market",
+        "Capital market",
+        "Equity market only",
+        "Real asset market"
+      ],
+      "answer": 0,
+      "explanation": "Short-term debt instruments trade in money markets.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c06",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Common stock belongs to the:",
+      "options": [
+        "Capital market",
+        "Money market",
+        "Interbank overnight market",
+        "Repo market"
+      ],
+      "answer": 0,
+      "explanation": "Equity is a long-term claim and belongs to capital markets.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c07",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A dealer market is characterized by:",
+      "options": [
+        "Dealers standing ready to buy and sell",
+        "Only face-to-face auctions",
+        "No bid-ask spread",
+        "No intermediaries"
+      ],
+      "answer": 0,
+      "explanation": "Dealers quote bid and ask prices and trade from inventory.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c08",
+      "module": "markets",
+      "concept": "market-structure",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An exchange differs from OTC mainly because an exchange:",
+      "options": [
+        "Provides a centralized organized trading venue",
+        "Never uses brokers",
+        "Only trades debt",
+        "Has no regulation"
+      ],
+      "answer": 0,
+      "explanation": "Exchanges centralize trading; OTC markets are decentralized dealer networks.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c09",
+      "module": "markets",
+      "concept": "financial-institutions",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Financial intermediaries are important partly because they can:",
+      "options": [
+        "Reduce transaction costs and information problems",
+        "Eliminate all credit risk",
+        "Guarantee all investments",
+        "Set government taxes"
+      ],
+      "answer": 0,
+      "explanation": "Economies of scale, expertise, screening, and monitoring support intermediation.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c10",
+      "module": "markets",
+      "concept": "financial-institutions",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Economies of scale help intermediaries by:",
+      "options": [
+        "Reducing transaction cost per transaction",
+        "Increasing cost per transaction",
+        "Eliminating information",
+        "Making assets illiquid"
+      ],
+      "answer": 0,
+      "explanation": "Large-scale operations spread fixed costs over many transactions.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c11",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Adverse selection occurs primarily:",
+      "options": [
+        "Before a transaction",
+        "After a transaction",
+        "Only after default",
+        "Only in equity markets"
+      ],
+      "answer": 0,
+      "explanation": "Adverse selection is a pre-contract information problem.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c12",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Moral hazard occurs primarily:",
+      "options": [
+        "After a transaction",
+        "Before a transaction",
+        "Only before screening",
+        "Only in primary markets"
+      ],
+      "answer": 0,
+      "explanation": "Moral hazard concerns actions after financing is obtained.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c13",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Collateral can reduce adverse selection because it:",
+      "options": [
+        "Protects the lender if repayment fails",
+        "Guarantees the borrower a profit",
+        "Eliminates interest",
+        "Raises information asymmetry"
+      ],
+      "answer": 0,
+      "explanation": "Collateral reduces loss severity and improves borrower incentives.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c14",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Restrictive covenants are mainly designed to:",
+      "options": [
+        "Limit borrower behavior that can increase lender risk",
+        "Set stock prices",
+        "Eliminate taxes",
+        "Create money"
+      ],
+      "answer": 0,
+      "explanation": "Covenants restrict actions that could increase moral hazard.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c15",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Why may banks have an advantage over dispersed bondholders in monitoring borrowers?",
+      "options": [
+        "Private loans reduce the free-rider problem",
+        "Banks never face costs",
+        "Bondholders know everything",
+        "Banks cannot make loans"
+      ],
+      "answer": 0,
+      "explanation": "Private lending lets the intermediary capture benefits of monitoring.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c16",
+      "module": "markets",
+      "concept": "financial-institutions",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which institution primarily pools funds from many investors into diversified portfolios?",
+      "options": [
+        "Mutual fund",
+        "Central bank",
+        "Tax authority",
+        "Manufacturing firm"
+      ],
+      "answer": 0,
+      "explanation": "Mutual funds pool investor resources and diversify holdings.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c17",
+      "module": "markets",
+      "concept": "insurance-pensions",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Insurance companies primarily help transfer:",
+      "options": [
+        "Risk",
+        "Money supply only",
+        "Taxes",
+        "Equity ownership"
+      ],
+      "answer": 0,
+      "explanation": "Insurance contracts transfer specified risks for premiums.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c18",
+      "module": "markets",
+      "concept": "insurance-pensions",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Pension funds primarily accumulate assets to finance:",
+      "options": [
+        "Retirement benefits",
+        "Current tax bills only",
+        "Inventory purchases",
+        "Foreign exchange intervention"
+      ],
+      "answer": 0,
+      "explanation": "Pension funds invest contributions to meet future retirement obligations.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c19",
+      "module": "markets",
+      "concept": "finance-companies-securities",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An investment bank is most directly associated with:",
+      "options": [
+        "Helping issuers sell new securities",
+        "Accepting retail checking deposits as its only function",
+        "Setting central-bank policy",
+        "Providing property insurance only"
+      ],
+      "answer": 0,
+      "explanation": "Investment banks assist with underwriting and issuance.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c20",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which instrument is NOT a money-market instrument?",
+      "options": [
+        "18-year Treasury bond",
+        "Treasury bill",
+        "Commercial paper",
+        "Negotiable CD"
+      ],
+      "answer": 0,
+      "explanation": "Long-term Treasury bonds are capital-market instruments.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c21",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Commercial paper is best described as:",
+      "options": [
+        "Short-term unsecured debt of large firms",
+        "Equity of small firms",
+        "Long-term government debt",
+        "A mortgage"
+      ],
+      "answer": 0,
+      "explanation": "Commercial paper is short-term corporate debt issued by strong borrowers.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c22",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A negotiable certificate of deposit is:",
+      "options": [
+        "A bank-issued time-deposit instrument that can trade",
+        "Common stock",
+        "A government tax receipt",
+        "A perpetual bond"
+      ],
+      "answer": 0,
+      "explanation": "Negotiable CDs are bank debt instruments and may trade in secondary markets.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c23",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A repo is economically closest to:",
+      "options": [
+        "A short-term collateralized loan",
+        "An equity issuance",
+        "A perpetual annuity",
+        "A dividend payment"
+      ],
+      "answer": 0,
+      "explanation": "Repo transactions function as short-term secured borrowing.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c24",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Federal funds are primarily:",
+      "options": [
+        "Overnight loans between banks",
+        "Loans from the federal government to households",
+        "Corporate bonds",
+        "Municipal securities"
+      ],
+      "answer": 0,
+      "explanation": "Federal funds are interbank reserve loans.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c25",
+      "module": "markets",
+      "concept": "money-capital-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A banker’s acceptance is strengthened by:",
+      "options": [
+        "A bank guarantee",
+        "A stock split",
+        "A tax refund",
+        "A coupon reset"
+      ],
+      "answer": 0,
+      "explanation": "Bank acceptance increases credibility of the payment obligation.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c26",
+      "module": "markets",
+      "concept": "market-quality-regulation",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A well-run financial market should have:",
+      "options": [
+        "Liquidity, low transaction costs, and reliable information",
+        "Zero trading",
+        "No disclosure",
+        "Only one investor"
+      ],
+      "answer": 0,
+      "explanation": "Good markets facilitate trading, information, and low-cost transactions.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c27",
+      "module": "markets",
+      "concept": "market-quality-regulation",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Disclosure regulation primarily addresses:",
+      "options": [
+        "Information asymmetry",
+        "Compounding frequency",
+        "Coupon dates",
+        "Currency denominations"
+      ],
+      "answer": 0,
+      "explanation": "Disclosure improves information available to investors.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c28",
+      "module": "markets",
+      "concept": "market-rates",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Other things equal, a debt instrument with higher default risk should offer:",
+      "options": [
+        "Higher required yield",
+        "Lower required yield",
+        "Zero yield",
+        "The same yield by definition"
+      ],
+      "answer": 0,
+      "explanation": "Investors demand compensation for greater default risk.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c29",
+      "module": "markets",
+      "concept": "market-rates",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Other things equal, a more liquid debt instrument should generally have:",
+      "options": [
+        "Lower required yield",
+        "Higher required yield",
+        "No market price",
+        "Infinite duration"
+      ],
+      "answer": 0,
+      "explanation": "Liquidity is valuable, so investors accept a lower yield.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c30",
+      "module": "markets",
+      "concept": "international-markets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A Eurobond is best defined by:",
+      "options": [
+        "Being issued outside the country whose currency denominates it",
+        "Being issued only in Europe",
+        "Always being denominated in euros",
+        "Always being government debt"
+      ],
+      "answer": 0,
+      "explanation": "Eurobonds are issued outside the jurisdiction of the currency of denomination.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c31",
+      "module": "markets",
+      "concept": "fx-derivatives",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A forward contract is mainly useful for:",
+      "options": [
+        "Locking in a future transaction price",
+        "Receiving dividends automatically",
+        "Creating legal tender",
+        "Measuring ROE"
+      ],
+      "answer": 0,
+      "explanation": "Forwards can hedge future prices or exchange rates.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c32",
+      "module": "markets",
+      "concept": "market-role",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Why can a liquid secondary market help firms raise funds in the primary market?",
+      "options": [
+        "Investors value the ability to resell securities",
+        "The issuer receives every secondary-market trade",
+        "It eliminates risk entirely",
+        "It fixes issue price forever"
+      ],
+      "answer": 0,
+      "explanation": "Resale liquidity can make new securities more attractive.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c33",
+      "module": "markets",
+      "concept": "financial-institutions",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Small or less-known firms are often more reliant on banks because:",
+      "options": [
+        "Information and issuance costs make public markets harder to access",
+        "Banks never screen them",
+        "They cannot borrow",
+        "Public markets are illegal"
+      ],
+      "answer": 0,
+      "explanation": "Intermediaries can screen and monitor borrowers that face higher market-access frictions.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Compare & Contrast",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c34",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A borrower taking much greater risk after receiving a loan is an example of:",
+      "options": [
+        "Moral hazard",
+        "Adverse selection",
+        "Diversification",
+        "Liquidity"
+      ],
+      "answer": 0,
+      "explanation": "The risky action occurs after the loan is made.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_c35",
+      "module": "markets",
+      "concept": "asymmetric-information",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A lender being unable to distinguish safe from risky applicants before lending is an example of:",
+      "options": [
+        "Adverse selection",
+        "Moral hazard",
+        "Hedging",
+        "Arbitrage"
+      ],
+      "answer": 0,
+      "explanation": "The information problem exists before contracting.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Application / Recognition",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_markets_n01",
+      "module": "markets",
+      "concept": "market-rates",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An asset is bought for 95.00, pays cash income of 3.00, and is sold for 100.00. What is the holding-period return in percent?",
+      "answer": 8.421052631578947,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "HPR = (income + price change)/initial price = (3.00+5.00)/95.00 = 8.42%.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_markets_n02",
+      "module": "markets",
+      "concept": "market-rates",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An asset is bought for 1000.00, pays cash income of 60.00, and is sold for 980.00. What is the holding-period return in percent?",
+      "answer": 4.0,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "HPR = (income + price change)/initial price = (60.00+-20.00)/1000.00 = 4.00%.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_markets_n03",
+      "module": "markets",
+      "concept": "market-rates",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An asset is bought for 50.00, pays cash income of 1.00, and is sold for 54.00. What is the holding-period return in percent?",
+      "answer": 10.0,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "HPR = (income + price change)/initial price = (1.00+4.00)/50.00 = 10.00%.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_markets_n04",
+      "module": "markets",
+      "concept": "market-rates",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An asset is bought for 200.00, pays cash income of 8.00, and is sold for 210.00. What is the holding-period return in percent?",
+      "answer": 9.0,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "HPR = (income + price change)/initial price = (8.00+10.00)/200.00 = 9.00%.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_markets_n05",
+      "module": "markets",
+      "concept": "market-rates",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "An asset is bought for 102.00, pays cash income of 5.00, and is sold for 99.00. What is the holding-period return in percent?",
+      "answer": 1.9607843137254901,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "HPR = (income + price change)/initial price = (5.00+-3.00)/102.00 = 1.96%.",
+      "source": "2023 Understanding Financial Markets and Financial Institutions.pdf + Mishkin & Serletis Ch. 2 · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_c01",
+      "module": "valuation",
+      "concept": "bond-price-rates",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "If market yields rise, the price of an existing fixed-coupon bond generally:",
+      "options": [
+        "Falls",
+        "Rises",
+        "Does not change",
+        "Becomes zero"
+      ],
+      "answer": 0,
+      "explanation": "Bond prices and market yields move inversely.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c02",
+      "module": "valuation",
+      "concept": "ytm-bond-types",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bond with coupon rate below YTM generally sells:",
+      "options": [
+        "Below par",
+        "Above par",
+        "Exactly at par",
+        "Without a price"
+      ],
+      "answer": 0,
+      "explanation": "When required return exceeds coupon rate, price is below face value.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c03",
+      "module": "valuation",
+      "concept": "ytm-bond-types",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bond with coupon rate above YTM generally sells:",
+      "options": [
+        "Above par",
+        "Below par",
+        "Exactly at zero",
+        "Only in primary markets"
+      ],
+      "answer": 0,
+      "explanation": "High coupons relative to required return create a premium price.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c04",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A zero-coupon bond provides return mainly through:",
+      "options": [
+        "Purchase at discount and redemption at face value",
+        "Periodic coupon payments",
+        "Dividends",
+        "Insurance claims"
+      ],
+      "answer": 0,
+      "explanation": "Pure discount bonds pay face value at maturity with no coupons.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c05",
+      "module": "valuation",
+      "concept": "return-measures",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Required return is best described as:",
+      "options": [
+        "Minimum return investors demand for the risk",
+        "Return already realized",
+        "Coupon rate only",
+        "Accounting ROA"
+      ],
+      "answer": 0,
+      "explanation": "Required return is the market compensation demanded for time and risk.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c06",
+      "module": "valuation",
+      "concept": "equity-valuation",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "In the Gordon growth model, value increases when:",
+      "options": [
+        "Expected dividend rises, all else equal",
+        "Required return rises, all else equal",
+        "Growth rate falls, all else equal",
+        "Dividend becomes zero"
+      ],
+      "answer": 0,
+      "explanation": "Higher expected dividends increase present value.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c07",
+      "module": "valuation",
+      "concept": "equity-valuation",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "The Gordon growth model requires:",
+      "options": [
+        "r > g",
+        "g > r",
+        "r = 0",
+        "D1 = 0"
+      ],
+      "answer": 0,
+      "explanation": "A stable-growth perpetuity requires discount rate greater than growth.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c08",
+      "module": "valuation",
+      "concept": "money-market-yields",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A discount security yield convention can differ from a bond-equivalent yield because:",
+      "options": [
+        "They use different denominators/day-count conventions",
+        "They are always identical",
+        "One ignores maturity",
+        "One is always negative"
+      ],
+      "answer": 0,
+      "explanation": "Money-market yield conventions differ in price base and annualization.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c09",
+      "module": "valuation",
+      "concept": "bond-ratings-international",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A lower credit rating generally implies:",
+      "options": [
+        "Higher required yield",
+        "Lower default risk",
+        "Lower required yield",
+        "No spread"
+      ],
+      "answer": 0,
+      "explanation": "Lower ratings imply greater default risk and typically higher yields.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_c10",
+      "module": "valuation",
+      "concept": "treasury-corporate-bonds",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A corporate bond usually yields more than a comparable Treasury because of:",
+      "options": [
+        "Default and liquidity risk premiums",
+        "Guaranteed higher liquidity",
+        "No credit risk",
+        "No taxes ever"
+      ],
+      "answer": 0,
+      "explanation": "Corporate securities generally carry additional credit/liquidity risk.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_val_n01",
+      "module": "valuation",
+      "concept": "bond-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bond has face value 1,000, annual coupon rate 6.00%, 10 years to maturity, and YTM 8.00%. What is its price?",
+      "answer": 865.7983720211706,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Price = PV(coupons)+PV(face) = 865.80.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n02",
+      "module": "valuation",
+      "concept": "bond-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bond has face value 1,000, annual coupon rate 8.00%, 8 years to maturity, and YTM 6.00%. What is its price?",
+      "answer": 1124.1958762193908,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Price = PV(coupons)+PV(face) = 1,124.20.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n03",
+      "module": "valuation",
+      "concept": "bond-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bond has face value 1,500, annual coupon rate 9.00%, 10 years to maturity, and YTM 8.10%. What is its price?",
+      "answer": 1590.1789299837856,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Price = PV(coupons)+PV(face) = 1,590.18.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n04",
+      "module": "valuation",
+      "concept": "bond-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bond has face value 1,000, annual coupon rate 6.75%, 10 years to maturity, and YTM 8.20%. What is its price?",
+      "answer": 903.5754513834536,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Price = PV(coupons)+PV(face) = 903.58.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n05",
+      "module": "valuation",
+      "concept": "bond-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bond has face value 2,000, annual coupon rate 5.00%, 5 years to maturity, and YTM 7.00%. What is its price?",
+      "answer": 1835.9921025620959,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Price = PV(coupons)+PV(face) = 1,835.99.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n06",
+      "module": "valuation",
+      "concept": "bond-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A bond has face value 1,000, annual coupon rate 10.00%, 7 years to maturity, and YTM 10.00%. What is its price?",
+      "answer": 999.9999999999995,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "Price = PV(coupons)+PV(face) = 1,000.00.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n07",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A zero-coupon bond pays 1,000 in 5 years. If YTM is 7.00%, what is its price?",
+      "answer": 712.9861794836683,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "P=F/(1+y)^n = 712.99.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n08",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A zero-coupon bond pays 10,000 in 2 years. If YTM is 5.50%, what is its price?",
+      "answer": 8984.524157139329,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "P=F/(1+y)^n = 8,984.52.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n09",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A zero-coupon bond pays 5,000 in 10 years. If YTM is 8.00%, what is its price?",
+      "answer": 2315.9674404234206,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "P=F/(1+y)^n = 2,315.97.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n10",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A zero-coupon bond pays 1,000 in 3 years. If YTM is 4.50%, what is its price?",
+      "answer": 876.2966040549094,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "P=F/(1+y)^n = 876.30.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n11",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A zero-coupon bond pays 1,000 in 5 years and sells for 800. What is its annual YTM in percent?",
+      "answer": 4.563955259127317,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "y=(F/P)^(1/n)−1 = 4.5640%.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n12",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A zero-coupon bond pays 10,000 in 2 years and sells for 9,000. What is its annual YTM in percent?",
+      "answer": 5.409255338945984,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "y=(F/P)^(1/n)−1 = 5.4093%.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n13",
+      "module": "valuation",
+      "concept": "zero-coupon-bonds",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A zero-coupon bond pays 5,000 in 8 years and sells for 3,200. What is its annual YTM in percent?",
+      "answer": 5.737126344056409,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "y=(F/P)^(1/n)−1 = 5.7371%.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n14",
+      "module": "valuation",
+      "concept": "equity-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A stock is expected to pay D1=2.50 next year, with constant growth g=4.0% and required return r=10.0%. What is the value?",
+      "answer": 41.666666666666664,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "P0=D1/(r−g)=41.67.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n15",
+      "module": "valuation",
+      "concept": "equity-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A stock is expected to pay D1=4.00 next year, with constant growth g=5.0% and required return r=12.0%. What is the value?",
+      "answer": 57.142857142857146,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "P0=D1/(r−g)=57.14.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n16",
+      "module": "valuation",
+      "concept": "equity-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A stock is expected to pay D1=1.80 next year, with constant growth g=3.0% and required return r=9.0%. What is the value?",
+      "answer": 30.000000000000004,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "P0=D1/(r−g)=30.00.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n17",
+      "module": "valuation",
+      "concept": "equity-valuation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A stock is expected to pay D1=5.00 next year, with constant growth g=6.0% and required return r=11.0%. What is the value?",
+      "answer": 100.0,
+      "tolerance": 0.02,
+      "unit": "$",
+      "explanation": "P0=D1/(r−g)=100.00.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n18",
+      "module": "valuation",
+      "concept": "return-measures",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You buy a stock for 40.00, receive dividend 1.00, and sell for 44.00 one year later. What is the realized return in percent?",
+      "answer": 12.5,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "Return=(D1+P1−P0)/P0=12.50%.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n19",
+      "module": "valuation",
+      "concept": "return-measures",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You buy a stock for 25.00, receive dividend 0.50, and sell for 26.00 one year later. What is the realized return in percent?",
+      "answer": 6.0,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "Return=(D1+P1−P0)/P0=6.00%.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_val_n20",
+      "module": "valuation",
+      "concept": "return-measures",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "You buy a stock for 100.00, receive dividend 2.00, and sell for 108.00 one year later. What is the realized return in percent?",
+      "answer": 10.0,
+      "tolerance": 0.03,
+      "unit": "%",
+      "explanation": "Return=(D1+P1−P0)/P0=10.00%.",
+      "source": "2023 Valuation of securities.pdf + past-exam patterns · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_c01",
+      "module": "risk",
+      "concept": "defining-risk",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "In finance, risk is most closely associated with:",
+      "options": [
+        "Uncertainty about future outcomes",
+        "Guaranteed loss",
+        "Only negative returns",
+        "Accounting errors"
+      ],
+      "answer": 0,
+      "explanation": "Risk concerns dispersion/uncertainty of possible outcomes.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c02",
+      "module": "risk",
+      "concept": "probability-expected-value",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Expected value is:",
+      "options": [
+        "Probability-weighted average outcome",
+        "Worst possible outcome",
+        "Best possible outcome",
+        "Median only"
+      ],
+      "answer": 0,
+      "explanation": "Expected value weights outcomes by probabilities.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c03",
+      "module": "risk",
+      "concept": "variance-standard-deviation",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Standard deviation measures:",
+      "options": [
+        "Dispersion around expected value",
+        "Expected return only",
+        "Liquidity only",
+        "Leverage only"
+      ],
+      "answer": 0,
+      "explanation": "Standard deviation is a common measure of payoff/return dispersion.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c04",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Diversification benefit is greatest when asset returns are:",
+      "options": [
+        "Less positively correlated",
+        "Perfectly positively correlated",
+        "Identical",
+        "Guaranteed equal"
+      ],
+      "answer": 0,
+      "explanation": "Lower correlation reduces portfolio variance, all else equal.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c05",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "If two assets are perfectly positively correlated, diversification generally:",
+      "options": [
+        "Provides little or no risk reduction from correlation",
+        "Eliminates all risk",
+        "Creates negative variance",
+        "Guarantees higher return"
+      ],
+      "answer": 0,
+      "explanation": "With correlation +1, co-movement limits diversification benefit.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c06",
+      "module": "risk",
+      "concept": "systematic-idiosyncratic",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Firm-specific product failure is primarily:",
+      "options": [
+        "Idiosyncratic risk",
+        "Systematic risk",
+        "Risk-free return",
+        "Inflation index"
+      ],
+      "answer": 0,
+      "explanation": "Firm-specific shocks are idiosyncratic and diversifiable.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c07",
+      "module": "risk",
+      "concept": "systematic-idiosyncratic",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A broad recession is primarily:",
+      "options": [
+        "Systematic risk",
+        "Idiosyncratic risk",
+        "No risk",
+        "Only accounting risk"
+      ],
+      "answer": 0,
+      "explanation": "Economy-wide shocks affect many assets and are systematic.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c08",
+      "module": "risk",
+      "concept": "risk-aversion-premium",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A risk-averse investor generally requires:",
+      "options": [
+        "A positive risk premium to bear more risk",
+        "Zero compensation for risk",
+        "Lower expected return for higher risk always",
+        "No diversification"
+      ],
+      "answer": 0,
+      "explanation": "Risk aversion implies compensation is required for bearing risk.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c09",
+      "module": "risk",
+      "concept": "leverage-risk",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Higher financial leverage generally:",
+      "options": [
+        "Raises equity risk and default risk",
+        "Eliminates default risk",
+        "Guarantees profits",
+        "Reduces return volatility to zero"
+      ],
+      "answer": 0,
+      "explanation": "Debt magnifies sensitivity of equity outcomes and fixed obligations raise default risk.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_c10",
+      "module": "risk",
+      "concept": "hedging-diversification",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Hedging differs from diversification because hedging:",
+      "options": [
+        "Uses an offsetting position against a particular exposure",
+        "Always increases exposure",
+        "Requires only cash holdings",
+        "Cannot use derivatives"
+      ],
+      "answer": 0,
+      "explanation": "Hedging targets an exposure with an offsetting position; diversification spreads risk.",
+      "source": "2023 Understanding risk.pdf + Tutorial - Return and Risk.docx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_risk_n01",
+      "module": "risk",
+      "concept": "probability-expected-value",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [0, 1000] with probabilities [0.25, 0.75]. What is the expected value?",
+      "answer": 750.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "E(X)=Σpᵢxᵢ=750.0000.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n02",
+      "module": "risk",
+      "concept": "variance-standard-deviation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [0, 1000] with probabilities [0.25, 0.75]. What is the standard deviation?",
+      "answer": 433.0127018922193,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "σ = √Σpᵢ(xᵢ−E[X])² = 433.0127.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n03",
+      "module": "risk",
+      "concept": "probability-expected-value",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [100, 300] with probabilities [0.4, 0.6]. What is the expected value?",
+      "answer": 220.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "E(X)=Σpᵢxᵢ=220.0000.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n04",
+      "module": "risk",
+      "concept": "variance-standard-deviation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [100, 300] with probabilities [0.4, 0.6]. What is the standard deviation?",
+      "answer": 97.97958971132712,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "σ = √Σpᵢ(xᵢ−E[X])² = 97.9796.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n05",
+      "module": "risk",
+      "concept": "probability-expected-value",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [-200, 500, 900] with probabilities [0.2, 0.5, 0.3]. What is the expected value?",
+      "answer": 480.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "E(X)=Σpᵢxᵢ=480.0000.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n06",
+      "module": "risk",
+      "concept": "variance-standard-deviation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [-200, 500, 900] with probabilities [0.2, 0.5, 0.3]. What is the standard deviation?",
+      "answer": 381.57568056677826,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "σ = √Σpᵢ(xᵢ−E[X])² = 381.5757.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n07",
+      "module": "risk",
+      "concept": "probability-expected-value",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [5, 10, 20] with probabilities [0.2, 0.5, 0.3]. What is the expected value?",
+      "answer": 12.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "E(X)=Σpᵢxᵢ=12.0000.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n08",
+      "module": "risk",
+      "concept": "variance-standard-deviation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [5, 10, 20] with probabilities [0.2, 0.5, 0.3]. What is the standard deviation?",
+      "answer": 5.5677643628300215,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "σ = √Σpᵢ(xᵢ−E[X])² = 5.5678.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n09",
+      "module": "risk",
+      "concept": "probability-expected-value",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [0, 50, 150] with probabilities [0.1, 0.6, 0.3]. What is the expected value?",
+      "answer": 75.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "E(X)=Σpᵢxᵢ=75.0000.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n10",
+      "module": "risk",
+      "concept": "variance-standard-deviation",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Outcomes are [0, 50, 150] with probabilities [0.1, 0.6, 0.3]. What is the standard deviation?",
+      "answer": 51.234753829797995,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "σ = √Σpᵢ(xᵢ−E[X])² = 51.2348.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n11",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A two-asset portfolio has wx=30%, wy=70%, σx=20%, σy=15%, and correlation ρ=-0.50. What is portfolio standard deviation in percent?",
+      "answer": 9.12414379544733,
+      "tolerance": 0.04,
+      "unit": "%",
+      "explanation": "σp²=wx²σx²+wy²σy²+2wxwyρσxσy; σp=9.1241%.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n12",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A two-asset portfolio has wx=50%, wy=50%, σx=18%, σy=12%, and correlation ρ=0.20. What is portfolio standard deviation in percent?",
+      "answer": 11.772850122209148,
+      "tolerance": 0.04,
+      "unit": "%",
+      "explanation": "σp²=wx²σx²+wy²σy²+2wxwyρσxσy; σp=11.7729%.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n13",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A two-asset portfolio has wx=60%, wy=40%, σx=25%, σy=10%, and correlation ρ=0.00. What is portfolio standard deviation in percent?",
+      "answer": 15.524174696260024,
+      "tolerance": 0.04,
+      "unit": "%",
+      "explanation": "σp²=wx²σx²+wy²σy²+2wxwyρσxσy; σp=15.5242%.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n14",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A two-asset portfolio has wx=40%, wy=60%, σx=20%, σy=20%, and correlation ρ=1.00. What is portfolio standard deviation in percent?",
+      "answer": 20.0,
+      "tolerance": 0.04,
+      "unit": "%",
+      "explanation": "σp²=wx²σx²+wy²σy²+2wxwyρσxσy; σp=20.0000%.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_risk_n15",
+      "module": "risk",
+      "concept": "portfolio-risk-two-assets",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A two-asset portfolio has wx=70%, wy=30%, σx=15%, σy=25%, and correlation ρ=-0.30. What is portfolio standard deviation in percent?",
+      "answer": 10.920164833920778,
+      "tolerance": 0.04,
+      "unit": "%",
+      "explanation": "σp²=wx²σx²+wy²σy²+2wxwyρσxσy; σp=10.9202%.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_c01",
+      "module": "health",
+      "concept": "financial-statements-overview",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Which statement reports assets, liabilities, and equity at a point in time?",
+      "options": [
+        "Balance sheet",
+        "Income statement",
+        "Cash flow statement",
+        "Retained earnings statement only"
+      ],
+      "answer": 0,
+      "explanation": "The balance sheet is a point-in-time statement of financial position.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_health_c02",
+      "module": "health",
+      "concept": "balance-sheet-nwc",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Net working capital equals:",
+      "options": [
+        "Current assets − current liabilities",
+        "Total assets − total debt",
+        "Sales − expenses",
+        "Cash − equity"
+      ],
+      "answer": 0,
+      "explanation": "NWC measures short-term net operating liquidity.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_health_c03",
+      "module": "health",
+      "concept": "book-vs-market",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Book value is primarily based on:",
+      "options": [
+        "Accounting records",
+        "Current market trading price only",
+        "Future stock price only",
+        "Investor sentiment only"
+      ],
+      "answer": 0,
+      "explanation": "Book values come from accounting measurement, whereas market values come from market pricing.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_health_c04",
+      "module": "health",
+      "concept": "cash-flow-fcf",
+      "type": "mcq",
+      "difficulty": "Foundation",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Free cash flow is intended to measure cash available after:",
+      "options": [
+        "Operating needs and necessary investment expenditures",
+        "Ignoring investment completely",
+        "Paying only dividends",
+        "Issuing equity"
+      ],
+      "answer": 0,
+      "explanation": "FCF reflects cash generated after operating and investment needs, per course definitions.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_health_c05",
+      "module": "health",
+      "concept": "liquidity-ratios",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A current ratio below 1 means:",
+      "options": [
+        "Current liabilities exceed current assets",
+        "Current assets exceed current liabilities",
+        "No debt exists",
+        "ROE is negative"
+      ],
+      "answer": 0,
+      "explanation": "Current ratio = current assets/current liabilities.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_health_c06",
+      "module": "health",
+      "concept": "leverage-coverage-ratios",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Debt-to-equity ratio measures primarily:",
+      "options": [
+        "Financial leverage",
+        "Profit margin",
+        "Inventory efficiency",
+        "Liquidity"
+      ],
+      "answer": 0,
+      "explanation": "Debt relative to equity is a leverage measure.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_health_c07",
+      "module": "health",
+      "concept": "profitability-market-ratios",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Net profit margin equals:",
+      "options": [
+        "Net income / sales",
+        "Sales / assets",
+        "Assets / equity",
+        "EBIT / interest"
+      ],
+      "answer": 0,
+      "explanation": "Net profit margin measures profit earned per unit of sales.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_health_c08",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "mcq",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "The three-step DuPont identity expresses ROE as:",
+      "options": [
+        "Net profit margin × asset turnover × equity multiplier",
+        "Current ratio × quick ratio",
+        "Debt ratio × interest coverage",
+        "Sales × cash"
+      ],
+      "answer": 0,
+      "explanation": "DuPont decomposes ROE into margin, efficiency, and leverage.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Concept Understanding",
+      "examPriority": "Frequent",
+      "mistakeType": "Concept confusion",
+      "examTip": "Identify the tested relationship before looking at the answer choices."
+    },
+    {
+      "id": "v06_health_n01",
+      "module": "health",
+      "concept": "balance-sheet-nwc",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Current assets are 500 and current liabilities are 300. What is net working capital?",
+      "answer": 200.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "NWC=CA−CL=200.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n02",
+      "module": "health",
+      "concept": "balance-sheet-nwc",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Current assets are 1200 and current liabilities are 800. What is net working capital?",
+      "answer": 400.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "NWC=CA−CL=400.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n03",
+      "module": "health",
+      "concept": "balance-sheet-nwc",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Current assets are 750 and current liabilities are 900. What is net working capital?",
+      "answer": -150.0,
+      "tolerance": 0.02,
+      "unit": "",
+      "explanation": "NWC=CA−CL=-150.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n04",
+      "module": "health",
+      "concept": "liquidity-ratios",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute Current ratio: numerator=800, denominator=400. Enter the ratio as a decimal.",
+      "answer": 2.0,
+      "tolerance": 0.003,
+      "unit": "",
+      "explanation": "Current ratio = current assets/current liabilities. Result=2.0000.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n05",
+      "module": "health",
+      "concept": "liquidity-ratios",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute Quick ratio: numerator=600, denominator=450. Enter the ratio as a decimal.",
+      "answer": 1.3333333333333333,
+      "tolerance": 0.003,
+      "unit": "",
+      "explanation": "Quick ratio = (current assets−inventory)/current liabilities. Result=1.3333.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n06",
+      "module": "health",
+      "concept": "leverage-coverage-ratios",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute Debt-to-equity: numerator=600, denominator=400. Enter the ratio as a decimal.",
+      "answer": 1.5,
+      "tolerance": 0.003,
+      "unit": "",
+      "explanation": "Debt-to-equity = total debt/equity. Result=1.5000.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n07",
+      "module": "health",
+      "concept": "profitability-market-ratios",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute Net profit margin: numerator=120, denominator=1000. Enter the ratio as a decimal.",
+      "answer": 0.12,
+      "tolerance": 0.003,
+      "unit": "",
+      "explanation": "Net profit margin = net income/sales. Result=0.1200.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n08",
+      "module": "health",
+      "concept": "asset-management-ratios",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "Compute Asset turnover: numerator=1500, denominator=750. Enter the ratio as a decimal.",
+      "answer": 2.0,
+      "tolerance": 0.003,
+      "unit": "",
+      "explanation": "Asset turnover = sales/total assets. Result=2.0000.",
+      "source": "2023 Analyzing Firm Performance.pdf + Financial ratios excersise.xlsx · source-aligned generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n09",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A firm has ROE=22.00% and ROA=7.90%. What is the equity multiplier?",
+      "answer": 2.7848101265822787,
+      "tolerance": 0.004,
+      "unit": "",
+      "explanation": "Equity multiplier=ROE/ROA=2.7848.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n10",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A firm has ROE=19.80% and ROA=8.10%. What is the equity multiplier?",
+      "answer": 2.4444444444444446,
+      "tolerance": 0.004,
+      "unit": "",
+      "explanation": "Equity multiplier=ROE/ROA=2.4444.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n11",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A firm has ROE=25.00% and ROA=15.93%. What is the equity multiplier?",
+      "answer": 1.569365976145637,
+      "tolerance": 0.004,
+      "unit": "",
+      "explanation": "Equity multiplier=ROE/ROA=1.5694.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
+    },
+    {
+      "id": "v06_health_n12",
+      "module": "health",
+      "concept": "dupont-analysis",
+      "type": "numeric",
+      "difficulty": "Standard",
+      "origin": "Generated Practice — Exam-Style Variant",
+      "prompt": "A firm has ROE=13.81% and ROA=6.94%. What is the equity multiplier?",
+      "answer": 1.9899135446685878,
+      "tolerance": 0.004,
+      "unit": "",
+      "explanation": "Equity multiplier=ROE/ROA=1.9899.",
+      "source": "5 bộ đề năm trước LTTC.pdf · recurring exam pattern; generated variant",
+      "skill": "Numerical Calculation",
+      "examPriority": "Frequent",
+      "mistakeType": "Calculation / setup error",
+      "examTip": "Write the timeline/formula first, then substitute values with consistent periods and rates."
     }
   ],
   "flashcards": [
@@ -10823,6 +17919,70 @@ const FINANCE_DATA = {
       "vi": "ROE theo DuPont",
       "back": "Net profit margin × asset turnover × equity multiplier.",
       "source": "2023 Analyzing Firm Performance.pdf · Slide 23"
+    },
+    {
+      "id": "fc-money",
+      "module": "intro",
+      "front": "Money",
+      "vi": "Tiền",
+      "back": "Anything generally accepted as payment for goods/services or repayment of debt.",
+      "source": "LTTC_Financial market_HKT.pdf"
+    },
+    {
+      "id": "fc-double-coincidence",
+      "module": "intro",
+      "front": "Double coincidence of wants",
+      "vi": "Sự trùng khớp kép về nhu cầu",
+      "back": "In barter, each trader must want exactly what the other offers; money removes this matching requirement.",
+      "source": "LTTC_Financial market_HKT.pdf"
+    },
+    {
+      "id": "fc-counterparty",
+      "module": "intro",
+      "front": "Counterparty",
+      "vi": "Đối tác hợp đồng",
+      "back": "The person or institution on the other side of a financial contract.",
+      "source": "LTTC_Financial market_HKT.pdf"
+    },
+    {
+      "id": "fc-standardization",
+      "module": "intro",
+      "front": "Standardization",
+      "vi": "Tiêu chuẩn hóa",
+      "back": "Making financial contracts more homogeneous so they are cheaper to create, understand, compare, and trade.",
+      "source": "LTTC_Financial market_HKT.pdf"
+    },
+    {
+      "id": "fc-banker-acceptance",
+      "module": "valuation",
+      "front": "Banker’s acceptance",
+      "vi": "Hối phiếu được ngân hàng chấp nhận/bảo lãnh",
+      "back": "A payment obligation accepted by a bank, improving the claim’s credibility and marketability.",
+      "source": "LTTC_Financial market_HKT.pdf"
+    },
+    {
+      "id": "fc-repo",
+      "module": "valuation",
+      "front": "Repurchase agreement (repo)",
+      "vi": "Hợp đồng mua lại",
+      "back": "A short-term collateralized financing transaction involving sale and agreed repurchase of securities.",
+      "source": "LTTC_Financial market_HKT.pdf"
+    },
+    {
+      "id": "fc-portfolio-cov",
+      "module": "risk",
+      "front": "Covariance",
+      "vi": "Hiệp phương sai",
+      "back": "A measure of how two returns move together; in a two-asset portfolio it enters the cross term of portfolio variance.",
+      "source": "Past-exam portfolio pattern + risk concepts"
+    },
+    {
+      "id": "fc-capital-rationing",
+      "module": "tvm",
+      "front": "Capital rationing",
+      "vi": "Giới hạn ngân sách đầu tư",
+      "back": "A situation in which a firm cannot fund every positive-NPV project and must choose the feasible combination that maximizes total value.",
+      "source": "5 bộ đề năm trước LTTC.pdf"
     }
   ],
   "sources": [
@@ -10884,7 +18044,7 @@ const FINANCE_DATA = {
       "priority": "Supporting",
       "pages": 780,
       "mapped": "Module 4 and selected valuation context",
-      "note": "Uploaded full textbook; Chapters 2 and 8 align strongly with the financial-markets/intermediation lecture. It does not override lecture wording. v0.4 uses it to deepen mapped Financial Markets/Institutions concepts and question design without overriding lecture wording."
+      "note": "Uploaded full textbook; Chapters 2 and 8 align strongly with the financial-markets/intermediation lecture. It does not override lecture wording. v0.5 uses it to deepen mapped Financial Markets/Institutions concepts and question design without overriding lecture wording."
     },
     {
       "id": "s-valuation",
@@ -10969,6 +18129,45 @@ const FINANCE_DATA = {
       "pages": 150,
       "mapped": "Modules 1–2 and early Chapter 3/4 support",
       "note": "Partial 150-page scan only; later chapters shown in the book table of contents are not treated as available content."
+    },
+    {
+      "id": "s-lttc-finmarket-hkt",
+      "name": "LTTC_Financial market_HKT.pdf",
+      "type": "Consolidated study notes",
+      "priority": "Supporting",
+      "pages": 25,
+      "mapped": "Modules 1, 4 and 5",
+      "note": "Newly uploaded structured notes covering money, financial instruments, money/capital markets, intermediary types, regulation, and money-market instruments. Treated as supporting notes and cross-checked against the official lecture and Mishkin where overlapping.",
+      "preview": "assets/source-previews-v05/markets-notes-01.png"
+    },
+    {
+      "id": "s-lttc-tvm-hkt",
+      "name": "LTTC_Time value and money_HKT.pdf",
+      "type": "Consolidated study notes",
+      "priority": "Supporting",
+      "pages": 24,
+      "mapped": "Modules 2 and 3",
+      "note": "Newly uploaded TVM notes with worked examples on compounding, discounting, APR/EAR, multiple cash flows, annuities, loans, NPV/IRR, and financing decisions. Used to deepen explanations, not to override instructor material.",
+      "preview": "assets/source-previews-v05/tvm-notes-01.png"
+    },
+    {
+      "id": "s-past-exams-5",
+      "name": "5 bộ đề năm trước LTTC.pdf",
+      "type": "Past exam archive",
+      "priority": "Exam practice",
+      "mapped": "Modules 1–7",
+      "note": "Five prior-paper sets used to identify recurring exam formats: TVM/loan payoff, money-market yields, bond valuation/YTM, financial markets and asymmetric information, risk/portfolio calculations, and DuPont/ratio analysis. Questions in v0.5 are normalized or adapted and labeled Past Exam.",
+      "preview": "assets/source-previews-v05/past-exams-01.png"
+    },
+    {
+      "id": "s-past-final-scan",
+      "name": "b8a68131-ba7a-483d-ad77-4694d59eb1e3.pdf",
+      "type": "Past final exam scan",
+      "priority": "Exam practice",
+      "pages": 9,
+      "mapped": "Modules 2, 4, 5, 6 and 7",
+      "note": "Scanned prior final containing both MCQ and written problems. Used as an exam-pattern source; wording is normalized where image quality or translation is unclear.",
+      "preview": "assets/source-previews-v05/final-scan-2.png"
     }
   ]
 };

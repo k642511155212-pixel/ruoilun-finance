@@ -1,15 +1,26 @@
-# Finance Mastery v0.4 — Build Notes
+# Finance Mastery v0.5 — Build Notes
 
 ## Goal
-Turn the previous source-dense build into an exam-oriented learning system with more explicit conceptual flow, deeper explanations, and substantially more practice.
+Integrate the newest uploaded LTTC market/TVM notes and prior-paper archive into the existing v0.4 GitHub Pages build.
 
-## Learning architecture
-`Big picture / intuition → definition → bilingual key terms → learning flow → deep explanation → formulas/examples → relationships → common mistake → exam focus → classified practice`
+## Academic/source changes
+- Official course lecture/Q&A still governs theory.
+- `LTTC_Financial market_HKT.pdf` and `LTTC_Time value and money_HKT.pdf` are supporting notes, not official answer keys.
+- Past papers are used to identify recurring exam architecture and to create normalized/adapted practice.
+- Ambiguous scan wording/units were not copied blindly; v0.5 states clean assumptions in its adapted questions.
 
-## Practice architecture
-Current bank: **283 questions**. New questions are visibly labeled `Generated Practice · Source-derived` and are built only from source-mapped concepts, definitions, relationships, formulas, and common error patterns.
+## Learning changes
+- Added 4 lessons.
+- Expanded TVM amortization, APR/EAR/continuous compounding, NPV under capital constraints.
+- Expanded market structure, institution types, regulation, and money-market instruments.
+- Added portfolio covariance/correlation lesson and formulas.
+- Expanded reverse DuPont calculations.
+- Added module-level past-exam pattern checklists, Past Exam Practice filter, and Past Exam Exam Mode.
 
-Question metadata now includes skill, difficulty, origin, mistake type, exam priority, source, explanation, and exam tip.
-
-## Supporting textbook use
-Mishkin & Serletis is used to deepen mapped Financial Markets/Institutions concepts such as direct/indirect finance, transaction costs, intermediation, adverse selection, and moral hazard. Bodie/Merton/Cleeton is used only where pages actually exist in the partial scan.
+## Counts
+- Lessons: 69
+- Questions: 390
+- Past-exam adapted: 66
+- Formulas: 31
+- Flashcards: 42
+- Sources: 21

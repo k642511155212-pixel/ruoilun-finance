@@ -1,25 +1,40 @@
-# Finance Mastery v0.4 — QA Report
+# Finance Mastery v0.5 — QA Report
 
-Automated structural checks completed on 2026-08-12.
+## Static checks
+- `node --check data.js`: PASS
+- `node --check app.js`: PASS
+- All question IDs unique: PASS
+- All question concepts point to existing lessons: PASS
+- All MCQ answer indexes valid: PASS
+- All module lesson IDs resolve: PASS
 
-- `data.js` parses successfully as structured JSON data.
-- `app.js` passes `node --check` JavaScript syntax validation.
-- 65 lessons across 7 modules.
-- 283 total practice questions.
-- Every question references an existing lesson and correct module.
-- Question IDs are unique.
-- MCQ answer indexes are valid.
-- Every question includes a skill classification and normalized difficulty.
-- Every lesson includes `studyFlow`, `deepExplanation`, and `examFocus`.
-- GitHub Pages support files `.nojekyll` and `404.html` are included.
-- Required root files `index.html`, `app.js`, `data.js`, and `styles.css` are present.
+## Render smoke test
+A minimal browser-state harness rendered these routes without runtime errors:
+- Dashboard
+- Money: Functions & Payment System
+- Financial Instruments
+- Markets module
+- Well-Run Markets & Regulation
+- Risk module
+- Two-Asset Portfolio Risk
+- Practice
+- Question Bank
+- Exam Mode
+- Sources
 
-Question counts by module:
+Past Exam Drill pool: **66 questions**
+Past Exam Mode initialization: **20 questions / 25 minutes**
 
-- Introduction to Finance: 29
-- Time Value of Money: 46
-- Personal Finance: 33
-- Financial Markets & Institutions: 46
-- Valuation of Securities: 42
-- Understanding Risk: 36
-- Managing Financial Health: 51
+## Data counts
+- Lessons: **69**
+- Questions: **390**
+- Past-exam normalized/adapted questions: **66**
+- Formulas: **31**
+- Flashcards / glossary entries: **42**
+- Source records: **21**
+
+## Source-policy checks
+- New HKT files are labeled supporting notes, not official course answers.
+- Prior papers are labeled exam-practice sources, not theory authority.
+- Past-paper items with ambiguous scan wording were normalized/adapted with explicit assumptions.
+- No external web knowledge was added to the academic content in this build.
