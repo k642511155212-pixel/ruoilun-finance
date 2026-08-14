@@ -1,3 +1,7 @@
+# Finance Mastery v0.7 — Personal Study Layer
+
+New in v0.7: select theory text inside any lesson and choose **Highlight**, **Comment**, or **Flashcard**. Highlights/comments and personal flashcards are stored locally in the browser, can be reviewed in **Notes & Highlights**, and can be exported/imported as JSON backups. Personal study content never changes or replaces the source-grounded academic content.
+
 Finance Mastery v0.6.3 — blank-page hotfix
 
 Fixes missing runtime helpers and switches illustration URLs to root-relative-safe bundled assets for GitHub Pages.
@@ -51,3 +55,6 @@ Official lecture and instructor-commented Q&A remain primary. The HKT files are 
 
 ## GitHub Pages
 Upload the **contents** of this folder to the repository root. Keep `.nojekyll`. If GitHub Pages is already configured for `main / (root)`, committing these files updates the existing site URL automatically.
+
+
+See `ANNOTATION_GUIDE.md` for the new v0.7 personal study workflow.

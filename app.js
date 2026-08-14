@@ -37,6 +37,8 @@ const LESSON_ILLUSTRATIONS = {
     mistakes: [],
     bookmarks: [],
     flashcards: {},
+    annotations: [],
+    personalFlashcards: [],
     lastLesson: 'defining-finance'
   };
 
@@ -50,6 +52,7 @@ const LESSON_ILLUSTRATIONS = {
     mobileOpen: false,
     calcType: 'lump',
     qbank: { module: 'all', origin: 'all', type: 'all', difficulty: 'all', skill: 'all' },
+    annotation: { pending: null, toolbarOpen: false },
 
 
 getModuleIllustration(moduleId) {
@@ -97,13 +100,14 @@ init() {
       const root = document.getElementById('app');
       root.innerHTML = this.shell(route, this.renderRoute(route));
       this.bindSearch();
+      this.bindAnnotationUI(route);
       if (route.page === 'exam' && this.exam && !this.exam.submitted) this.startExamTicker();
     },
 
     shell(route, content) {
       const nav = [
         ['dashboard','⌂','Dashboard'], ['learn','▤','Learn'], ['practice','✓','Practice'],
-        ['questionbank','☷','Question Bank'], ['mistakes','↻','Mistake Notebook'], ['flashcards','▣','Flashcards'],
+        ['questionbank','☷','Question Bank'], ['mistakes','↻','Mistake Notebook'], ['notes','✎','Notes & Highlights'], ['flashcards','▣','Flashcards'],
         ['formulas','ƒx','Formula Sheet'], ['calculators','∑','Calculators'], ['exam','⏱','Exam Mode'],
         ['progress','◷','Progress & Analytics'], ['glossary','⌕','Glossary'], ['saved','☆','Saved'], ['sources','◫','Sources']
       ];
@@ -143,6 +147,7 @@ init() {
         case 'practice': return this.renderPractice();
         case 'questionbank': return this.renderQuestionBank();
         case 'mistakes': return this.renderMistakes();
+        case 'notes': return this.renderNotes();
         case 'flashcards': return this.renderFlashcards();
         case 'formulas': return this.renderFormulas();
         case 'calculators': return this.renderCalculators();
@@ -220,37 +225,38 @@ init() {
       const m = this.data.modules.find(x=>x.id===l.module); const lessonIds=m.lessons; const index=lessonIds.indexOf(id); const next=lessonIds[index+1]; const prev=lessonIds[index-1]; const done=this.state.completedLessons.includes(id);
       const formulas = l.formula ? l.formula.map(f=>`<div class="formula-box"><div class="kicker">${esc(f.label)}</div><div class="formula-expression">${f.html}</div></div>`).join('') : '';
       const variables = l.variables ? `<div class="section"><h3>Variables</h3><table class="variable-table">${l.variables.map(v=>`<tr><td>${esc(v[0])}</td><td>${esc(v[1])}</td></tr>`).join('')}</table></div>` : '';
-      const worked = l.workedExample ? `<section class="lesson-block"><div class="kicker">Worked example</div><h2>${esc(l.workedExample.title)}</h2><div class="worked-example"><p class="worked-prompt">${esc(l.workedExample.prompt)}</p><ol>${l.workedExample.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="worked-answer"><span>Answer / conclusion</span><strong>${esc(l.workedExample.answer)}</strong></div></div></section>` : '';
-      const supporting = l.supporting?.length ? `<section class="lesson-block"><div class="kicker">Supporting sources</div><h2>Cross-reference within your uploads</h2><div class="support-list">${l.supporting.map(s=>`<div class="support-chip">${esc(s)}</div>`).join('')}</div></section>` : '';
-      const keyTerms = l.keyTerms?.length ? `<section class="lesson-block"><div class="kicker">Bilingual key terms</div><h2>Terms you should recognize</h2><div class="term-grid">${l.keyTerms.map(t=>`<div class="term-card"><strong>${esc(t[0])}</strong><span>${esc(t[1])}</span></div>`).join('')}</div></section>` : '';
-      const theory = l.theory?.length ? `<section class="lesson-block"><div class="kicker">Deep theory</div><h2>How the concept works</h2><div class="theory-stack">${l.theory.map(t=>`<div class="theory-card"><h3>${esc(t.title)}</h3><p>${esc(t.body)}</p></div>`).join('')}</div></section>` : '';
-      const example = l.example ? `<section class="lesson-block"><div class="kicker">Example in context</div><h2>${esc(l.example.title)}</h2><div class="callout primary"><p style="margin:0">${esc(l.example.body)}</p></div></section>` : '';
-      const studyFlow=l.studyFlow?.length?`<section class="lesson-block"><div class="kicker">Learning flow</div><h2>Build the idea step by step</h2><div class="study-flow">${l.studyFlow.map(x=>`<div class="study-step"><strong>${esc(x.label)}</strong><p>${esc(x.text)}</p></div>`).join('')}</div></section>`:'';
-      const deep=l.deepExplanation?.length?`<section class="lesson-block"><div class="kicker">Deep explanation</div><h2>Reason through the theory</h2><div class="deep-prose">${l.deepExplanation.map(x=>`<p>${esc(x)}</p>`).join('')}</div></section>`:'';
-      const examFocus=l.examFocus?.length?`<section class="lesson-block"><div class="kicker">Exam focus</div><h2>What you should be able to do</h2><ul class="exam-checklist">${l.examFocus.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`:'';
+      const worked = l.workedExample ? `<section class="lesson-block annotatable" data-annotation-block="worked-example"><div class="kicker">Worked example</div><h2>${esc(l.workedExample.title)}</h2><div class="worked-example"><p class="worked-prompt">${esc(l.workedExample.prompt)}</p><ol>${l.workedExample.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="worked-answer"><span>Answer / conclusion</span><strong>${esc(l.workedExample.answer)}</strong></div></div></section>` : '';
+      const supporting = l.supporting?.length ? `<section class="lesson-block annotatable" data-annotation-block="supporting-sources"><div class="kicker">Supporting sources</div><h2>Cross-reference within your uploads</h2><div class="support-list">${l.supporting.map(s=>`<div class="support-chip">${esc(s)}</div>`).join('')}</div></section>` : '';
+      const keyTerms = l.keyTerms?.length ? `<section class="lesson-block annotatable" data-annotation-block="key-terms"><div class="kicker">Bilingual key terms</div><h2>Terms you should recognize</h2><div class="term-grid">${l.keyTerms.map(t=>`<div class="term-card"><strong>${esc(t[0])}</strong><span>${esc(t[1])}</span></div>`).join('')}</div></section>` : '';
+      const theory = l.theory?.length ? `<section class="lesson-block annotatable" data-annotation-block="deep-theory"><div class="kicker">Deep theory</div><h2>How the concept works</h2><div class="theory-stack">${l.theory.map(t=>`<div class="theory-card"><h3>${esc(t.title)}</h3><p>${esc(t.body)}</p></div>`).join('')}</div></section>` : '';
+      const example = l.example ? `<section class="lesson-block annotatable" data-annotation-block="example"><div class="kicker">Example in context</div><h2>${esc(l.example.title)}</h2><div class="callout primary"><p style="margin:0">${esc(l.example.body)}</p></div></section>` : '';
+      const studyFlow=l.studyFlow?.length?`<section class="lesson-block annotatable" data-annotation-block="learning-flow"><div class="kicker">Learning flow</div><h2>Build the idea step by step</h2><div class="study-flow">${l.studyFlow.map(x=>`<div class="study-step"><strong>${esc(x.label)}</strong><p>${esc(x.text)}</p></div>`).join('')}</div></section>`:'';
+      const deep=l.deepExplanation?.length?`<section class="lesson-block annotatable" data-annotation-block="deep-explanation"><div class="kicker">Deep explanation</div><h2>Reason through the theory</h2><div class="deep-prose">${l.deepExplanation.map(x=>`<p>${esc(x)}</p>`).join('')}</div></section>`:'';
+      const examFocus=l.examFocus?.length?`<section class="lesson-block annotatable" data-annotation-block="exam-focus"><div class="kicker">Exam focus</div><h2>What you should be able to do</h2><ul class="exam-checklist">${l.examFocus.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`:'';
       const qn=this.data.questions.filter(q=>q.concept===id).length;
+      const annotationCount=(this.state.annotations||[]).filter(a=>a.lessonId===id).length;
       return `<div class="learn-layout">
         <aside class="card pad flat lesson-outline"><div class="kicker">Lesson outline</div><div class="outline-list">${lessonIds.map(x=>`<button class="outline-item ${x===id?'active':''}" onclick="App.go('learn/${x}')">${esc(this.data.lessons[x].title)}</button>`).join('')}</div></aside>
         <article class="card lesson-main">
           <header class="lesson-header"><div class="eyebrow">Module ${String(m.order).padStart(2,'0')} · ${esc(m.name)}</div><h1>${esc(l.title)}</h1><div class="key-term"><span class="translation">${this.vi(l.vi)}</span></div><p class="lead">${esc(l.objective)}</p><div class="lesson-source-line"><span class="badge">${esc(l.source.level||'Course source')}</span><span>${esc(l.source.file)} · ${esc(l.source.location||'')}</span></div></header>
           <section class="lesson-visual-strip"><div class="lesson-visual-copy">${this.renderModuleIcon(m.id,'lesson-hero-icon')}<div><span class="kicker">Visual chapter cue</span><strong>${esc(m.name)}</strong></div></div><img src="${this.assetUrl(this.getModuleIllustration(m.id))}" alt="${esc(m.name)} visual" loading="lazy" onerror="this.style.display='none'"/></section>
-          <section class="lesson-block"><div class="kicker">Intuition first</div><h2>Why this makes sense</h2><div class="callout primary"><p style="margin:0">${esc(l.intuition)}</p></div></section>
-          <section class="lesson-block"><div class="kicker">Source-grounded concept</div><h2>Definition</h2><p>${esc(l.definition)}</p><button class="source-btn" onclick='App.openSource(${jsonAttr(l.source)})'>◫ View source reference</button></section>
+          <section class="lesson-block annotatable" data-annotation-block="intuition"><div class="kicker">Intuition first</div><h2>Why this makes sense</h2><div class="callout primary"><p style="margin:0">${esc(l.intuition)}</p></div></section>
+          <section class="lesson-block annotatable" data-annotation-block="definition"><div class="kicker">Source-grounded concept</div><h2>Definition</h2><p>${esc(l.definition)}</p><button class="source-btn" onclick='App.openSource(${jsonAttr(l.source)})'>◫ View source reference</button></section>
           ${keyTerms}
           ${studyFlow}
           ${deep}
           ${theory}
           ${example}
-          ${formulas ? `<section class="lesson-block"><div class="kicker">Formula</div><h2>Calculation model</h2>${formulas}${variables}</section>` : ''}
+          ${formulas ? `<section class="lesson-block annotatable" data-annotation-block="formula"><div class="kicker">Formula</div><h2>Calculation model</h2>${formulas}${variables}</section>` : ''}
           ${worked}
-          <section class="lesson-block"><div class="kicker">Relationships</div><h2>What connects to what</h2><ul>${l.relationships.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
-          ${l.commonMistake ? `<section class="lesson-block"><div class="kicker">Common mistake</div><div class="callout warning"><strong>Watch for this</strong><p>${esc(l.commonMistake)}</p></div></section>`:''}
+          <section class="lesson-block annotatable" data-annotation-block="relationships"><div class="kicker">Relationships</div><h2>What connects to what</h2><ul>${l.relationships.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
+          ${l.commonMistake ? `<section class="lesson-block annotatable" data-annotation-block="common-mistake"><div class="kicker">Common mistake</div><div class="callout warning"><strong>Watch for this</strong><p>${esc(l.commonMistake)}</p></div></section>`:''}
           ${supporting}
           ${examFocus}
           <section class="lesson-block"><div class="kicker">Active recall</div><h2>Practice now</h2><p class="muted">${qn ? `${qn} source-supported question${qn>1?'s are':' is'} linked directly to this lesson.` : 'No dedicated question yet; use the module mixed set.'}</p><div class="action-row"><button class="btn primary" onclick="App.startPractice('concept','${id}')">Practice this concept</button>${l.formula?`<button class="btn" onclick="App.go('calculators')">Open calculators</button>`:''}</div></section>
           <section class="lesson-block lesson-footer"><button class="btn ${done?'':'primary'}" onclick="App.toggleLessonComplete('${id}')">${done?'✓ Completed · Mark incomplete':'Mark lesson complete'}</button><div class="action-row">${prev?`<button class="btn" onclick="App.go('learn/${prev}')">← Previous</button>`:''}${next?`<button class="btn" onclick="App.go('learn/${next}')">Next →</button>`:''}</div></section>
         </article>
-        <aside class="card pad flat lesson-tools"><div class="kicker">Lesson tools</div><div class="tool-list"><button class="btn sm block" onclick='App.openSource(${jsonAttr(l.source)})'>◫ View source</button><button class="btn sm block" onclick="App.toggleBookmark('lesson','${id}')">${this.isBookmarked('lesson',id)?'★ Saved':'☆ Bookmark'}</button><button class="btn sm block" onclick="App.startPractice('concept','${id}')">✓ Practice (${qn})</button>${l.formula?`<button class="btn sm block" onclick="App.go('formulas')">ƒx Formula sheet</button>`:''}</div><div class="tool-progress"><div class="kicker">Module progress</div><div class="progress"><span style="width:${Math.round(m.lessons.filter(x=>this.state.completedLessons.includes(x)).length/m.lessons.length*100)}%"></span></div></div></aside>
+        <aside class="card pad flat lesson-tools"><div class="kicker">Lesson tools</div><div class="annotation-tip"><strong>Select any theory text</strong><span>Highlight it, add a comment, or turn it into a personal flashcard.</span></div><div class="tool-list"><button class="btn sm block" onclick='App.openSource(${jsonAttr(l.source)})'>◫ View source</button><button class="btn sm block" onclick="App.toggleBookmark('lesson','${id}')">${this.isBookmarked('lesson',id)?'★ Saved':'☆ Bookmark'}</button><button class="btn sm block" onclick="App.go('notes')">✎ Notes & highlights (${annotationCount})</button><button class="btn sm block" onclick="App.startPractice('concept','${id}')">✓ Practice (${qn})</button>${l.formula?`<button class="btn sm block" onclick="App.go('formulas')">ƒx Formula sheet</button>`:''}</div><div class="tool-progress"><div class="kicker">Module progress</div><div class="progress"><span style="width:${Math.round(m.lessons.filter(x=>this.state.completedLessons.includes(x)).length/m.lessons.length*100)}%"></span></div></div></aside>
       </div>`;
     },
 
@@ -283,12 +289,26 @@ init() {
       return `<div class="page-head"><div><div class="eyebrow">Mistake Notebook</div><h1>${items.length} recorded mistake${items.length===1?'':'s'}</h1><p class="lead">Your history is preserved even after you improve. Review the linked lesson, then retest.</p></div><button class="btn primary" onclick="App.resetPractice('mistakes');App.go('practice')">Practice my mistakes</button></div><div class="grid grid-2">${items.map(m=>{const q=this.data.questions.find(x=>x.id===m.questionId);if(!q)return'';const correct=q.type==='mcq'?q.options[q.answer]:`${formatAnswer(q.answer)}${q.unit||''}`;return `<article class="card mistake-card"><div class="mistake-head"><div><span class="badge">${esc(q.difficulty)}</span> <span class="badge">${esc(this.moduleName(q.module))}</span></div><span class="small muted">${new Date(m.date).toLocaleDateString()}</span></div><div class="prompt">${esc(q.prompt)}</div><div class="answer-line">Your answer: <strong>${esc(String(m.userAnswer))}</strong></div><div class="answer-line">Correct: <strong>${esc(String(correct))}</strong></div><div class="small muted"><strong>Error category:</strong> ${esc(q.mistakeType||'Concept / setup error')} · <strong>Skill:</strong> ${esc(q.skill||'Practice')}</div><div class="callout"><strong>Explanation</strong><div class="small explanation-text">${esc(q.explanation)}</div></div><div class="practice-controls"><button class="btn sm primary" onclick="App.go('learn/${q.concept}')">Review theory</button><button class="btn sm" onclick="App.startPractice('concept','${q.concept}')">Retest</button></div></article>`;}).join('')}</div>`;
     },
 
+    renderNotes() {
+      const annotations=[...(this.state.annotations||[])].sort((a,b)=>new Date(b.updatedAt||b.createdAt)-new Date(a.updatedAt||a.createdAt));
+      const personal=[...(this.state.personalFlashcards||[])].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+      const highlights=annotations.filter(a=>a.highlight).length;
+      const comments=annotations.filter(a=>a.comment).length;
+      const cards=annotations.map(a=>{
+        const l=this.data.lessons[a.lessonId];
+        const typeBadges=[a.highlight?`<span class="badge annotation-badge">Highlight</span>`:'',a.comment?`<span class="badge annotation-badge">Comment</span>`:'',a.flashcardId?`<span class="badge annotation-badge">Flashcard</span>`:''].join('');
+        return `<article class="card annotation-card" data-note-search="${esc([a.text,a.comment,l?.title,this.moduleName(l?.module||'')].join(' ').toLowerCase())}"><div class="annotation-card-head"><div>${typeBadges}</div><span class="small muted">${new Date(a.updatedAt||a.createdAt).toLocaleDateString()}</span></div><blockquote>${esc(a.text)}</blockquote>${a.comment?`<div class="annotation-comment"><strong>Your comment</strong><p>${esc(a.comment)}</p></div>`:''}<div class="small muted">${esc(l?.title||a.lessonId)} · ${esc(this.moduleName(l?.module||''))}</div><div class="practice-controls"><button class="btn sm primary" onclick="App.openAnnotationInLesson('${a.lessonId}','${a.id}')">Open in lesson</button>${a.comment?`<button class="btn sm" onclick="App.editAnnotationComment('${a.id}')">Edit comment</button>`:''}${a.highlight?`<button class="btn sm" onclick="App.removeAnnotationHighlight('${a.id}')">Remove highlight</button>`:''}<button class="btn sm danger" onclick="App.deleteAnnotation('${a.id}')">Delete</button></div></article>`;
+      }).join('');
+      const personalCards=personal.map(c=>`<article class="card personal-card" data-note-search="${esc([c.front,c.back,c.source].join(' ').toLowerCase())}"><div class="annotation-card-head"><span class="badge personal-badge">PERSONAL FLASHCARD</span><span class="small muted">${new Date(c.createdAt).toLocaleDateString()}</span></div><h3>${esc(c.front)}</h3><p class="muted">${esc(c.back)}</p><div class="small muted">${esc(c.source)}</div><div class="practice-controls"><button class="btn sm primary" onclick="App.go('flashcards');App.setFlashFilter('personal')">Study card</button><button class="btn sm" onclick="App.editPersonalFlashcard('${c.id}')">Edit</button><button class="btn sm danger" onclick="App.deletePersonalFlashcard('${c.id}')">Delete</button></div></article>`).join('');
+      return `<div class="page-head"><div><div class="eyebrow">Personal study layer</div><h1>Notes & Highlights</h1><p class="lead">Select text inside any lesson to highlight it, attach your own comment, or convert the passage into a personal flashcard. This layer is stored locally and never changes the source-grounded course content.</p></div><div class="action-row"><button class="btn" onclick="App.exportStudyNotes()">Export backup</button><button class="btn" onclick="App.triggerImportStudyNotes()">Import backup</button></div></div><div class="grid grid-3">${this.statCard(highlights,'Highlights')}${this.statCard(comments,'Comments')}${this.statCard(personal.length,'Personal flashcards')}</div><section class="section"><div class="section-head"><div><div class="eyebrow">Find your notes</div><h2>Annotations</h2></div><input class="field notes-search" placeholder="Search highlights or comments…" oninput="App.filterNotes(this.value)"/></div>${annotations.length?`<div class="grid grid-2 notes-grid">${cards}</div>`:`<div class="card empty"><h2>No annotations yet</h2><p>Open a lesson and drag across any theory text. A contextual study toolbar will appear.</p><button class="btn primary" onclick="App.go('learn/${this.state.lastLesson}')">Open last lesson</button></div>`}</section><section class="section"><div class="section-head"><div><div class="eyebrow">Created from selections</div><h2>Personal flashcards</h2></div><button class="btn sm" onclick="App.go('flashcards');App.setFlashFilter('personal')">Study personal cards</button></div>${personal.length?`<div class="grid grid-2 notes-grid">${personalCards}</div>`:`<div class="card empty small">No personal flashcards yet. Select a sentence or definition in a lesson and choose “Flashcard”.</div>`}</section>`;
+    },
+
     renderFlashcards() {
       const cards=this.filteredFlashcards();
       const moduleOptions=this.data.modules.map(m=>`<option value="${m.id}" ${this.flash.filter===m.id?'selected':''}>${m.order}. ${esc(shortName(m.name))}</option>`).join('');
-      if(!cards.length) return `<div class="page-head"><div><div class="eyebrow">Flashcards</div><h1>No cards match this filter</h1></div><div><select class="select" onchange="App.setFlashFilter(this.value)"><option value="all">All cards</option><option value="due">Due today</option>${moduleOptions}</select></div></div>`;
+      if(!cards.length) return `<div class="page-head"><div><div class="eyebrow">Flashcards</div><h1>No cards match this filter</h1></div><div><select class="select" onchange="App.setFlashFilter(this.value)"><option value="all">All cards</option><option value="due">Due today</option><option value="personal">Personal flashcards</option>${moduleOptions}</select></div></div>`;
       if(this.flash.index>=cards.length)this.flash.index=0; const card=cards[this.flash.index]; const review=this.state.flashcards[card.id];
-      return `<div class="page-head"><div><div class="eyebrow">Flashcards</div><h1>Active recall</h1><p class="lead">English stays primary. Vietnamese appears only as a supporting key-term layer.</p></div><div><select class="select" onchange="App.setFlashFilter(this.value)"><option value="all" ${this.flash.filter==='all'?'selected':''}>All cards</option><option value="due" ${this.flash.filter==='due'?'selected':''}>Due today</option>${moduleOptions}</select></div></div><div class="flashcard-stage"><div class="card flashcard" onclick="App.flipFlashcard()">${!this.flash.flipped?`<div><div class="flashcard-front">${esc(card.front)}</div><div class="flashcard-vi">${this.vi(card.vi)}</div></div><div class="flashcard-hint">Click to reveal answer</div>`:`<div><div class="flashcard-back">${esc(card.back)}</div><div class="small muted flash-source">Source: ${esc(card.source)}</div></div><div class="flashcard-hint">Rate your recall below</div>`}</div>${this.flash.flipped?`<div class="rating-row"><button class="btn danger" onclick="event.stopPropagation();App.rateFlash('again')">Again</button><button class="btn" onclick="event.stopPropagation();App.rateFlash('hard')">Hard</button><button class="btn primary" onclick="event.stopPropagation();App.rateFlash('good')">Good</button><button class="btn" onclick="event.stopPropagation();App.rateFlash('easy')">Easy</button></div>`:''}<div class="small muted flash-meta">Card ${this.flash.index+1} / ${cards.length}${review?.next?` · Next review ${new Date(review.next).toLocaleDateString()}`:''} · <button class="btn sm" onclick="App.toggleBookmark('flashcard','${card.id}')">${this.isBookmarked('flashcard',card.id)?'★ Saved':'☆ Save'}</button></div></div>`;
+      return `<div class="page-head"><div><div class="eyebrow">Flashcards</div><h1>Active recall</h1><p class="lead">Source-grounded course cards and your personal flashcards share the same spaced-review workflow. Personal cards are clearly labeled and remain separate from academic source content.</p></div><div><select class="select" onchange="App.setFlashFilter(this.value)"><option value="all" ${this.flash.filter==='all'?'selected':''}>All cards</option><option value="due" ${this.flash.filter==='due'?'selected':''}>Due today</option><option value="personal" ${this.flash.filter==='personal'?'selected':''}>Personal flashcards</option>${moduleOptions}</select></div></div><div class="flashcard-stage"><div class="card flashcard" onclick="App.flipFlashcard()">${!this.flash.flipped?`<div>${card.personal?`<span class="badge personal-badge flash-personal-badge">PERSONAL</span>`:''}<div class="flashcard-front">${esc(card.front)}</div><div class="flashcard-vi">${this.vi(card.vi)}</div></div><div class="flashcard-hint">Click to reveal answer</div>`:`<div><div class="flashcard-back">${esc(card.back)}</div><div class="small muted flash-source">Source: ${esc(card.source)}</div></div><div class="flashcard-hint">Rate your recall below</div>`}</div>${this.flash.flipped?`<div class="rating-row"><button class="btn danger" onclick="event.stopPropagation();App.rateFlash('again')">Again</button><button class="btn" onclick="event.stopPropagation();App.rateFlash('hard')">Hard</button><button class="btn primary" onclick="event.stopPropagation();App.rateFlash('good')">Good</button><button class="btn" onclick="event.stopPropagation();App.rateFlash('easy')">Easy</button></div>`:''}<div class="small muted flash-meta">Card ${this.flash.index+1} / ${cards.length}${review?.next?` · Next review ${new Date(review.next).toLocaleDateString()}`:''} · ${card.personal?`<button class="btn sm" onclick="event.stopPropagation();App.editPersonalFlashcard('${card.id}')">Edit</button> <button class="btn sm danger" onclick="event.stopPropagation();App.deletePersonalFlashcard('${card.id}')">Delete</button>`:`<button class="btn sm" onclick="App.toggleBookmark('flashcard','${card.id}')">${this.isBookmarked('flashcard',card.id)?'★ Saved':'☆ Save'}</button>`}</div></div>`;
     },
 
     renderFormulas() {
@@ -355,7 +375,7 @@ init() {
         if(type==='lesson'){const x=this.data.lessons[id];return x&&{key,type,title:x.title,meta:`Lesson · ${this.moduleName(x.module)}`,action:`App.go('learn/${id}')`};}
         if(type==='question'){const x=this.data.questions.find(q=>q.id===id);return x&&{key,type,title:x.prompt,meta:`Question · ${this.moduleName(x.module)}`,action:`App.startPractice('concept','${x.concept}')`};}
         if(type==='formula'){const x=this.data.formulas.find(f=>f.id===id);return x&&{key,type,title:x.name,meta:`Formula · ${this.moduleName(x.module)}`,action:`App.go('formulas')`};}
-        if(type==='flashcard'){const x=this.data.flashcards.find(c=>c.id===id);return x&&{key,type,title:x.front,meta:`Flashcard · ${this.moduleName(x.module)}`,action:`App.go('flashcards')`};}
+        if(type==='flashcard'){const x=this.allFlashcards().find(c=>c.id===id);return x&&{key,type,title:x.front,meta:`Flashcard · ${x.personal?'Personal · ':''}${this.moduleName(x.module)}`,action:`App.go('flashcards')`};}
         if(type==='source'){const x=this.data.sources.find(a=>a.id===id);return x&&{key,type,title:x.name,meta:`Source · ${x.type}`,action:`App.go('sources')`};}
         return null;
       }).filter(Boolean);
@@ -380,7 +400,7 @@ init() {
     },
 
     renderSettings() {
-      return `<div class="page-head"><div><div class="eyebrow">Settings</div><h1>Learning preferences</h1><p class="lead">Academic content remains English-first. Vietnamese support stays secondary.</p></div></div><div class="grid grid-2"><section class="card pad"><h2>Appearance</h2><div class="form-field"><label>Theme</label><select onchange="App.setTheme(this.value)"><option value="light" ${this.state.theme==='light'?'selected':''}>Light</option><option value="dark" ${this.state.theme==='dark'?'selected':''}>Dark</option></select></div></section><section class="card pad"><h2>Vietnamese Learning Support</h2><div class="form-field"><label>Support level</label><select onchange="App.setViSupport(this.value)"><option value="off" ${this.state.viSupport==='off'?'selected':''}>OFF</option><option value="key-terms" ${this.state.viSupport==='key-terms'?'selected':''}>KEY TERMS ONLY</option></select></div><p class="muted small">Key terms are bilingual; theory, formulas, questions, and exam conditions remain English-first.</p></section><section class="card pad"><h2>Progress data</h2><p class="muted">Progress, mistakes, bookmarks, and flashcard scheduling are stored locally in your browser.</p><button class="btn danger" onclick="App.resetProgress()">Reset progress</button></section><section class="card pad"><h2>Source policy</h2><p class="muted">Uploaded course materials are the academic source of truth. Supporting textbooks/notes enrich only course-mapped topics. Prior papers supply exam patterns and adapted practice, not theory authority; outside web knowledge is not used in this build.</p></section></div>`;
+      return `<div class="page-head"><div><div class="eyebrow">Settings</div><h1>Learning preferences</h1><p class="lead">Academic content remains English-first. Vietnamese support stays secondary.</p></div></div><div class="grid grid-2"><section class="card pad"><h2>Appearance</h2><div class="form-field"><label>Theme</label><select onchange="App.setTheme(this.value)"><option value="light" ${this.state.theme==='light'?'selected':''}>Light</option><option value="dark" ${this.state.theme==='dark'?'selected':''}>Dark</option></select></div></section><section class="card pad"><h2>Vietnamese Learning Support</h2><div class="form-field"><label>Support level</label><select onchange="App.setViSupport(this.value)"><option value="off" ${this.state.viSupport==='off'?'selected':''}>OFF</option><option value="key-terms" ${this.state.viSupport==='key-terms'?'selected':''}>KEY TERMS ONLY</option></select></div><p class="muted small">Key terms are bilingual; theory, formulas, questions, and exam conditions remain English-first.</p></section><section class="card pad"><h2>Personal study notes</h2><p class="muted">Highlights, comments, and personal flashcards are stored locally in this browser. Export a backup if you want to move them to another device or protect them before clearing browser data.</p><div class="action-row"><button class="btn" onclick="App.exportStudyNotes()">Export notes</button><button class="btn" onclick="App.triggerImportStudyNotes()">Import notes</button></div></section><section class="card pad"><h2>Progress data</h2><p class="muted">Progress, mistakes, bookmarks, annotations, and flashcard scheduling are stored locally in your browser.</p><button class="btn danger" onclick="App.resetProgress()">Reset all local data</button></section><section class="card pad"><h2>Source policy</h2><p class="muted">Uploaded course materials are the academic source of truth. Supporting textbooks/notes enrich only course-mapped topics. Prior papers supply exam patterns and adapted practice, not theory authority; outside web knowledge is not used in this build.</p></section></div>`;
     },
 
     renderDrawer() {
@@ -394,7 +414,7 @@ init() {
 
     // Navigation + state
     go(path){this.mobileOpen=false;location.hash='#'+path;}, openModule(id){this.go('module/'+id);}, toggleMobile(force){this.mobileOpen=typeof force==='boolean'?force:!this.mobileOpen;this.render();}, toggleTheme(){this.setTheme(this.state.theme==='dark'?'light':'dark');}, setTheme(v){this.state.theme=v;saveState();applyTheme();this.render();}, setViSupport(v){this.state.viSupport=v;saveState();this.render();}, vi(text){return this.state.viSupport==='off'?'':esc(text||'');},
-    resetProgress(){if(confirm('Reset all local Finance Mastery progress, mistakes and flashcard reviews?')){this.state=freshState();saveState();this.exam=null;this.render();}},
+    resetProgress(){if(confirm('Reset all local Finance Mastery progress, mistakes, annotations, personal flashcards, and review history?')){this.state=freshState();saveState();this.exam=null;this.render();}},
     toggleLessonComplete(id){const i=this.state.completedLessons.indexOf(id);if(i>=0)this.state.completedLessons.splice(i,1);else this.state.completedLessons.push(id);saveState();this.render();},
     toggleBookmark(type,id){const key=type+':'+id,i=this.state.bookmarks.indexOf(key);if(i>=0)this.state.bookmarks.splice(i,1);else this.state.bookmarks.push(key);saveState();toast(i>=0?'Bookmark removed':'Saved');this.render();}, isBookmarked(type,id){return this.state.bookmarks.includes(type+':'+id);},
 
@@ -419,10 +439,147 @@ init() {
     nextPractice(){this.practice.index=this.practice.index>=this.practice.ids.length-1?0:this.practice.index+1;this.practice.selected=null;this.practice.numeric='';this.practice.checked=false;this.render();},
 
     // Flashcards
-    filteredFlashcards(){let c=[...this.data.flashcards];if(this.data.modules.some(m=>m.id===this.flash.filter))c=c.filter(x=>x.module===this.flash.filter);if(this.flash.filter==='due')c=this.dueFlashcards();return c;},
-    dueFlashcards(){const now=Date.now();return this.data.flashcards.filter(c=>{const r=this.state.flashcards[c.id];return !r||!r.next||new Date(r.next).getTime()<=now;});},
+    allFlashcards(){return [...this.data.flashcards,...(this.state.personalFlashcards||[])];},
+    filteredFlashcards(){let c=this.allFlashcards();if(this.flash.filter==='personal')c=c.filter(x=>x.personal);else if(this.data.modules.some(m=>m.id===this.flash.filter))c=c.filter(x=>x.module===this.flash.filter);if(this.flash.filter==='due')c=this.dueFlashcards();return c;},
+    dueFlashcards(){const now=Date.now();return this.allFlashcards().filter(c=>{const r=this.state.flashcards[c.id];return !r||!r.next||new Date(r.next).getTime()<=now;});},
     flipFlashcard(){this.flash.flipped=!this.flash.flipped;this.render();}, setFlashFilter(v){this.flash.filter=v;this.flash.index=0;this.flash.flipped=false;this.render();},
     rateFlash(rating){const cards=this.filteredFlashcards(),c=cards[this.flash.index];if(!c)return;const days={again:0,hard:1,good:3,easy:7}[rating],next=new Date();next.setDate(next.getDate()+days);const rec=this.state.flashcards[c.id]||{count:0};rec.count++;rec.last=new Date().toISOString();rec.next=next.toISOString();rec.rating=rating;this.state.flashcards[c.id]=rec;saveState();this.flash.index=(this.flash.index+1)%cards.length;this.flash.flipped=false;this.render();},
+
+    // Personal annotations, comments, and flashcards
+    bindAnnotationUI(route){
+      this.hideSelectionToolbar();
+      if(route.page!=='learn'||!route.arg)return;
+      this.applyLessonAnnotations(route.arg);
+      const main=document.querySelector('.lesson-main');
+      if(!main)return;
+      const capture=()=>setTimeout(()=>this.captureTheorySelection(route.arg),0);
+      main.addEventListener('mouseup',capture);
+      main.addEventListener('keyup',capture);
+      main.addEventListener('touchend',capture,{passive:true});
+      main.addEventListener('click',e=>{const mark=e.target.closest('.annotation-mark');if(mark&&window.getSelection()?.isCollapsed!==false){e.preventDefault();this.openAnnotationDetails((mark.dataset.annotationIds||'').split(/\s+/).filter(Boolean));}});
+      if(this._pendingAnnotationScroll){const id=this._pendingAnnotationScroll;this._pendingAnnotationScroll=null;setTimeout(()=>{const el=document.querySelector(`[data-annotation-ids~="${id}"]`);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('annotation-focus');setTimeout(()=>el.classList.remove('annotation-focus'),1800);}},80);}
+    },
+
+    captureTheorySelection(lessonId){
+      const sel=window.getSelection();
+      if(!sel||sel.rangeCount===0||sel.isCollapsed){this.hideSelectionToolbar();return;}
+      const text=sel.toString().replace(/\s+/g,' ').trim();
+      if(text.length<2){this.hideSelectionToolbar();return;}
+      if(text.length>1600){this.hideSelectionToolbar();toast('Select a shorter passage (up to about 1,600 characters).');return;}
+      const range=sel.getRangeAt(0);
+      const startEl=range.startContainer.nodeType===1?range.startContainer:range.startContainer.parentElement;
+      const endEl=range.endContainer.nodeType===1?range.endContainer:range.endContainer.parentElement;
+      const startBlock=startEl?.closest?.('.annotatable');
+      const endBlock=endEl?.closest?.('.annotatable');
+      if(!startBlock||startBlock!==endBlock){this.hideSelectionToolbar();return;}
+      const blockId=startBlock.dataset.annotationBlock;
+      const pre=document.createRange();pre.selectNodeContents(startBlock);pre.setEnd(range.startContainer,range.startOffset);
+      const start=pre.toString().length;
+      const end=start+range.toString().length;
+      const rect=range.getBoundingClientRect();
+      this.annotation.pending={lessonId,blockId,start,end,text:range.toString().trim(),rect:{left:rect.left,top:rect.top,width:rect.width,height:rect.height}};
+      this.showSelectionToolbar();
+    },
+
+    showSelectionToolbar(){
+      this.hideSelectionToolbar();
+      const p=this.annotation.pending;if(!p)return;
+      const el=document.createElement('div');el.id='selectionStudyToolbar';el.className='selection-study-toolbar';
+      el.innerHTML=`<div class="selection-toolbar-label">Highlight</div><button class="color-dot yellow" title="Yellow highlight" aria-label="Yellow highlight" onclick="App.addHighlight('yellow')"></button><button class="color-dot rose" title="Rose highlight" aria-label="Rose highlight" onclick="App.addHighlight('rose')"></button><button class="color-dot green" title="Green highlight" aria-label="Green highlight" onclick="App.addHighlight('green')"></button><button class="color-dot blue" title="Blue highlight" aria-label="Blue highlight" onclick="App.addHighlight('blue')"></button><span class="selection-toolbar-divider"></span><button class="selection-tool-btn" onclick="App.openCommentComposer()">✎ Comment</button><button class="selection-tool-btn" onclick="App.openFlashcardComposer()">▣ Flashcard</button>`;
+      document.body.appendChild(el);
+      const box=el.getBoundingClientRect();
+      const left=Math.max(10,Math.min(window.innerWidth-box.width-10,p.rect.left+p.rect.width/2-box.width/2));
+      const top=Math.max(10,Math.min(window.innerHeight-box.height-10,p.rect.top-box.height-12));
+      el.style.left=`${left}px`;el.style.top=`${top}px`;
+      this.annotation.toolbarOpen=true;
+      setTimeout(()=>document.addEventListener('mousedown',this._annotationOutsideHandler=(e)=>{if(!e.target.closest('#selectionStudyToolbar')&&!e.target.closest('.annotation-modal'))this.hideSelectionToolbar();},{once:true}),0);
+    },
+
+    hideSelectionToolbar(){const el=document.getElementById('selectionStudyToolbar');if(el)el.remove();this.annotation.toolbarOpen=false;},
+
+    findOrCreateAnnotation(p){
+      let a=(this.state.annotations||[]).find(x=>x.lessonId===p.lessonId&&x.blockId===p.blockId&&x.start===p.start&&x.end===p.end);
+      if(!a){const lesson=this.data.lessons[p.lessonId];a={id:uid('ann'),lessonId:p.lessonId,moduleId:lesson?.module||'',blockId:p.blockId,start:p.start,end:p.end,text:p.text,highlight:null,comment:'',flashcardId:null,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};this.state.annotations.push(a);}return a;
+    },
+
+    addHighlight(color='yellow'){
+      const p=this.annotation.pending;if(!p)return;
+      const a=this.findOrCreateAnnotation(p);a.highlight=color;a.updatedAt=new Date().toISOString();saveState();this.hideSelectionToolbar();window.getSelection()?.removeAllRanges();this.annotation.pending=null;this.rerenderPreserveScroll();toast('Highlight saved');
+    },
+
+    openCommentComposer(annotationId=null){
+      let a=annotationId?(this.state.annotations||[]).find(x=>x.id===annotationId):null;
+      const p=a?{lessonId:a.lessonId,blockId:a.blockId,start:a.start,end:a.end,text:a.text}:this.annotation.pending;if(!p)return;
+      this.hideSelectionToolbar();
+      this.showAnnotationModal(`<div class="eyebrow">Personal comment</div><h2>Add a note to this passage</h2><blockquote class="modal-quote">${esc(p.text)}</blockquote><label class="modal-label">Your comment</label><textarea id="annotationCommentInput" class="annotation-textarea" maxlength="3000" placeholder="Write what you want to remember, a clarification, an exam trap, or your own explanation…">${esc(a?.comment||'')}</textarea><div class="modal-actions"><button class="btn" onclick="App.closeAnnotationModal()">Cancel</button><button class="btn primary" onclick="App.saveCommentFromModal('${annotationId||''}')">Save comment</button></div>`);
+      setTimeout(()=>document.getElementById('annotationCommentInput')?.focus(),30);
+    },
+
+    saveCommentFromModal(annotationId=''){
+      const comment=(document.getElementById('annotationCommentInput')?.value||'').trim();if(!comment)return toast('Write a comment first.');
+      let a=annotationId?(this.state.annotations||[]).find(x=>x.id===annotationId):null;if(!a){const p=this.annotation.pending;if(!p)return;a=this.findOrCreateAnnotation(p);}a.comment=comment;a.updatedAt=new Date().toISOString();saveState();this.closeAnnotationModal();window.getSelection()?.removeAllRanges();this.annotation.pending=null;this.rerenderPreserveScroll();toast('Comment saved');
+    },
+
+    openFlashcardComposer(annotationId=null,flashcardId=null){
+      let a=annotationId?(this.state.annotations||[]).find(x=>x.id===annotationId):null;
+      let card=flashcardId?(this.state.personalFlashcards||[]).find(x=>x.id===flashcardId):a?.flashcardId?(this.state.personalFlashcards||[]).find(x=>x.id===a.flashcardId):null;
+      const p=a?{lessonId:a.lessonId,blockId:a.blockId,start:a.start,end:a.end,text:a.text}:this.annotation.pending;
+      if(!p&&!card)return;
+      const lessonId=p?.lessonId||card.lessonId;const lesson=this.data.lessons[lessonId];
+      this.hideSelectionToolbar();
+      this.showAnnotationModal(`<div class="eyebrow">Personal flashcard</div><h2>${card?'Edit':'Turn selection into'} a flashcard</h2><label class="modal-label">Front</label><textarea id="personalCardFront" class="annotation-textarea compact" maxlength="1600">${esc(card?.front||p?.text||'')}</textarea><label class="modal-label">Back / answer</label><textarea id="personalCardBack" class="annotation-textarea" maxlength="4000" placeholder="Explain the concept in your own words, write the definition, formula logic, or exam cue…">${esc(card?.back||'')}</textarea><div class="modal-source-line">Linked lesson: <strong>${esc(lesson?.title||lessonId||'Personal')}</strong></div><div class="modal-actions"><button class="btn" onclick="App.closeAnnotationModal()">Cancel</button><button class="btn primary" onclick="App.savePersonalFlashcard('${annotationId||''}','${card?.id||''}')">${card?'Update':'Create'} flashcard</button></div>`);
+      setTimeout(()=>document.getElementById('personalCardBack')?.focus(),30);
+    },
+
+    savePersonalFlashcard(annotationId='',cardId=''){
+      const front=(document.getElementById('personalCardFront')?.value||'').trim(),back=(document.getElementById('personalCardBack')?.value||'').trim();if(!front||!back)return toast('Both front and back are required.');
+      let a=annotationId?(this.state.annotations||[]).find(x=>x.id===annotationId):null;if(!a&&this.annotation.pending)a=this.findOrCreateAnnotation(this.annotation.pending);
+      const lessonId=a?.lessonId||this.annotation.pending?.lessonId||'';const lesson=this.data.lessons[lessonId];
+      let card=cardId?(this.state.personalFlashcards||[]).find(x=>x.id===cardId):a?.flashcardId?(this.state.personalFlashcards||[]).find(x=>x.id===a.flashcardId):null;
+      if(card){card.front=front;card.back=back;card.updatedAt=new Date().toISOString();}
+      else{card={id:uid('pf'),front,back,vi:'',module:lesson?.module||'intro',lessonId,source:`Personal · ${lesson?.title||'Finance Mastery lesson'}`,personal:true,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};this.state.personalFlashcards.push(card);if(a)a.flashcardId=card.id;}
+      if(a)a.updatedAt=new Date().toISOString();saveState();this.closeAnnotationModal();window.getSelection()?.removeAllRanges();this.annotation.pending=null;this.rerenderPreserveScroll();toast('Personal flashcard saved');
+    },
+
+    showAnnotationModal(html){this.closeAnnotationModal();const wrap=document.createElement('div');wrap.id='annotationModal';wrap.className='annotation-modal-backdrop';wrap.innerHTML=`<div class="annotation-modal" role="dialog" aria-modal="true"><button class="annotation-modal-close" aria-label="Close" onclick="App.closeAnnotationModal()">×</button>${html}</div>`;wrap.addEventListener('mousedown',e=>{if(e.target===wrap)this.closeAnnotationModal();});document.body.appendChild(wrap);},
+    closeAnnotationModal(){document.getElementById('annotationModal')?.remove();},
+
+    applyLessonAnnotations(lessonId){
+      const annotations=(this.state.annotations||[]).filter(a=>a.lessonId===lessonId);
+      document.querySelectorAll('.annotatable[data-annotation-block]').forEach(block=>{
+        const anns=annotations.filter(a=>a.blockId===block.dataset.annotationBlock&&a.end>a.start);if(!anns.length)return;
+        const plainText=block.textContent||'';anns.forEach(a=>{const current=plainText.slice(a.start,a.end);if(normalizeText(current)!==normalizeText(a.text)){const exact=plainText.indexOf(a.text);if(exact>=0){a.start=exact;a.end=exact+a.text.length;}}});
+        const walker=document.createTreeWalker(block,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement?.closest('.annotation-mark')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+        const nodes=[];let node,pos=0;while(node=walker.nextNode()){nodes.push({node,start:pos,end:pos+node.nodeValue.length});pos+=node.nodeValue.length;}
+        nodes.forEach(info=>{
+          const relevant=anns.filter(a=>a.start<info.end&&a.end>info.start);if(!relevant.length)return;
+          const boundaries=new Set([0,info.node.nodeValue.length]);relevant.forEach(a=>{boundaries.add(Math.max(0,a.start-info.start));boundaries.add(Math.min(info.node.nodeValue.length,a.end-info.start));});const points=[...boundaries].sort((a,b)=>a-b);const frag=document.createDocumentFragment();
+          for(let i=0;i<points.length-1;i++){const s=points[i],e=points[i+1],value=info.node.nodeValue.slice(s,e);if(!value)continue;const gs=info.start+s,ge=info.start+e;const cover=relevant.filter(a=>a.start<ge&&a.end>gs);if(!cover.length){frag.appendChild(document.createTextNode(value));continue;}const span=document.createElement('span');span.className='annotation-mark';const latestHighlight=cover.filter(a=>a.highlight).sort((a,b)=>new Date(a.updatedAt)-new Date(b.updatedAt)).pop();if(latestHighlight)span.classList.add(`highlight-${latestHighlight.highlight}`);if(cover.some(a=>a.comment))span.classList.add('has-comment');if(cover.some(a=>a.flashcardId))span.classList.add('has-flashcard');span.dataset.annotationIds=cover.map(a=>a.id).join(' ');span.textContent=value;const comments=cover.filter(a=>a.comment).map(a=>a.comment);if(comments.length)span.title=comments.join('\n');frag.appendChild(span);}info.node.replaceWith(frag);
+        });
+      });
+    },
+
+    openAnnotationDetails(ids){
+      const anns=(this.state.annotations||[]).filter(a=>ids.includes(a.id));if(!anns.length)return;const a=anns[0];const lesson=this.data.lessons[a.lessonId];
+      this.showAnnotationModal(`<div class="eyebrow">Saved annotation</div><h2>${esc(lesson?.title||'Lesson note')}</h2><blockquote class="modal-quote">${esc(a.text)}</blockquote>${a.comment?`<div class="annotation-comment modal-comment"><strong>Your comment</strong><p>${esc(a.comment)}</p></div>`:''}<div class="annotation-detail-tags">${a.highlight?`<span class="badge">${esc(a.highlight)} highlight</span>`:''}${a.flashcardId?`<span class="badge personal-badge">Personal flashcard</span>`:''}</div><div class="modal-actions wrap"><button class="btn" onclick="App.openCommentComposer('${a.id}')">${a.comment?'Edit':'Add'} comment</button>${a.comment?`<button class="btn" onclick="App.removeAnnotationComment('${a.id}')">Remove comment</button>`:''}${a.flashcardId?`<button class="btn" onclick="App.openFlashcardComposer('${a.id}','${a.flashcardId}')">Edit flashcard</button>`:`<button class="btn" onclick="App.openFlashcardComposer('${a.id}')">Create flashcard</button>`}${a.highlight?`<button class="btn" onclick="App.removeAnnotationHighlight('${a.id}')">Remove highlight</button>`:''}<button class="btn danger" onclick="App.deleteAnnotation('${a.id}')">Delete annotation</button></div>`);
+    },
+
+    editAnnotationComment(id){this.openCommentComposer(id);},
+    removeAnnotationComment(id){const a=(this.state.annotations||[]).find(x=>x.id===id);if(!a)return;a.comment='';a.updatedAt=new Date().toISOString();this.pruneEmptyAnnotation(a);saveState();this.closeAnnotationModal();this.rerenderPreserveScroll();toast('Comment removed');},
+    removeAnnotationHighlight(id){const a=(this.state.annotations||[]).find(x=>x.id===id);if(!a)return;a.highlight=null;a.updatedAt=new Date().toISOString();this.pruneEmptyAnnotation(a);saveState();this.closeAnnotationModal();this.rerenderPreserveScroll();toast('Highlight removed');},
+    deleteAnnotation(id){const i=(this.state.annotations||[]).findIndex(x=>x.id===id);if(i<0)return;if(!confirm('Delete this annotation? Personal flashcards created from it will be kept unless you delete them separately.'))return;this.state.annotations.splice(i,1);saveState();this.closeAnnotationModal();this.rerenderPreserveScroll();},
+    pruneEmptyAnnotation(a){if(!a.highlight&&!a.comment&&!a.flashcardId){const i=this.state.annotations.indexOf(a);if(i>=0)this.state.annotations.splice(i,1);}},
+    openAnnotationInLesson(lessonId,id){this._pendingAnnotationScroll=id;this.go(`learn/${lessonId}`);},
+
+    editPersonalFlashcard(id){const card=(this.state.personalFlashcards||[]).find(x=>x.id===id);if(!card)return;this.openFlashcardComposer(null,id);},
+    deletePersonalFlashcard(id){if(!confirm('Delete this personal flashcard?'))return;const i=(this.state.personalFlashcards||[]).findIndex(x=>x.id===id);if(i>=0)this.state.personalFlashcards.splice(i,1);(this.state.annotations||[]).forEach(a=>{if(a.flashcardId===id){a.flashcardId=null;this.pruneEmptyAnnotation(a);}});delete this.state.flashcards[id];saveState();this.flash.index=0;this.render();toast('Personal flashcard deleted');},
+
+    filterNotes(query){const q=String(query||'').trim().toLowerCase();document.querySelectorAll('[data-note-search]').forEach(el=>{el.style.display=!q||String(el.dataset.noteSearch||'').includes(q)?'':'none';});},
+    rerenderPreserveScroll(){const y=window.scrollY;this.render();requestAnimationFrame(()=>window.scrollTo({top:y,behavior:'auto'}));},
+
+    exportStudyNotes(){const payload={format:'finance-mastery-personal-study-v1',exportedAt:new Date().toISOString(),annotations:this.state.annotations||[],personalFlashcards:this.state.personalFlashcards||[],personalReviews:Object.fromEntries(Object.entries(this.state.flashcards||{}).filter(([id])=>(this.state.personalFlashcards||[]).some(c=>c.id===id)))};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`finance-mastery-notes-${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);},
+    triggerImportStudyNotes(){const input=document.createElement('input');input.type='file';input.accept='.json,application/json';input.onchange=()=>this.importStudyNotes(input.files?.[0]);input.click();},
+    async importStudyNotes(file){if(!file)return;try{const payload=JSON.parse(await file.text());if(payload.format!=='finance-mastery-personal-study-v1')throw new Error('Unsupported backup format');const merge=(oldArr,newArr)=>{const m=new Map((oldArr||[]).map(x=>[x.id,x]));(newArr||[]).forEach(x=>m.set(x.id,x));return [...m.values()];};this.state.annotations=merge(this.state.annotations,payload.annotations);this.state.personalFlashcards=merge(this.state.personalFlashcards,payload.personalFlashcards);this.state.flashcards={...this.state.flashcards,...(payload.personalReviews||{})};saveState();this.render();toast('Study notes imported');}catch(e){toast('Could not import this backup file.');}},
 
     // Calculators
     setCalc(t){this.calcType=t;this.render();},
@@ -442,19 +599,21 @@ init() {
 
     // Search
     bindSearch(){const input=document.getElementById('globalSearch');if(!input)return;input.addEventListener('input',e=>this.search(e.target.value));input.addEventListener('focus',e=>{if(e.target.value.trim())this.search(e.target.value);});document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap')){const box=document.getElementById('searchResults');if(box)box.innerHTML='';}},{once:true});},
-    search(query){const box=document.getElementById('searchResults');if(!box)return;const q=query.trim().toLowerCase();if(!q){box.innerHTML='';return;}const results=[];Object.entries(this.data.lessons).forEach(([id,l])=>{const hay=[l.title,l.vi,l.definition,l.intuition,...l.relationships].join(' ').toLowerCase();if(hay.includes(q))results.push({title:l.title,meta:`Lesson · ${this.moduleName(l.module)}`,action:`App.go('learn/${id}')`});});this.data.formulas.forEach(f=>{if([f.name,f.vi,f.expression,f.use].join(' ').toLowerCase().includes(q))results.push({title:f.name,meta:`Formula · ${f.source}`,action:`App.go('formulas')`});});this.data.questions.forEach(x=>{if([x.prompt,x.explanation,x.origin].join(' ').toLowerCase().includes(q))results.push({title:x.prompt,meta:`Practice · ${this.moduleName(x.module)} · ${x.origin}`,action:`App.startPractice('concept','${x.concept}')`});});this.data.flashcards.forEach(c=>{if([c.front,c.vi,c.back,c.source].join(' ').toLowerCase().includes(q))results.push({title:c.front,meta:`Glossary / Flashcard · ${this.moduleName(c.module)}`,action:`App.go('glossary')`});});this.data.sources.forEach(s=>{if([s.name,s.type,s.mapped,s.note].join(' ').toLowerCase().includes(q))results.push({title:s.name,meta:`Source · ${s.type} · ${s.mapped}`,action:`App.go('sources')`});});this.data.modules.forEach(m=>{if([m.name,m.vi,...m.topics].join(' ').toLowerCase().includes(q))results.push({title:m.name,meta:`Module · ${m.lessons.length} lessons`,action:`App.openModule('${m.id}')`});});box.innerHTML=`<div class="search-results">${results.length?results.slice(0,12).map(r=>`<div class="search-result" onclick="${r.action}"><div class="search-result-title">${esc(r.title)}</div><div class="search-result-meta">${esc(r.meta)}</div></div>`).join(''):`<div class="empty small">No matching source-grounded content.</div>`}</div>`;},
+    search(query){const box=document.getElementById('searchResults');if(!box)return;const q=query.trim().toLowerCase();if(!q){box.innerHTML='';return;}const results=[];Object.entries(this.data.lessons).forEach(([id,l])=>{const hay=[l.title,l.vi,l.definition,l.intuition,...l.relationships].join(' ').toLowerCase();if(hay.includes(q))results.push({title:l.title,meta:`Lesson · ${this.moduleName(l.module)}`,action:`App.go('learn/${id}')`});});this.data.formulas.forEach(f=>{if([f.name,f.vi,f.expression,f.use].join(' ').toLowerCase().includes(q))results.push({title:f.name,meta:`Formula · ${f.source}`,action:`App.go('formulas')`});});this.data.questions.forEach(x=>{if([x.prompt,x.explanation,x.origin].join(' ').toLowerCase().includes(q))results.push({title:x.prompt,meta:`Practice · ${this.moduleName(x.module)} · ${x.origin}`,action:`App.startPractice('concept','${x.concept}')`});});this.allFlashcards().forEach(c=>{if([c.front,c.vi,c.back,c.source].join(' ').toLowerCase().includes(q))results.push({title:c.front,meta:`${c.personal?'Personal flashcard':'Glossary / Flashcard'} · ${this.moduleName(c.module)}`,action:c.personal?`App.go('flashcards');App.setFlashFilter('personal')`:`App.go('glossary')`});});this.data.sources.forEach(s=>{if([s.name,s.type,s.mapped,s.note].join(' ').toLowerCase().includes(q))results.push({title:s.name,meta:`Source · ${s.type} · ${s.mapped}`,action:`App.go('sources')`});});this.data.modules.forEach(m=>{if([m.name,m.vi,...m.topics].join(' ').toLowerCase().includes(q))results.push({title:m.name,meta:`Module · ${m.lessons.length} lessons`,action:`App.openModule('${m.id}')`});});box.innerHTML=`<div class="search-results">${results.length?results.slice(0,12).map(r=>`<div class="search-result" onclick="${r.action}"><div class="search-result-title">${esc(r.title)}</div><div class="search-result-meta">${esc(r.meta)}</div></div>`).join(''):`<div class="empty small">No matching source-grounded content.</div>`}</div>`;},
     moduleName(id){return this.data.modules.find(m=>m.id===id)?.name||id;}
   };
 
-  function freshState(){return {...defaults,completedLessons:[],attempts:{},mistakes:[],bookmarks:[],flashcards:{}};}
+  function freshState(){return {...defaults,completedLessons:[],attempts:{},mistakes:[],bookmarks:[],flashcards:{},annotations:[],personalFlashcards:[]};}
   function loadState(){try{let raw=localStorage.getItem(STORAGE_KEY);if(raw)return {...freshState(),...JSON.parse(raw)};raw=localStorage.getItem(LEGACY_KEY);if(raw){const migrated={...freshState(),...JSON.parse(raw)};localStorage.setItem(STORAGE_KEY,JSON.stringify(migrated));return migrated;}return freshState();}catch(e){return freshState();}}
   function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(App.state));}
   function applyTheme(){document.documentElement.dataset.theme=App.state.theme;}
-  function parseRoute(){const raw=(location.hash||'#dashboard').slice(1),[page,arg]=raw.split('/');const titles={dashboard:'Dashboard',learn:'Learn',module:'Module',practice:'Practice',questionbank:'Question Bank',mistakes:'Mistake Notebook',flashcards:'Flashcards',formulas:'Formula Sheet',calculators:'Calculators',exam:'Exam Mode',progress:'Progress & Analytics',glossary:'Glossary',saved:'Saved',sources:'Sources',settings:'Settings'};return {page,arg,title:titles[page]};}
+  function parseRoute(){const raw=(location.hash||'#dashboard').slice(1),[page,arg]=raw.split('/');const titles={dashboard:'Dashboard',learn:'Learn',module:'Module',practice:'Practice',questionbank:'Question Bank',mistakes:'Mistake Notebook',notes:'Notes & Highlights',flashcards:'Flashcards',formulas:'Formula Sheet',calculators:'Calculators',exam:'Exam Mode',progress:'Progress & Analytics',glossary:'Glossary',saved:'Saved',sources:'Sources',settings:'Settings'};return {page,arg,title:titles[page]};}
   function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
   function jsonAttr(obj){return JSON.stringify(obj).replace(/'/g,"&#39;");}
   function val(id){return document.getElementById(id)?.value;} function num(id){return Number(val(id));} function validNums(...xs){return xs.every(Number.isFinite);} function fmt(n){return Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});} function formatAnswer(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:4});}
   function calcResult(html){const el=document.getElementById('calcResult');if(el)el.innerHTML=html;} function resultCard(value,steps,source){return `<div class="result-box"><div class="kicker">Answer</div><div class="result-value">${esc(value)}</div><div class="calc-steps">${esc(steps)}</div><div class="small muted">Source formula: ${esc(source)}</div></div>`;}
+  function normalizeText(s){return String(s||'').replace(/\s+/g,' ').trim();}
+  function uid(prefix='id'){return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,8)}`;}
   function shuffle(arr){return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);} function formatTime(s){const m=Math.floor(s/60),sec=s%60;return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;}
   function toast(msg){const old=document.querySelector('.toast');if(old)old.remove();const el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.appendChild(el);setTimeout(()=>el.remove(),1800);} function shortName(s){return s.replace('Understanding ','').replace('Managing ','').replace('Introduction to ','Intro: ');}
 
