@@ -1,47 +1,79 @@
-# Content & Function Audit
+# Finance Mastery v1.0 — Content & Function Audit
 
-## Preserved product principles
+## Product principles preserved
 
 - Seven-module TCH 302 structure.
 - Vanilla HTML/CSS/JavaScript SPA suitable for GitHub Pages.
 - Hash routing and local-browser persistence.
 - Learn, Practice, Question Bank, Mistake Notebook, Notes & Highlights, Flashcards, Formula Sheet, Calculators, Exam Mode, Progress & Analytics, Glossary, Saved, Sources and Settings.
-- Immediate practice feedback, mistake capture, concept review links and timed exam mode.
-- Highlight/comment/personal-flashcard workflow in theory lessons.
+- Immediate practice feedback, mistake capture, concept-review links and timed exam mode.
+- Existing key principles and the 600-question bank remain intact.
 
 ## Theory revision standard
 
-Every lesson has been structured as:
+Every lesson keeps its original key principle, then adds a richer study layer:
 
-- learning objective;
-- key principle (kept short and stable);
-- expanded explanation in causal/decision order;
-- worked example;
-- common mistakes;
-- exam focus;
-- bilingual key terms;
-- source label.
+1. learning objective;
+2. key principle;
+3. priority-source indicator where applicable;
+4. numbered deep explanation;
+5. bilingual key terms;
+6. typeset formula(s), variables and usage conditions;
+7. original course/worked example;
+8. additional step-by-step applied examples;
+9. common exam traps;
+10. exam focus and source provenance.
 
-The expansion is explanatory rather than a silent rewrite of the course's core rules. Where practice variants were added, their origin is labeled.
+All **48/48 lessons** have enhancement records in `study-content.js`.
 
-## Visual redesign
+## Hoàng Kim Thanh priority pass
 
-The interface follows the visual language of the supplied reference screenshot without copying its agricultural content:
+The following supplied study-note groups are explicitly prioritized where relevant:
 
-- warm cream canvas;
-- forest-green primary surfaces;
-- yellow accent panels/buttons;
-- large editorial hero typography;
-- rounded content cards;
-- generous whitespace;
-- soft pale-green section bands;
-- compact metric strips and progress bars;
-- responsive navigation and mobile layouts.
+- Chapter 0 — Introduction to Finance;
+- Chapter 2 / 2.1 — Time Value of Money;
+- Chapter 3 — Financial Markets;
+- Money Market / Money Market Securities comparison / Treasury Bill Auctions;
+- Chapter 4 — Valuation of Securities.
+
+Personal contact information that appeared in the study files is intentionally not reproduced in the website.
+
+## Formula-system correction
+
+Previous formula cards displayed equations as raw text/code. v1.0 adds:
+
+- MathJax display notation;
+- proper fractions, summations, exponents and subscripts;
+- responsive horizontal overflow for long equations;
+- variable dictionary;
+- “Use when” guidance;
+- “Exam trap / Watch out” guidance.
+
+## Notes-system correction
+
+The old note view was essentially a simple card list. v1.0 adds:
+
+- overview statistics;
+- search;
+- module filter;
+- annotation-type filter;
+- structured note editor in a dialog;
+- optional linked highlight color;
+- edit/delete;
+- open exact lesson context;
+- JSON export;
+- improved multi-node quote anchoring inside a logical text block.
+
+## Scroll-jump bug
+
+Root cause: the old completion action called the SPA `render()` function, whose normal behavior resets scroll to the top.
+
+Fix: `Mark lesson complete` now updates LocalStorage and the button state **in place without calling render()**. Other actions that need re-rendering can use the `preserveScroll` option.
 
 ## Validation performed
 
-- JavaScript syntax checked with Node for `data.js`, `app.js` and `annotations.js`.
-- Exactly 7 course modules and 600 question records are generated.
-- Question IDs are unique.
-- Every question has a valid answer index, options, explanation and a valid module/lesson target.
-- Static deployment requires no build process or backend.
+- JavaScript syntax checked with Node for `data.js`, `study-content.js`, `annotations.js` and `app.js`.
+- 7 modules / 48 lessons / 600 questions / 25 formula records retained.
+- 48/48 lessons have enhancement records.
+- Question IDs remain unique and existing question data is not rewritten by the v1.0 study layer.
+- Static deployment requires no backend or compilation.

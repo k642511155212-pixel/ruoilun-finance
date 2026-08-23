@@ -20,6 +20,9 @@ const App = (() => {
   };
   const app = document.getElementById('app');
   const toast = document.getElementById('toast');
+  const noteDialog = document.getElementById('noteDialog');
+  let noteEditorCtx = null;
+  let annotationFocusId = null;
 
   function persist(){
     LS.set('fm_attempts',state.attempts); LS.set('fm_completed',state.completed); LS.set('fm_mistakes',state.mistakes);
@@ -27,6 +30,42 @@ const App = (() => {
   }
   function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1800); }
   function esc(s=''){ return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+  function mathBlock(latex=''){ return `<div class="math-display" data-latex="${esc(latex)}">\\[${latex}\\]</div>`; }
+  function typesetMath(root=app){
+    if(!root)return;
+    const run=()=>window.MathJax?.typesetPromise ? window.MathJax.typesetPromise([root]).catch(()=>{}) : null;
+    if(window.MathJax?.typesetPromise) run();
+    else window.addEventListener('load',run,{once:true});
+  }
+  function lessonEnhancement(mid,lid){ return D.lessonEnhancements?.[`${mid}/${lid}`] || null; }
+  function formulaDetail(name){ return D.formulaDetails?.[name] || null; }
+  function formulaPanel(name,compact=false){
+    const d=formulaDetail(name);
+    const fallback=D.formulas?.find(f=>f[0]===name);
+    if(!d&&!fallback)return '';
+    const latex=d?.latex || fallback?.[1] || '';
+    const variables=d?.variables || [];
+    return `<article class="lesson-formula-card ${compact?'compact-formula':''}">
+      <div class="formula-card-head"><span>FORMULA</span><h3>${esc(name)}</h3></div>
+      ${mathBlock(latex)}
+      ${variables.length?`<div class="formula-variables">${variables.map(v=>`<div><b>${esc(v[0])}</b><span>${esc(v[1])}</span></div>`).join('')}</div>`:''}
+      ${d?.useWhen?`<div class="formula-guidance"><b>Use when</b><p>${esc(d.useWhen)}</p></div>`:''}
+      ${d?.trap?`<div class="formula-trap"><b>Exam trap</b><p>${esc(d.trap)}</p></div>`:''}
+    </article>`;
+  }
+  function exampleCard(ex,index){
+    return `<article class="applied-example">
+      <div class="example-number">${String(index+1).padStart(2,'0')}</div>
+      <div class="example-content">
+        <span class="block-label">REAL-WORLD APPLICATION</span>
+        <h3>${esc(ex.title||`Applied example ${index+1}`)}</h3>
+        ${ex.scenario?`<div class="example-scenario"><b>Scenario</b><p>${esc(ex.scenario)}</p></div>`:''}
+        ${ex.steps?.length?`<ol class="solution-steps">${ex.steps.map((step,i)=>`<li><span>${i+1}</span><p>${esc(step)}</p></li>`).join('')}</ol>`:''}
+        ${ex.result?`<div class="example-result"><span>Result</span><strong>${esc(ex.result)}</strong></div>`:''}
+        ${ex.takeaway?`<div class="example-takeaway"><b>Why it matters</b><p>${esc(ex.takeaway)}</p></div>`:''}
+      </div>
+    </article>`;
+  }
   function mod(id){ return D.modules.find(m=>m.id===id); }
   function lesson(mid,lid){ return mod(mid)?.lessons.find(l=>l.id===lid); }
   function qById(id){ return D.questions.find(q=>q.id===id); }
@@ -40,7 +79,7 @@ const App = (() => {
   function moduleAccuracy(mid){ const a=state.attempts.filter(x=>qById(x.qid)?.module===mid); return a.length?Math.round(a.filter(x=>x.correct).length/a.length*100):0; }
   function moduleProgress(mid){ const m=mod(mid); const done=m.lessons.filter(l=>state.completed.includes(`${mid}/${l.id}`)).length; return Math.round(done/m.lessons.length*100); }
   function isSaved(type,id){ return state.saved.some(x=>x.type===type&&x.id===id); }
-  function saveToggle(type,id){ const i=state.saved.findIndex(x=>x.type===type&&x.id===id); if(i>=0){state.saved.splice(i,1);showToast('Removed from Saved');} else {state.saved.unshift({type,id,at:Date.now()});showToast('Saved');} persist(); render(); }
+  function saveToggle(type,id){ const i=state.saved.findIndex(x=>x.type===type&&x.id===id); if(i>=0){state.saved.splice(i,1);showToast('Removed from Saved');} else {state.saved.unshift({type,id,at:Date.now()});showToast('Saved');} persist(); render({preserveScroll:true}); }
 
   function shell(content,{eyebrow='',title='',lead='',actions=''}={}){
     return `<div class="page-shell shell">
@@ -81,23 +120,32 @@ const App = (() => {
   }
 
   function lessonPage(mid,lid){
-    const m=mod(mid),l=lesson(mid,lid); if(!m||!l)return notFound(); const key=`${mid}/${lid}`,done=state.completed.includes(key); const idx=m.lessons.findIndex(x=>x.id===lid);
-    const terms=l.terms?.length?`<div class="term-grid">${l.terms.map(t=>`<div><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join('')}</div>`:'';
+    const m=mod(mid),l=lesson(mid,lid); if(!m||!l)return notFound();
+    const key=`${mid}/${lid}`,done=state.completed.includes(key),idx=m.lessons.findIndex(x=>x.id===lid);
+    const enh=lessonEnhancement(mid,lid);
+    const explanations=[...(l.explanation||[]),...(enh?.moreExplanation||[])];
+    const terms=l.terms?.length?`<section class="term-grid-wrap"><div class="term-grid">${l.terms.map(t=>`<div><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join('')}</div></section>`:'';
+    const formulas=enh?.formulaKeys?.length?`<section class="theory-block formula-section"><div class="section-inline-head"><div><span class="block-label">FORMULAS THAT BELONG TO THIS CONCEPT</span><h2>See the equation, then read what every symbol means.</h2></div><span class="source-priority">${esc(enh.prioritySource||'Course source')}</span></div><div class="lesson-formula-grid">${enh.formulaKeys.map(k=>formulaPanel(k)).join('')}</div></section>`:'';
+    const extraExamples=enh?.examples?.length?`<section class="theory-block examples-section"><span class="block-label">STEP-BY-STEP APPLICATIONS</span><h2>From principle to an actual decision</h2><p class="section-intro">Do not memorize the final number. Follow the cash-flow structure, focal date, rate convention and decision rule in order.</p><div class="applied-examples">${enh.examples.map(exampleCard).join('')}</div></section>`:'';
+    const sourcePriority=enh?.prioritySource?`<div class="priority-source-banner"><span>PRIORITY SOURCE</span><b>${esc(enh.prioritySource)}</b><p>This lesson preserves the original key principle and expands the explanation around the supplied notes.</p></div>`:'';
     const body=`<article class="lesson-article annotatable" data-lesson-id="${lid}" data-module-id="${mid}">
       <div class="lesson-banner"><span>Module ${m.num} · Lesson ${idx+1}</span><button class="save-icon ${isSaved('lesson',key)?'active':''}" data-save-type="lesson" data-save-id="${key}" title="Save lesson">☆</button><h1>${esc(l.title)}</h1><p>${esc(l.objective)}</p></div>
-      <section class="theory-block intuition"><span class="block-label">KEY PRINCIPLE</span><h2>${esc(l.keyPrinciple)}</h2></section>
-      <section class="theory-block"><span class="block-label">DEEP EXPLANATION</span>${l.explanation.map(p=>`<p>${esc(p)}</p>`).join('')}</section>
+      ${sourcePriority}
+      <section class="theory-block intuition"><span class="block-label">KEY PRINCIPLE</span><h2>${esc(l.keyPrinciple)}</h2><p class="principle-note">This statement is the anchor. The sections below expand it without changing the course principle.</p></section>
+      <section class="theory-block"><span class="block-label">DEEP EXPLANATION</span><div class="deep-copy">${explanations.map((p,i)=>`<div class="explanation-paragraph"><span>${String(i+1).padStart(2,'0')}</span><p>${esc(p)}</p></div>`).join('')}</div></section>
       ${terms}
-      <section class="theory-block worked"><span class="block-label">WORKED / DECISION EXAMPLE</span><p>${esc(l.workedExample)}</p></section>
-      <section class="theory-block traps"><span class="block-label">COMMON EXAM TRAPS</span><ul>${l.commonMistakes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
+      ${formulas}
+      <section class="theory-block worked"><span class="block-label">CORE WORKED / DECISION EXAMPLE</span><h2>Start with the course example</h2><p>${esc(l.workedExample)}</p></section>
+      ${extraExamples}
+      <section class="theory-block traps"><span class="block-label">COMMON EXAM TRAPS</span><ul>${(l.commonMistakes||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
       <section class="theory-block exam"><span class="block-label">EXAM FOCUS</span><p>${esc(l.examFocus)}</p></section>
-      <footer class="lesson-source"><b>Grounded in:</b> ${esc(l.source)}</footer>
-      <div class="lesson-tools"><button class="${done?'complete-btn done':'complete-btn'}" data-complete="${key}">${done?'✓ Completed':'Mark lesson complete'}</button><button class="outline-btn" data-route="practice/${mid}/${lid}">Practice this concept ↗</button></div>
+      <footer class="lesson-source"><b>Grounded in:</b> ${esc(l.source)}${enh?.prioritySource?`<br><b>Priority notes:</b> ${esc(enh.prioritySource)}`:''}</footer>
+      <div class="lesson-tools"><button class="${done?'complete-btn done':'complete-btn'}" data-complete="${key}" aria-pressed="${done?'true':'false'}">${done?'✓ Completed':'Mark lesson complete'}</button><button class="outline-btn" data-route="practice/${mid}/${lid}">Practice this concept ↗</button></div>
     </article>`;
     const next=idx<m.lessons.length-1?m.lessons[idx+1]:null, prev=idx>0?m.lessons[idx-1]:null;
     const navs=`<div class="lesson-nav">${prev?`<button data-route="learn/${mid}/${prev.id}">← ${esc(prev.title)}</button>`:'<span></span>'}${next?`<button data-route="learn/${mid}/${next.id}">${esc(next.title)} →</button>`:`<button data-route="learn/${mid}">Back to module →</button>`}</div>`;
-    setTimeout(()=>FM_Annotations.applyHighlights(document.querySelector('.lesson-article'),lid),0);
-    return shell(`${body}${navs}`,{eyebrow:`Module ${m.num}`,title:m.title,lead:'Select any sentence in the theory to highlight it, attach a note, or convert it into a personal flashcard.'});
+    setTimeout(()=>{FM_Annotations.applyHighlights(document.querySelector('.lesson-article'),lid);typesetMath(document.querySelector('.lesson-article'));},0);
+    return shell(`${body}${navs}`,{eyebrow:`Module ${m.num}`,title:m.title,lead:'Select any sentence to highlight it, attach a structured note, or convert it into a personal flashcard.'});
   }
 
   function questionCard(q,{exam=false,index=0,total=1}={}){
@@ -150,8 +198,107 @@ const App = (() => {
   }
 
   function notes(){
-    const a=FM_Annotations.all();
-    return shell(a.length?`<div class="notes-grid">${a.map(x=>`<article class="note-card"><span>${esc(x.type.toUpperCase())} · ${new Date(x.createdAt).toLocaleDateString()}</span><blockquote>${esc(x.quote)}</blockquote>${x.comment?`<p>${esc(x.comment)}</p>`:''}<div><button class="outline-btn" data-route="learn/${x.moduleId}/${x.lessonId}">Open lesson</button>${x.type==='comment'?`<button class="text-btn" data-edit-anno="${x.id}">Edit note</button>`:''}<button class="text-btn" data-delete-anno="${x.id}">Delete</button></div></article>`).join('')}</div>`:`<div class="empty-state"><h2>No highlights yet.</h2><p>Open any theory lesson, select text, then choose Highlight, Comment or Flashcard.</p><button class="green-btn" data-route="learn">Open Learn</button></div>`,{eyebrow:'Your annotations',title:'Notes & Highlights',lead:'All annotations are stored locally in your browser.'});
+    const rows=FM_Annotations.all();
+    const highlights=rows.filter(x=>x.type==='highlight').length;
+    const comments=rows.filter(x=>x.type==='comment').length;
+    const lessonsCount=new Set(rows.map(x=>`${x.moduleId}/${x.lessonId}`)).size;
+    return shell(`<section class="notes-overview">
+      <div class="note-stat"><span>Total annotations</span><strong>${rows.length}</strong><small>Saved locally on this browser</small></div>
+      <div class="note-stat"><span>Highlights</span><strong>${highlights}</strong><small>Visual anchors inside lessons</small></div>
+      <div class="note-stat"><span>Study notes</span><strong>${comments}</strong><small>Your own explanations and reminders</small></div>
+      <div class="note-stat"><span>Lessons covered</span><strong>${lessonsCount}</strong><small>Concepts with active annotations</small></div>
+    </section>
+    <section class="notes-workspace">
+      <div class="notes-toolbar">
+        <input id="noteSearch" type="search" placeholder="Search your notes, quotes or lesson names…">
+        <select id="noteModule"><option value="">All modules</option>${D.modules.map(m=>`<option value="${m.id}">Module ${m.num} · ${esc(m.title)}</option>`).join('')}</select>
+        <select id="noteType"><option value="">Highlights + notes</option><option value="comment">Notes only</option><option value="highlight">Highlights only</option></select>
+        <button class="outline-btn" id="exportNotes" ${rows.length?'':'disabled'}>Export notes</button>
+      </div>
+      <div class="notes-meta"><span id="notesResultCount"></span>${rows.length?'<button class="text-btn danger-text" id="clearNotes">Clear all annotations</button>':''}</div>
+      <div id="notesResults" class="notes-list"></div>
+    </section>`,{eyebrow:'Study workspace',title:'Notes & Highlights',lead:'A searchable notebook linked back to the exact finance lesson. Select theory text to highlight it or attach your own explanation.'});
+  }
+
+  function renderNotesResults(){
+    const box=document.getElementById('notesResults'); if(!box)return;
+    const term=(document.getElementById('noteSearch')?.value||'').trim().toLowerCase();
+    const mid=document.getElementById('noteModule')?.value||'';
+    const type=document.getElementById('noteType')?.value||'';
+    const all=FM_Annotations.all();
+    const rows=all.filter(x=>{
+      const m=mod(x.moduleId),l=lesson(x.moduleId,x.lessonId);
+      const hay=`${x.quote||''} ${x.comment||''} ${m?.title||''} ${l?.title||''}`.toLowerCase();
+      return (!mid||x.moduleId===mid)&&(!type||x.type===type)&&(!term||hay.includes(term));
+    });
+    document.getElementById('notesResultCount').textContent=`Showing ${rows.length} of ${all.length} annotations`;
+    if(!rows.length){box.innerHTML=`<div class="empty-state compact-empty"><h2>${all.length?'No matching notes.':'No annotations yet.'}</h2><p>${all.length?'Try another keyword or filter.':'Open a theory lesson, select a useful sentence, then highlight it or attach a note.'}</p>${all.length?'':'<button class="green-btn" data-route="learn">Open Learn</button>'}</div>`;return;}
+    box.innerHTML=rows.map(x=>{
+      const m=mod(x.moduleId),l=lesson(x.moduleId,x.lessonId);
+      const color=x.color||'yellow';
+      return `<article class="study-note-card" data-note-color="${esc(color)}">
+        <div class="study-note-meta"><span class="note-color-dot" data-color="${esc(color)}"></span><b>${x.type==='comment'?'STUDY NOTE':'HIGHLIGHT'}</b><span>Module ${esc(m?.num||'—')} · ${esc(l?.title||x.lessonId)}</span><time>${new Date(x.updatedAt||x.createdAt).toLocaleDateString()}</time></div>
+        <blockquote>${esc(x.quote)}</blockquote>
+        ${x.comment?`<div class="study-note-comment"><span>MY NOTE</span><p>${esc(x.comment)}</p></div>`:''}
+        <div class="study-note-actions"><button class="outline-btn" data-open-anno="${x.id}">Open in context ↗</button>${x.type==='comment'?`<button class="text-btn" data-edit-anno="${x.id}">Edit</button>`:''}<button class="text-btn danger-text" data-delete-anno="${x.id}">Delete</button></div>
+      </article>`;
+    }).join('');
+  }
+
+  function openNoteDialog({annotation=null,selection=null}={}){
+    if(!noteDialog)return;
+    const row=annotation;
+    noteEditorCtx=row?{mode:'edit',id:row.id,moduleId:row.moduleId,lessonId:row.lessonId,quote:row.quote}:{mode:'create',...selection};
+    document.getElementById('noteDialogTitle').textContent=row?'Edit note':'Add note to selected text';
+    document.getElementById('noteQuotePreview').textContent=row?.quote||selection?.quote||'';
+    document.getElementById('noteText').value=row?.comment||'';
+    document.getElementById('noteColor').value=row?.color||'yellow';
+    document.getElementById('noteHighlight').checked=row?row.highlight===true:true;
+    noteDialog.showModal();
+    setTimeout(()=>document.getElementById('noteText')?.focus(),30);
+  }
+
+  function closeNoteDialog(){
+    if(noteDialog?.open)noteDialog.close();
+    noteEditorCtx=null;
+  }
+
+  function saveNoteFromDialog(){
+    if(!noteEditorCtx)return;
+    const comment=(document.getElementById('noteText')?.value||'').trim();
+    if(!comment){showToast('Write a note before saving');return;}
+    const color=document.getElementById('noteColor')?.value||'yellow';
+    const highlight=!!document.getElementById('noteHighlight')?.checked;
+    if(noteEditorCtx.mode==='edit'){
+      FM_Annotations.update(noteEditorCtx.id,{comment,color,highlight});
+      showToast('Note updated');
+    }else{
+      FM_Annotations.add({type:'comment',quote:noteEditorCtx.quote,lessonId:noteEditorCtx.lessonId,moduleId:noteEditorCtx.moduleId,comment,color,highlight});
+      showToast('Note saved');
+    }
+    const lessonId=noteEditorCtx.lessonId;
+    closeNoteDialog();
+    FM_Annotations.applyHighlights(document.querySelector('.lesson-article'),lessonId);
+    if(location.hash.startsWith('#notes'))render({preserveScroll:true});
+  }
+
+  function exportNotes(){
+    const rows=FM_Annotations.all(); if(!rows.length)return;
+    const payload=rows.map(x=>({
+      ...x,
+      moduleTitle:mod(x.moduleId)?.title||x.moduleId,
+      lessonTitle:lesson(x.moduleId,x.lessonId)?.title||x.lessonId
+    }));
+    const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download=`finance-mastery-notes-${new Date().toISOString().slice(0,10)}.json`;a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),500);
+  }
+
+  function focusAnnotation(id){
+    const row=FM_Annotations.get(id);if(!row)return;
+    annotationFocusId=id;
+    nav(`learn/${row.moduleId}/${row.lessonId}`);
   }
 
   function flashcards(){
@@ -173,7 +320,11 @@ const App = (() => {
   }
 
   function formulas(){
-    return shell(`<div class="formula-search"><input id="formulaSearch" placeholder="Search formula, category or variable…"></div><div id="formulaGrid" class="formula-grid">${D.formulas.map(f=>`<article class="formula-card" data-search="${esc(f.join(' ').toLowerCase())}"><span>${esc(f[3])}</span><h3>${esc(f[0])}</h3><code>${esc(f[1])}</code><p>${esc(f[2])}</p></article>`).join('')}</div>`,{eyebrow:'25 core equations',title:'Formula Sheet',lead:'Use formulas only after matching timing, cash-flow structure and rate convention.'});
+    return shell(`<div class="formula-search"><input id="formulaSearch" placeholder="Search formula, category or variable…"></div><div id="formulaGrid" class="formula-grid rich-formula-grid">${D.formulas.map(f=>{
+      const d=formulaDetail(f[0]);
+      const search=[...f,...(d?.variables||[]).flat(),d?.useWhen||'',d?.trap||''].join(' ').toLowerCase();
+      return `<article class="formula-card rich-formula-card" data-search="${esc(search)}"><div class="formula-card-top"><span>${esc(f[3])}</span><small>${d?'TYPESET EQUATION':'FORMULA'}</small></div><h3>${esc(f[0])}</h3>${mathBlock(d?.latex||f[1])}${d?.variables?.length?`<div class="formula-variables compact-vars">${d.variables.map(v=>`<div><b>${esc(v[0])}</b><span>${esc(v[1])}</span></div>`).join('')}</div>`:''}<div class="formula-meaning"><b>Use when</b><p>${esc(d?.useWhen||f[2])}</p></div>${d?.trap?`<div class="formula-trap mini-trap"><b>Watch out</b><p>${esc(d.trap)}</p></div>`:''}</article>`;
+    }).join('')}</div>`,{eyebrow:'25 core equations',title:'Formula Sheet',lead:'Every equation is visually typeset and paired with variable definitions, decision context and exam traps—not shown as a raw code string.'});
   }
 
   const calcDefs = {
@@ -215,7 +366,8 @@ const App = (() => {
   function menu(){ return shell(`<div class="menu-grid">${[['Learn','learn'],['Practice','practice'],['Question Bank','bank'],['Mistake Notebook','mistakes'],['Notes & Highlights','notes'],['Flashcards','flashcards'],['Formula Sheet','formulas'],['Calculators','calculators'],['Exam Mode','exam'],['Progress & Analytics','progress'],['Glossary','glossary'],['Saved','saved'],['Sources','sources'],['Settings','settings']].map(x=>`<button data-route="${x[1]}">${x[0]} <span>↗</span></button>`).join('')}</div>`,{eyebrow:'Finance Mastery',title:'All tools'}); }
   function notFound(){ return shell(`<div class="empty-state"><h2>Page not found.</h2><button class="green-btn" data-route="dashboard">Go home</button></div>`,{eyebrow:'404',title:'Not found'}); }
 
-  function render(){
+  function render({preserveScroll=false}={}){
+    const previousY=window.scrollY;
     document.documentElement.style.fontSize=`${state.settings.fontScale}%`; document.body.classList.toggle('compact',!!state.settings.compact);
     const p=routeParts(),r=p[0]||'dashboard'; let html;
     if(r==='dashboard')html=dashboard();
@@ -235,25 +387,66 @@ const App = (() => {
     else if(r==='sources')html=sources();
     else if(r==='settings')html=settings();
     else if(r==='menu')html=menu(); else html=notFound();
-    app.innerHTML=html; window.scrollTo({top:0,behavior:'instant'}); bindAfterRender(r);
+    app.innerHTML=html;
+    bindAfterRender(r);
+    typesetMath(app);
+    if(preserveScroll)requestAnimationFrame(()=>window.scrollTo({top:previousY,behavior:'auto'}));
+    else window.scrollTo({top:0,behavior:'auto'});
   }
 
   function bindAfterRender(r){
     if(r==='bank'){renderBankResults(); document.getElementById('bankSearch')?.addEventListener('input',renderBankResults); document.getElementById('bankModule')?.addEventListener('change',renderBankResults);}
+    if(r==='notes'){
+      renderNotesResults();
+      document.getElementById('noteSearch')?.addEventListener('input',renderNotesResults);
+      document.getElementById('noteModule')?.addEventListener('change',renderNotesResults);
+      document.getElementById('noteType')?.addEventListener('change',renderNotesResults);
+    }
     if(r==='calculators')renderCalc('fv');
     if(r==='exam'&&state.exam?.active)startTimer();
+    if(r==='learn'&&annotationFocusId){
+      const id=annotationFocusId;annotationFocusId=null;
+      setTimeout(()=>{
+        const row=FM_Annotations.get(id),root=document.querySelector('.lesson-article');
+        if(!row||!root)return;
+        const target=root.querySelector(`[data-annotation-id="${id}"]`)||FM_Annotations.findTextElement(root,row.quote);
+        if(target){target.classList.add('annotation-focus-pulse');target.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>target.classList.remove('annotation-focus-pulse'),1800);}
+      },100);
+    }
   }
 
   document.addEventListener('click',e=>{
     const route=e.target.closest('[data-route]'); if(route){nav(route.dataset.route);return;}
     const save=e.target.closest('[data-save-type]'); if(save){saveToggle(save.dataset.saveType,save.dataset.saveId);return;}
-    const comp=e.target.closest('[data-complete]'); if(comp){const k=comp.dataset.complete,i=state.completed.indexOf(k);if(i>=0)state.completed.splice(i,1);else state.completed.push(k);persist();render();return;}
+    const comp=e.target.closest('[data-complete]'); if(comp){
+      const k=comp.dataset.complete,i=state.completed.indexOf(k);
+      let nowDone;
+      if(i>=0){state.completed.splice(i,1);nowDone=false;}else{state.completed.push(k);nowDone=true;}
+      persist();
+      comp.classList.toggle('done',nowDone);
+      comp.textContent=nowDone?'✓ Completed':'Mark lesson complete';
+      comp.setAttribute('aria-pressed',nowDone?'true':'false');
+      showToast(nowDone?'Lesson marked complete':'Lesson marked incomplete');
+      return;
+    }
     const ans=e.target.closest('[data-answer]'); if(ans){handleAnswer(ans);return;}
     if(e.target.id==='nextPractice'){state.practice.index=(state.practice.index+1)%state.practice.pool.length;state.practice.answered=false;render();return;}
     if(e.target.matches('[data-practice-mistakes]')){nav('practice-mistakes');return;}
     if(e.target.matches('[data-remove-mistake]')){state.mistakes=state.mistakes.filter(id=>id!==e.target.dataset.removeMistake);persist();render();return;}
-    if(e.target.matches('[data-edit-anno]')){const id=e.target.dataset.editAnno;const row=FM_Annotations.all().find(x=>x.id===id);if(row){const comment=prompt('Edit note:',row.comment||'');if(comment!==null){FM_Annotations.update(id,{comment});showToast('Note updated');render();}}return;}
-    if(e.target.matches('[data-delete-anno]')){FM_Annotations.remove(e.target.dataset.deleteAnno);render();return;}
+    if(e.target.matches('[data-open-anno]')){focusAnnotation(e.target.dataset.openAnno);return;}
+    if(e.target.matches('[data-edit-anno]')){const row=FM_Annotations.get(e.target.dataset.editAnno);if(row)openNoteDialog({annotation:row});return;}
+    if(e.target.matches('[data-delete-anno]')){
+      const row=FM_Annotations.get(e.target.dataset.deleteAnno);
+      FM_Annotations.remove(e.target.dataset.deleteAnno);
+      showToast('Annotation deleted');
+      if(location.hash.startsWith('#notes'))render({preserveScroll:true});
+      else if(row)FM_Annotations.applyHighlights(document.querySelector('.lesson-article'),row.lessonId);
+      return;
+    }
+    if(e.target.id==='exportNotes'){exportNotes();return;}
+    if(e.target.id==='clearNotes'){if(confirm('Delete all saved highlights and study notes from this browser?')){FM_Annotations.clear();render({preserveScroll:true});showToast('Annotations cleared');}return;}
+    if(e.target.matches('[data-note-close]')){closeNoteDialog();return;}
+    const markedNote=e.target.closest('mark.fm-highlight[data-annotation-type="comment"]');if(markedNote){const row=FM_Annotations.get(markedNote.dataset.annotationId);if(row)openNoteDialog({annotation:row});return;}
     if(e.target.matches('[data-srs]')){rateCard(e.target.dataset.card,e.target.dataset.srs);return;}
     const fc=e.target.closest('.flash-card'); if(fc&&!e.target.matches('[data-delete-flash]')&&!e.target.matches('[data-srs]')){fc.classList.toggle('flipped');return;}
     if(e.target.matches('[data-delete-flash]')){state.flashcards=state.flashcards.filter(x=>x.id!==e.target.dataset.deleteFlash);persist();render();return;}
@@ -288,17 +481,26 @@ const App = (() => {
     if(e.target.id==='fontScale'){state.settings.fontScale=Number(e.target.value);document.getElementById('fontScaleVal').textContent=e.target.value+'%';persist();document.documentElement.style.fontSize=e.target.value+'%';}
     if(e.target.id==='compactToggle'){state.settings.compact=e.target.checked;persist();document.body.classList.toggle('compact',e.target.checked);}
   });
-  document.addEventListener('input',e=>{if(e.target.id==='formulaSearch'){const t=e.target.value.toLowerCase();document.querySelectorAll('.formula-card').forEach(c=>c.hidden=!c.dataset.search.includes(t));}});
+  document.addEventListener('input',e=>{
+    if(e.target.id==='formulaSearch'){const t=e.target.value.toLowerCase();document.querySelectorAll('.formula-card').forEach(c=>c.hidden=!c.dataset.search.includes(t));}
+    if(e.target.id==='noteSearch')renderNotesResults();
+  });
+  document.getElementById('noteForm')?.addEventListener('submit',e=>{e.preventDefault();saveNoteFromDialog();});
+  noteDialog?.addEventListener('click',e=>{if(e.target===noteDialog)closeNoteDialog();});
 
   // Selection annotation toolbar
   const toolbar=document.getElementById('annotationToolbar'); let selectionCtx=null;
   document.addEventListener('mouseup',e=>{if(e.target.closest('#annotationToolbar'))return;setTimeout(()=>{const s=FM_Annotations.selectedQuote();if(!s){toolbar.hidden=true;selectionCtx=null;return;}selectionCtx=s;toolbar.hidden=false;toolbar.style.left=`${Math.max(8,s.rect.left+scrollX)}px`;toolbar.style.top=`${Math.max(8,s.rect.bottom+scrollY+8)}px`;},0);});
   toolbar.addEventListener('click',e=>{
-    const action=e.target.dataset.anno;if(!action||!selectionCtx)return; const s=selectionCtx;
-    if(action==='highlight'){FM_Annotations.add({type:'highlight',quote:s.quote,lessonId:s.lessonId,moduleId:s.moduleId,color:e.target.dataset.color||'yellow'});showToast('Highlighted');}
-    if(action==='comment'){const comment=prompt('Add a note to this passage:',''); if(comment!==null)FM_Annotations.add({type:'comment',quote:s.quote,lessonId:s.lessonId,moduleId:s.moduleId,comment});showToast('Note saved');}
-    if(action==='flashcard'){const back=prompt('Flashcard answer / explanation:',s.quote); if(back!==null){const card={id:`P${Date.now()}`,front:s.quote,back,module:s.moduleId};state.flashcards.unshift(card);persist();showToast('Flashcard created');}}
-    toolbar.hidden=true;window.getSelection()?.removeAllRanges();if(action==='highlight')FM_Annotations.applyHighlights(document.querySelector('.lesson-article'),s.lessonId);
+    const action=e.target.dataset.anno;if(!action||!selectionCtx)return; const s={...selectionCtx};
+    toolbar.hidden=true;window.getSelection()?.removeAllRanges();selectionCtx=null;
+    if(action==='highlight'){
+      FM_Annotations.add({type:'highlight',quote:s.quote,lessonId:s.lessonId,moduleId:s.moduleId,color:e.target.dataset.color||'yellow'});
+      FM_Annotations.applyHighlights(document.querySelector('.lesson-article'),s.lessonId);
+      showToast('Highlighted');return;
+    }
+    if(action==='comment'){openNoteDialog({selection:s});return;}
+    if(action==='flashcard'){const back=prompt('Flashcard answer / explanation:',s.quote); if(back!==null){const card={id:`P${Date.now()}`,front:s.quote,back,module:s.moduleId};state.flashcards.unshift(card);persist();showToast('Flashcard created');}return;}
   });
 
   window.addEventListener('hashchange',render);

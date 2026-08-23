@@ -7,6 +7,14 @@
   <meta name="description" content="Finance Mastery — TCH 302 study system grounded in the supplied course materials." />
   <title>Finance Mastery — TCH 302</title>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -42,7 +50,37 @@
     <button data-anno="flashcard">Flashcard</button>
   </div>
 
+
+  <dialog id="noteDialog" class="note-dialog">
+    <form method="dialog" class="note-dialog-card" id="noteForm">
+      <div class="note-dialog-head">
+        <div>
+          <span class="eyebrow">STUDY NOTE</span>
+          <h2 id="noteDialogTitle">Add note</h2>
+        </div>
+        <button type="button" class="icon-close" data-note-close aria-label="Close note editor">×</button>
+      </div>
+      <div class="note-quote-preview">
+        <span>Selected passage</span>
+        <blockquote id="noteQuotePreview"></blockquote>
+      </div>
+      <label class="note-field">
+        <span>Your note</span>
+        <textarea id="noteText" rows="6" maxlength="1600" placeholder="Write the reason, shortcut, warning, or connection you want to remember…"></textarea>
+      </label>
+      <div class="note-dialog-options">
+        <label><span>Highlight color</span><select id="noteColor"><option value="yellow">Yellow</option><option value="green">Green</option><option value="pink">Pink</option><option value="blue">Blue</option></select></label>
+        <label class="note-check"><input id="noteHighlight" type="checkbox" checked><span>Highlight this passage in the lesson</span></label>
+      </div>
+      <div class="note-dialog-actions">
+        <button type="button" class="text-btn" data-note-close>Cancel</button>
+        <button type="submit" class="green-btn" id="saveNoteBtn">Save note</button>
+      </div>
+    </form>
+  </dialog>
+
   <script src="data.js"></script>
+  <script src="study-content.js"></script>
   <script src="annotations.js"></script>
   <script src="app.js"></script>
 </body>
