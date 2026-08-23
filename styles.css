@@ -8,3 +8,176 @@
 @media(max-width:950px){.top-nav{display:none}.brand{min-width:0}.primary-pill{display:none}.module-showcase{grid-template-columns:repeat(2,1fr)}.pillars{grid-template-columns:repeat(2,1fr)}.editorial-grid,.why-section{grid-template-columns:1fr}.formula-grid,.flash-grid{grid-template-columns:repeat(2,1fr)}.exam-rules{grid-template-columns:repeat(2,1fr)}.menu-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.shell{width:min(100% - 24px,1180px)}.header-meta-right{display:none}.nav-shell{height:64px}.brand-copy{display:none}.hero-card{padding:40px 24px;min-height:460px}.hero-copy h1{font-size:4.1rem}.hero-art{width:80%;right:-30%}.pillars{grid-template-columns:1fr 1fr;padding-left:0;padding-right:0}.editorial-grid,.why-section{gap:28px}.inline-checks{grid-template-columns:1fr}.module-showcase{grid-template-columns:1fr}.stat-strip{grid-template-columns:1fr 1fr}.stat-strip div{border-right:0}.page-shell{padding-top:32px}.page-heading{display:block}.heading-actions{margin-top:15px}.wide-module-card{grid-template-columns:48px 1fr}.wide-module-card>button{grid-column:2}.wide-num{width:42px;height:42px}.module-intro-card{grid-template-columns:1fr}.lesson-banner,.theory-block,.lesson-source,.lesson-tools{padding-left:24px;padding-right:24px}.lesson-tools{flex-direction:column}.practice-toolbar,.bank-tools,.exam-bar{align-items:stretch;flex-direction:column}.question-card{padding:22px}.bank-row,.mistake-row,.saved-list article{grid-template-columns:1fr}.notes-grid,.formula-grid,.flash-grid,.glossary-grid{grid-template-columns:1fr}.flash-card{min-height:230px}.calc-layout{grid-template-columns:1fr}.calc-tabs{grid-template-columns:repeat(2,1fr)}.calc-fields{grid-template-columns:1fr}.exam-nav-grid{grid-template-columns:repeat(5,1fr)}.analytics-hero{grid-template-columns:1fr}.analytics-table article{grid-template-columns:40px 1fr 50px}.analytics-table small{grid-column:2}.breakdown-grid{grid-template-columns:1fr 1fr}.menu-grid{grid-template-columns:1fr}.stat-strip{padding-top:28px}.soft-section{padding-top:58px;padding-bottom:58px}}
 .fm-highlight[data-color="green"]{background:#cfe8c8}.fm-highlight[data-color="pink"]{background:#ffd9df}.fm-highlight[data-color="blue"]{background:#d8eaff}.srs-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:16px}.srs-actions button{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:7px 11px}.text-btn.light{color:#fff}
+
+/* =========================================================
+   LESSON KEY TERMS — POLISHED THEME
+   Keeps the existing app.js/data.js markup untouched.
+   Existing markup:
+   <div class="term-grid">
+     <div><b>English term</b><span>Vietnamese meaning</span></div>
+   </div>
+   ========================================================= */
+
+.term-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  padding:34px 52px 42px;
+  background:
+    radial-gradient(circle at 92% 8%,rgba(240,219,71,.18),transparent 24%),
+    linear-gradient(180deg,#f3f7ef 0%,#faf9f2 100%);
+  border-bottom:1px solid var(--line);
+  counter-reset:keyterm;
+}
+
+.term-grid::before{
+  content:"KEY TERMS  ·  CORE VOCABULARY";
+  grid-column:1 / -1;
+  display:flex;
+  align-items:center;
+  min-height:26px;
+  margin-bottom:4px;
+  color:var(--green);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  line-height:1.3;
+}
+
+.term-grid > div{
+  position:relative;
+  min-width:0;
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr);
+  grid-template-rows:auto auto;
+  column-gap:14px;
+  align-items:center;
+  padding:18px 20px 18px 18px;
+  background:rgba(255,254,249,.92);
+  border:1px solid #dce5d7;
+  border-radius:18px;
+  box-shadow:0 8px 22px rgba(31,56,31,.045);
+  overflow:hidden;
+  counter-increment:keyterm;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+
+.term-grid > div::before{
+  content:counter(keyterm,decimal-leading-zero);
+  grid-column:1;
+  grid-row:1 / span 2;
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  align-self:center;
+  border-radius:50%;
+  background:var(--yellow2);
+  border:1px solid rgba(168,143,23,.18);
+  color:var(--green);
+  font-family:var(--display);
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.05em;
+}
+
+.term-grid > div::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:4px;
+  height:100%;
+  background:linear-gradient(180deg,var(--green2),var(--yellow));
+  opacity:.86;
+}
+
+.term-grid > div:hover{
+  transform:translateY(-2px);
+  background:var(--paper);
+  border-color:#cbd9c6;
+  box-shadow:0 13px 28px rgba(31,56,31,.08);
+}
+
+.term-grid b{
+  grid-column:2;
+  grid-row:1;
+  display:block;
+  min-width:0;
+  margin:0;
+  color:var(--ink);
+  font-family:var(--display);
+  font-size:1.02rem;
+  font-weight:750;
+  line-height:1.28;
+  letter-spacing:-.015em;
+  overflow-wrap:anywhere;
+}
+
+.term-grid span{
+  grid-column:2;
+  grid-row:2;
+  display:block;
+  min-width:0;
+  margin-top:4px;
+  color:#607064;
+  font-size:.84rem;
+  font-weight:500;
+  line-height:1.45;
+  overflow-wrap:anywhere;
+}
+
+/* A subtle visual cue when a lesson contains only one term. */
+.term-grid > div:only-of-type{
+  grid-column:1 / -1;
+  max-width:620px;
+}
+
+/* Tablet */
+@media(max-width:850px){
+  .term-grid{
+    grid-template-columns:1fr;
+    padding:30px 36px 36px;
+  }
+
+  .term-grid > div:only-of-type{
+    max-width:none;
+  }
+}
+
+/* Mobile — aligns with the existing lesson padding system. */
+@media(max-width:680px){
+  .term-grid{
+    grid-template-columns:1fr;
+    gap:10px;
+    padding:26px 24px 30px;
+  }
+
+  .term-grid::before{
+    margin-bottom:2px;
+    font-size:.64rem;
+    letter-spacing:.13em;
+  }
+
+  .term-grid > div{
+    grid-template-columns:38px minmax(0,1fr);
+    column-gap:12px;
+    padding:15px 16px 15px 14px;
+    border-radius:15px;
+  }
+
+  .term-grid > div::before{
+    width:36px;
+    height:36px;
+    font-size:.64rem;
+  }
+
+  .term-grid b{
+    font-size:.96rem;
+  }
+
+  .term-grid span{
+    font-size:.8rem;
+  }
+}
