@@ -1,11 +1,27 @@
-# Finance Mastery v0.8
+# Finance Mastery — TCH 302
 
-Source-grounded Principles of Finance study site with deep theory, 600-question exam practice, calculators, exam mode, visual learning assets, and a robust personal annotation layer.
+A static, GitHub Pages-ready study system for **Principles of Finance (TCH 302)**.
 
-## v0.8 annotation upgrade
-The highlight/comment/personal-flashcard workflow was rebuilt after studying the user-provided Accounting Mastery v6.1 annotation implementation. Select text in a Learn lesson and a contextual toolbar appears. Highlights persist after reload, comments can be edited, and selected theory can become personal flashcards.
+## What is preserved
 
-See `ANNOTATION_GUIDE.md` for usage details.
+- Dashboard, Learn, Practice, Question Bank, Mistake Notebook
+- Notes & Highlights, personal Flashcards, Formula Sheet
+- Calculators, Exam Mode, Progress & Analytics, Glossary, Saved, Sources, Settings
+- LocalStorage persistence; no backend required
+- Hash routing so it deploys cleanly on GitHub Pages
 
-## GitHub Pages
-Upload the **contents of this folder** to the repository root. Keep `.nojekyll`. If Pages is already enabled, committing these files updates the same public URL.
+## What is upgraded
+
+- Source-aligned theory structure with more detailed explanations, worked examples, exam traps and bilingual key terms
+- Practice bank generated from course principles and numerical templates
+- Design system rebuilt around the supplied organic/agricultural reference: cream canvas, forest green, warm yellow, large rounded editorial cards, spacious sections and soft "paper" transitions
+- Responsive mobile navigation and accessible controls
+
+## Deploy
+
+1. Put all files in the repository root.
+2. GitHub → Settings → Pages.
+3. Deploy from `main` branch / root.
+4. Open the Pages URL.
+
+No build step is required.

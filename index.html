@@ -3,15 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Finance Mastery — source-grounded Principles of Finance exam-prep platform · v0.8" />
-  <title>Finance Mastery v0.8</title>
+  <meta name="theme-color" content="#315d33" />
+  <meta name="description" content="Finance Mastery — TCH 302 study system grounded in the supplied course materials." />
+  <title>Finance Mastery — TCH 302</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="app"><div class="boot-fallback">Loading Finance Mastery…</div></div>
+  <header class="site-header">
+    <div class="header-meta shell">
+      <span>● TCH 302 · Principles of Finance</span>
+      <span class="header-meta-right">Source-aligned study system · Local-first</span>
+    </div>
+    <div class="nav-shell shell">
+      <a class="brand" href="#dashboard" aria-label="Finance Mastery home">
+        <span class="brand-mark">FM</span>
+        <span class="brand-copy"><strong>FINANCE</strong><small>MASTERY</small></span>
+      </a>
+      <nav class="top-nav" id="topNav" aria-label="Primary navigation">
+        <a href="#dashboard">Home</a>
+        <a href="#learn">Learn</a>
+        <a href="#practice">Practice</a>
+        <a href="#exam">Exam</a>
+        <a href="#formulas">Formulas</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="search-trigger" id="searchTrigger" aria-label="Search">⌕</button>
+        <button class="primary-pill" data-route="practice">Start practice ↗</button>
+        <button class="menu-trigger" id="menuTrigger" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="annotationToolbar" class="annotation-toolbar" hidden>
+    <button data-anno="highlight" data-color="yellow" title="Yellow highlight">● Yellow</button><button data-anno="highlight" data-color="green" title="Green highlight">● Green</button><button data-anno="highlight" data-color="pink" title="Pink highlight">● Pink</button><button data-anno="highlight" data-color="blue" title="Blue highlight">● Blue</button>
+    <button data-anno="comment">Comment</button>
+    <button data-anno="flashcard">Flashcard</button>
+  </div>
+
   <script src="data.js"></script>
   <script src="annotations.js"></script>
   <script src="app.js"></script>
-  <script>setTimeout(function(){var a=document.getElementById("app");if(a&&a.querySelector(".boot-fallback")){a.innerHTML='<div style="padding:32px;font-family:system-ui;color:#111827"><h2>Finance Mastery could not start.</h2><p>Hard-refresh with Ctrl+F5. If this persists, verify that <code>data.js</code> and <code>app.js</code> are in the repository root.</p></div>';}},3000);</script>
 </body>
 </html>
