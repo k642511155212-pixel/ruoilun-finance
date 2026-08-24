@@ -1,79 +1,62 @@
-# Finance Mastery v1.0 — Content & Function Audit
+# Finance Mastery v2.0 — Content & Function Audit
 
-## Product principles preserved
+## Preserved product invariants
 
-- Seven-module TCH 302 structure.
-- Vanilla HTML/CSS/JavaScript SPA suitable for GitHub Pages.
-- Hash routing and local-browser persistence.
-- Learn, Practice, Question Bank, Mistake Notebook, Notes & Highlights, Flashcards, Formula Sheet, Calculators, Exam Mode, Progress & Analytics, Glossary, Saved, Sources and Settings.
-- Immediate practice feedback, mistake capture, concept-review links and timed exam mode.
-- Existing key principles and the 600-question bank remain intact.
+- Seven-module TCH 302 architecture and all 48 lesson identities.
+- Original key principles, learning objectives, key terms, core examples and exam-focus fields.
+- Exactly 600 question records with unique IDs.
+- Vanilla HTML/CSS/JavaScript, hash routing and local-browser persistence.
+- All existing study utilities and their navigation routes.
 
-## Theory revision standard
+## v2.0 depth standard
 
-Every lesson keeps its original key principle, then adds a richer study layer:
+Every lesson now contains:
 
-1. learning objective;
-2. key principle;
-3. priority-source indicator where applicable;
-4. numbered deep explanation;
-5. bilingual key terms;
-6. typeset formula(s), variables and usage conditions;
-7. original course/worked example;
-8. additional step-by-step applied examples;
-9. common exam traps;
-10. exam focus and source provenance.
+1. original learning objective and key principle;
+2. combined original + source-aligned explanation;
+3. at least three titled deep-dive sections;
+4. expanded bilingual terminology where useful;
+5. relevant typeset formula panels with variables, use condition and trap;
+6. source or course worked examples;
+7. additional step-by-step applied examples;
+8. exactly three guided exercises (Easy, Intermediate, Advanced);
+9. hint, numbered solution steps, final answer and method explanation for every guided exercise;
+10. exam traps, exam focus and source provenance.
 
-All **48/48 lessons** have enhancement records in `study-content.js`.
+## Timeline audit
 
-## Hoàng Kim Thanh priority pass
+- 41 timeline records are attached only where sequence or dated cash flow materially improves understanding.
+- TVM, loans, savings, borrowing, retirement, bond/stock valuation, money-market processes, financial-statement flow and cash cycle receive dedicated timelines.
+- Complex timelines are split into labelled rows with at most four event cards per row on desktop, two on tablets and one on very small screens.
+- Ordinary annuity, annuity due, loan, zero bond, coupon bond and project cash-flow timing are shown separately to prevent timing confusion.
 
-The following supplied study-note groups are explicitly prioritized where relevant:
+## Formula audit
 
-- Chapter 0 — Introduction to Finance;
-- Chapter 2 / 2.1 — Time Value of Money;
-- Chapter 3 — Financial Markets;
-- Money Market / Money Market Securities comparison / Treasury Bill Auctions;
-- Chapter 4 — Valuation of Securities.
+- 39 formula records are present.
+- New coverage includes level perpetuity, growing annuity, APR/EAR periodic conversion, outstanding loan balance, current yield, holding-period return, portfolio expected return/variance, common-size percentage, ROA, ROE, DIO and DPO.
+- MathJax is used for display notation; long formulas have controlled overflow rather than appearing as raw code strings.
 
-Personal contact information that appeared in the study files is intentionally not reproduced in the website.
+## Source reconciliation
 
-## Formula-system correction
+Priority coverage remains aligned with Hoàng Kim Thanh's notes for Introduction, TVM, Financial Markets, Money Market and Security Valuation. Lecture/tutorial files control course scope. Textbook logic is used to clarify important precision issues, including:
 
-Previous formula cards displayed equations as raw text/code. v1.0 adds:
+- retained earnings is not the cash balance;
+- commercial-paper secondary trading is limited, not universally impossible;
+- individuals can obtain money-market exposure;
+- a repo is securities-backed sale/repurchase financing;
+- governance rules depend on jurisdiction and should not be memorized as universal percentages;
+- coupon, required, expected and realized returns are different;
+- YTM is not automatically realized when coupons are reinvested differently or the bond is sold early.
 
-- MathJax display notation;
-- proper fractions, summations, exponents and subscripts;
-- responsive horizontal overflow for long equations;
-- variable dictionary;
-- “Use when” guidance;
-- “Exam trap / Watch out” guidance.
+Personal contact metadata appearing inside study notes is not reproduced.
 
-## Notes-system correction
+## Automated checks expected before release
 
-The old note view was essentially a simple card list. v1.0 adds:
-
-- overview statistics;
-- search;
-- module filter;
-- annotation-type filter;
-- structured note editor in a dialog;
-- optional linked highlight color;
-- edit/delete;
-- open exact lesson context;
-- JSON export;
-- improved multi-node quote anchoring inside a logical text block.
-
-## Scroll-jump bug
-
-Root cause: the old completion action called the SPA `render()` function, whose normal behavior resets scroll to the top.
-
-Fix: `Mark lesson complete` now updates LocalStorage and the button state **in place without calling render()**. Other actions that need re-rendering can use the `preserveScroll` option.
-
-## Validation performed
-
-- JavaScript syntax checked with Node for `data.js`, `study-content.js`, `annotations.js` and `app.js`.
-- 7 modules / 48 lessons / 600 questions / 25 formula records retained.
-- 48/48 lessons have enhancement records.
-- Question IDs remain unique and existing question data is not rewritten by the v1.0 study layer.
-- Static deployment requires no backend or compilation.
+- JavaScript syntax check on every `.js` file.
+- 7 modules, 48 lessons, 600 questions and 39 formulas.
+- 48/48 lessons with at least three deep-dive sections.
+- 144 guided exercises total and exactly three per lesson.
+- Difficulty sequence Easy → Intermediate → Advanced in every lesson.
+- 41 non-empty timeline records with valid rows/events.
+- No duplicate question IDs and no missing lesson references.
+- ZIP root contains `index.html` directly and is suitable for GitHub Pages upload.

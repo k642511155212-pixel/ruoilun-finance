@@ -66,6 +66,59 @@ const App = (() => {
       </div>
     </article>`;
   }
+  function deepDivePanel(sections=[]){
+    if(!sections.length)return '';
+    return `<section class="theory-block deep-dive-section">
+      <span class="block-label">CONCEPTUAL DEEP DIVE</span>
+      <h2>Understand the mechanism, not only the definition</h2>
+      <p class="section-intro">Each part answers a different question: what the concept means, why it works, how to apply it, and where the reasoning can fail.</p>
+      <div class="deep-dive-grid">${sections.map((s,i)=>`<article class="deep-dive-card">
+        <div class="deep-dive-card-head"><span>${String(i+1).padStart(2,'0')}</span><div><small>${esc(s.kicker||'Core reasoning')}</small><h3>${esc(s.title)}</h3></div></div>
+        ${(s.paragraphs||[]).map(p=>`<p>${esc(p)}</p>`).join('')}
+        ${s.bullets?.length?`<ul>${s.bullets.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+        ${s.check?`<div class="deep-check"><b>Self-check</b><p>${esc(s.check)}</p></div>`:''}
+      </article>`).join('')}</div>
+    </section>`;
+  }
+  function timelinePanel(timelines=[]){
+    if(!timelines.length)return '';
+    return `<section class="theory-block timeline-section">
+      <span class="block-label">VISUAL TIMELINE</span>
+      <h2>Place every cash flow or event before calculating</h2>
+      <p class="section-intro">The layouts are deliberately broken into readable rows. Read left to right inside a row, then continue on the next row.</p>
+      <div class="timeline-stack">${timelines.map(t=>`<article class="finance-timeline">
+        <div class="timeline-title"><div><small>${esc(t.kicker||'Cash-flow map')}</small><h3>${esc(t.title)}</h3></div>${t.perspective?`<span>${esc(t.perspective)}</span>`:''}</div>
+        ${t.intro?`<p class="timeline-intro">${esc(t.intro)}</p>`:''}
+        ${(t.rows||[]).map((row,ri)=>`<div class="timeline-row"><div class="timeline-row-label"><span>ROW ${ri+1}</span><b>${esc(row.label||'Sequence')}</b></div><div class="timeline-events">${(row.events||[]).map((e,ei)=>`<div class="timeline-event ${esc(e.kind||'neutral')}">
+          <span class="timeline-time">${esc(e.time)}</span><i aria-hidden="true"></i><strong>${esc(e.cash||e.label||'')}</strong>${e.note?`<p>${esc(e.note)}</p>`:''}
+        </div>`).join('')}</div></div>`).join('')}
+        ${t.steps?.length?`<ol class="process-timeline">${t.steps.map((s,i)=>`<li><span>${i+1}</span><div><b>${esc(s.title)}</b><p>${esc(s.note)}</p></div></li>`).join('')}</ol>`:''}
+        ${t.caption?`<div class="timeline-caption"><b>How to read it</b><p>${esc(t.caption)}</p></div>`:''}
+      </article>`).join('')}</div>
+    </section>`;
+  }
+  function sourceCorrectionPanel(items=[]){
+    if(!items.length)return '';
+    return `<section class="theory-block correction-section"><span class="block-label">SOURCE CLARIFICATIONS</span><h2>Important precision and corrections</h2><div class="correction-list">${items.map(x=>`<article><span>!</span><div><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p></div></article>`).join('')}</div></section>`;
+  }
+  function guidedPracticePanel(items=[]){
+    if(!items.length)return '';
+    const rank={Easy:1,Intermediate:2,Advanced:3};
+    return `<section class="theory-block guided-practice-section">
+      <span class="block-label">GUIDED PRACTICE</span>
+      <h2>Build from recognition to exam-level reasoning</h2>
+      <p class="section-intro">Try each problem before opening the solution. The hint tells you how to start; the solution shows the reasoning sequence, not just the final answer.</p>
+      <div class="guided-practice-list">${items.map((p,i)=>`<details class="guided-problem level-${(p.level||'Easy').toLowerCase()}">
+        <summary><div class="problem-index">${String(i+1).padStart(2,'0')}</div><div><span class="difficulty-pill"><i>${'●'.repeat(rank[p.level]||1)}</i>${esc(p.level||'Easy')}</span><h3>${esc(p.title||`Practice ${i+1}`)}</h3><p>${esc(p.prompt)}</p></div><b class="solution-toggle">View guidance + solution</b></summary>
+        <div class="guided-solution">
+          ${p.hint?`<div class="solution-hint"><b>How to start</b><p>${esc(p.hint)}</p></div>`:''}
+          ${p.steps?.length?`<ol>${p.steps.map((s,j)=>`<li><span>${j+1}</span><p>${esc(s)}</p></li>`).join('')}</ol>`:''}
+          ${p.answer?`<div class="solution-answer"><span>Final answer</span><strong>${esc(p.answer)}</strong></div>`:''}
+          ${p.why?`<div class="solution-why"><b>Why this method works</b><p>${esc(p.why)}</p></div>`:''}
+        </div>
+      </details>`).join('')}</div>
+    </section>`;
+  }
   function mod(id){ return D.modules.find(m=>m.id===id); }
   function lesson(mid,lid){ return mod(mid)?.lessons.find(l=>l.id===lid); }
   function qById(id){ return D.questions.find(q=>q.id===id); }
@@ -93,7 +146,7 @@ const App = (() => {
     const hero=`<section class="hero-card">
       <div class="hero-art" aria-hidden="true"><span class="orbit o1"></span><span class="orbit o2"></span><span class="hero-symbol">%</span></div>
       <div class="hero-copy"><span class="hero-kicker">Source-aligned · TCH 302</span><h1>MASTER<br><em>FINANCE</em></h1><p>Build intuition first. Then formulas. Then exam-speed application.</p><div class="hero-actions"><button class="yellow-btn" data-route="learn">Start learning ↗</button><button class="ghost-btn" data-route="practice">Practice now ↗</button></div></div>
-      <div class="hero-note">48 lessons · 600 questions · 25 core formulas</div>
+      <div class="hero-note">48 lessons · 600 questions · 144 guided problems</div>
     </section>`;
     const pillars=`<section class="pillars">${[
       ['01','Understand','Theory is expanded around the course’s own definitions and logic.'],
@@ -104,7 +157,7 @@ const App = (() => {
     const progress=`<section class="editorial-grid section-space"><div class="editorial-copy"><span class="eyebrow">Your course map</span><h2>Seven modules. One connected financial system.</h2><p>The structure follows the supplied TCH 302 syllabus: foundations → time value → household decisions → markets and institutions → valuation → risk → financial health.</p><div class="inline-checks"><span>✓ ${s.completed}/${totalLessons} lessons complete</span><span>✓ ${s.accuracy}% practice accuracy</span><span>✓ ${state.mistakes.length} active mistakes</span></div><button class="green-btn" data-route="progress">View progress ↗</button></div>
       <div class="metric-card"><span>Study progress</span><strong>${Math.round(s.completed/totalLessons*100)||0}%</strong><p>Completion is based on lessons you explicitly mark complete.</p><div class="mini-bars">${D.modules.map(m=>`<div><b>${m.num}</b><i><u style="width:${moduleProgress(m.id)}%"></u></i><small>${moduleProgress(m.id)}%</small></div>`).join('')}</div></div></section>`;
     const modules=`<section class="soft-section"><div class="section-head"><span class="eyebrow">Learn</span><h2>Choose a module</h2><p>Each module opens into concept lessons, worked examples, exam traps and linked practice.</p></div><div class="module-showcase">${D.modules.map(m=>`<article class="module-card" data-route="learn/${m.id}"><div class="module-icon">${m.icon}</div><span>Module ${m.num}</span><h3>${m.title}</h3><p>${m.subtitle}</p><div class="module-card-foot"><b>${m.lessons.length} lessons</b><small>${moduleProgress(m.id)}% complete</small></div></article>`).join('')}</div></section>`;
-    const stats=`<section class="stat-strip">${[['600','Practice questions'],['48','Deep lessons'],['25','Core formulas'],['7','Course modules']].map(x=>`<div><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join('')}</section>`;
+    const stats=`<section class="stat-strip">${[['600','Practice questions'],['144','Guided problems'],[String(D.formulas.length),'Typeset formulas'],['48','Deep lessons']].map(x=>`<div><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join('')}</section>`;
     const lower=`<section class="why-section section-space"><div class="collage-card"><div class="fake-chart"><i style="height:28%"></i><i style="height:45%"></i><i style="height:62%"></i><i style="height:81%"></i><i style="height:70%"></i></div><div class="yellow-sticker">Theory → formula → decision → exam.</div><div class="badge-round">FM<br>302</div></div><div><span class="eyebrow">Why this build</span><h2>Designed around how finance questions actually fail.</h2><p>Most mistakes are not algebra mistakes. They come from using the wrong market classification, wrong timeline, wrong rate convention, wrong cash-flow timing, or wrong denominator. Each lesson therefore explains the decision logic before the formula.</p><div class="quality-row"><span>Source alignment</span><b>100%</b></div><div class="quality-line"><i style="width:100%"></i></div><div class="quality-row"><span>Function preservation</span><b>100%</b></div><div class="quality-line"><i style="width:100%"></i></div></div></section>`;
     return `<div class="home-shell shell">${hero}${pillars}${progress}</div>${modules}<div class="home-shell shell">${stats}${lower}</div>`;
   }
@@ -124,19 +177,28 @@ const App = (() => {
     const key=`${mid}/${lid}`,done=state.completed.includes(key),idx=m.lessons.findIndex(x=>x.id===lid);
     const enh=lessonEnhancement(mid,lid);
     const explanations=[...(l.explanation||[]),...(enh?.moreExplanation||[])];
-    const terms=l.terms?.length?`<section class="term-grid-wrap"><div class="term-grid">${l.terms.map(t=>`<div><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join('')}</div></section>`:'';
+    const lessonTerms=[...(l.terms||[]),...(enh?.termsExtra||[])];
+    const terms=lessonTerms.length?`<section class="term-grid-wrap"><div class="term-grid">${lessonTerms.map(t=>`<div><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join('')}</div></section>`:'';
+    const deepDives=deepDivePanel(enh?.deepDive||[]);
+    const timelines=timelinePanel(enh?.timelines||[]);
+    const corrections=sourceCorrectionPanel(enh?.sourceCorrections||[]);
     const formulas=enh?.formulaKeys?.length?`<section class="theory-block formula-section"><div class="section-inline-head"><div><span class="block-label">FORMULAS THAT BELONG TO THIS CONCEPT</span><h2>See the equation, then read what every symbol means.</h2></div><span class="source-priority">${esc(enh.prioritySource||'Course source')}</span></div><div class="lesson-formula-grid">${enh.formulaKeys.map(k=>formulaPanel(k)).join('')}</div></section>`:'';
     const extraExamples=enh?.examples?.length?`<section class="theory-block examples-section"><span class="block-label">STEP-BY-STEP APPLICATIONS</span><h2>From principle to an actual decision</h2><p class="section-intro">Do not memorize the final number. Follow the cash-flow structure, focal date, rate convention and decision rule in order.</p><div class="applied-examples">${enh.examples.map(exampleCard).join('')}</div></section>`:'';
+    const guidedPractice=guidedPracticePanel(enh?.guidedPractice||[]);
     const sourcePriority=enh?.prioritySource?`<div class="priority-source-banner"><span>PRIORITY SOURCE</span><b>${esc(enh.prioritySource)}</b><p>This lesson preserves the original key principle and expands the explanation around the supplied notes.</p></div>`:'';
     const body=`<article class="lesson-article annotatable" data-lesson-id="${lid}" data-module-id="${mid}">
       <div class="lesson-banner"><span>Module ${m.num} · Lesson ${idx+1}</span><button class="save-icon ${isSaved('lesson',key)?'active':''}" data-save-type="lesson" data-save-id="${key}" title="Save lesson">☆</button><h1>${esc(l.title)}</h1><p>${esc(l.objective)}</p></div>
       ${sourcePriority}
       <section class="theory-block intuition"><span class="block-label">KEY PRINCIPLE</span><h2>${esc(l.keyPrinciple)}</h2><p class="principle-note">This statement is the anchor. The sections below expand it without changing the course principle.</p></section>
       <section class="theory-block"><span class="block-label">DEEP EXPLANATION</span><div class="deep-copy">${explanations.map((p,i)=>`<div class="explanation-paragraph"><span>${String(i+1).padStart(2,'0')}</span><p>${esc(p)}</p></div>`).join('')}</div></section>
+      ${deepDives}
+      ${corrections}
       ${terms}
+      ${timelines}
       ${formulas}
       <section class="theory-block worked"><span class="block-label">CORE WORKED / DECISION EXAMPLE</span><h2>Start with the course example</h2><p>${esc(l.workedExample)}</p></section>
       ${extraExamples}
+      ${guidedPractice}
       <section class="theory-block traps"><span class="block-label">COMMON EXAM TRAPS</span><ul>${(l.commonMistakes||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
       <section class="theory-block exam"><span class="block-label">EXAM FOCUS</span><p>${esc(l.examFocus)}</p></section>
       <footer class="lesson-source"><b>Grounded in:</b> ${esc(l.source)}${enh?.prioritySource?`<br><b>Priority notes:</b> ${esc(enh.prioritySource)}`:''}</footer>
@@ -324,7 +386,7 @@ const App = (() => {
       const d=formulaDetail(f[0]);
       const search=[...f,...(d?.variables||[]).flat(),d?.useWhen||'',d?.trap||''].join(' ').toLowerCase();
       return `<article class="formula-card rich-formula-card" data-search="${esc(search)}"><div class="formula-card-top"><span>${esc(f[3])}</span><small>${d?'TYPESET EQUATION':'FORMULA'}</small></div><h3>${esc(f[0])}</h3>${mathBlock(d?.latex||f[1])}${d?.variables?.length?`<div class="formula-variables compact-vars">${d.variables.map(v=>`<div><b>${esc(v[0])}</b><span>${esc(v[1])}</span></div>`).join('')}</div>`:''}<div class="formula-meaning"><b>Use when</b><p>${esc(d?.useWhen||f[2])}</p></div>${d?.trap?`<div class="formula-trap mini-trap"><b>Watch out</b><p>${esc(d.trap)}</p></div>`:''}</article>`;
-    }).join('')}</div>`,{eyebrow:'25 core equations',title:'Formula Sheet',lead:'Every equation is visually typeset and paired with variable definitions, decision context and exam traps—not shown as a raw code string.'});
+    }).join('')}</div>`,{eyebrow:`${D.formulas.length} core equations`,title:'Formula Sheet',lead:'Every equation is visually typeset and paired with variable definitions, decision context and exam traps—not shown as a raw code string.'});
   }
 
   const calcDefs = {

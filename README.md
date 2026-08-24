@@ -1,33 +1,46 @@
-# Finance Mastery — TCH 302 · v1.0
+# Finance Mastery — TCH 302 · v2.0
 
 A static, GitHub Pages-ready study system for **Principles of Finance (TCH 302)**.
 
-## Preserved product architecture
+## What v2.0 contains
 
-- Dashboard, Learn, Practice, Question Bank, Mistake Notebook
-- Notes & Highlights, personal Flashcards, Formula Sheet
-- Calculators, Exam Mode, Progress & Analytics, Glossary, Saved, Sources, Settings
-- 7 modules, 48 lessons, 600 practice questions and 25 core formulas
-- LocalStorage persistence; no backend and no build step
-- Hash routing for GitHub Pages
+- 7 modules and 48 lessons; the original key principles and lesson routes are preserved.
+- A three-part **Conceptual Deep Dive** in every lesson: mechanism, application logic and diagnostic reasoning.
+- **41 readable timelines** for cash flows, loans, annuities, projects, securities, market processes, retirement and the cash conversion cycle.
+- Timelines are split into clearly labelled rows (and into fewer columns on small screens) rather than forcing every event onto one line.
+- **144 guided problems** embedded in lessons: exactly 3 per lesson at Easy, Intermediate and Advanced levels.
+- Every guided problem includes a starting hint, numbered solution method, final answer and explanation of why the method works.
+- 600 existing practice questions remain available in Practice, Question Bank, Mistake Notebook and Exam Mode.
+- Formula Sheet expanded from 25 to **39 typeset formulas**, including growing annuity, rate conversion, loan balance, holding-period return, portfolio risk and firm-health formulas.
+- Source clarifications correct overstatements found in study notes without discarding the course framing.
 
-## v1.0 study upgrades
+## Core utilities preserved
 
-- **All 48 lessons** now have an additional source-aligned study layer without replacing the original key principles.
-- Hoàng Kim Thanh's supplied notes are treated as priority material where they overlap the course: Introduction to Finance, TVM, Financial Markets, Money Market and Security Valuation.
-- Lessons use a clearer hierarchy: Key Principle → Deep Explanation → Key Terms → Typeset Formulas → Core Example → Step-by-step Applied Examples → Exam Traps → Exam Focus.
-- Formula notation is rendered with **MathJax** instead of raw code-like strings. Every formula includes variable definitions, when-to-use guidance and an exam warning.
-- Notes & Highlights is rebuilt as a searchable study notebook with statistics, filters, edit/delete, contextual jump-back and JSON export.
-- Annotation anchoring is more resilient and can handle selections across inline formatting inside one logical paragraph/block.
-- **Mark lesson complete no longer re-renders the page**, so clicking it does not jump the user back to the top.
+- Dashboard, Learn, Practice, Question Bank and Mistake Notebook
+- Notes & Highlights with linked context, search, filters, editing and export
+- Personal Flashcards, Formula Sheet and Calculators
+- Exam Mode, Progress & Analytics, Glossary, Saved, Sources and Settings
+- LocalStorage persistence, hash routing and zero-build GitHub Pages deployment
+- In-place lesson completion; marking a lesson complete does not jump to the top
 
-## Deploy
+## Files added in v2.0
 
-1. Upload all files to the repository root.
-2. GitHub → **Settings → Pages**.
-3. Deploy from the `main` branch / root.
-4. Open the Pages URL.
+- `deep-content-core.js` — formula expansion and safe merge helpers
+- `deep-intro.js`
+- `deep-tvm.js`
+- `deep-personal.js`
+- `deep-markets.js`
+- `deep-valuation.js`
+- `deep-risk.js`
+- `deep-health.js`
 
-No `npm install`, build command or server is required.
+The new files extend `data.js` and `study-content.js`; they do not overwrite the original question bank or principles.
 
-> Formula rendering loads MathJax from jsDelivr, so the published page needs normal Internet access to display mathematical notation.
+## Deploy to GitHub Pages
+
+1. Upload **all files in this folder** to the repository root.
+2. In GitHub, open **Settings → Pages**.
+3. Select deployment from the `main` branch and the repository root.
+4. Open the generated Pages URL.
+
+No `npm install`, build command or backend is required. Formula rendering uses MathJax from jsDelivr, so an internet connection is required for the typeset equation graphics.

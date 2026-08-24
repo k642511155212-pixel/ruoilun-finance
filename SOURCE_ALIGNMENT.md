@@ -1,47 +1,32 @@
-# Source Alignment — Finance Mastery v1.0
+# Source Alignment — Finance Mastery v2.0
 
-This build preserves the original seven-module TCH 302 architecture and expands explanations around the supplied lecture notes, tutorials and practice patterns.
+This build preserves the TCH 302 structure and expands it from summary-level notes into a teachable learning system.
 
-## Priority note set: Hoàng Kim Thanh
+## Source priority
 
-Where the topics overlap, `study-content.js` explicitly prioritizes the supplied Hoàng Kim Thanh notes:
-
-| Priority note | Website coverage |
-|---|---|
-| Chapter 0 — Introduction to Finance | finance definition, household/firm decisions, working capital, business organization, separation of ownership and management, agency conflict, shareholder wealth |
-| Chapter 2 / 2.1 — Time Value of Money | TVM intuition, compounding, discounting, PV/FV, annuities and applied decision problems |
-| Chapter 3 — Financial Markets | financial system, market structure, transaction cost, direct/indirect finance |
-| Money Market / Comparison / Treasury Bill Auctions | money-market instruments, yield conventions, Treasury mechanics |
-| Chapter 4 — Valuation of Securities | fair value, required return, zero-coupon/coupon bonds, YTM and equity valuation |
-
-The source files contain personal student/contact metadata; those details are not surfaced in the website.
+1. Supplied lecture slides and tutorial exercises define course scope and calculation conventions.
+2. Hoàng Kim Thanh's self-prepared notes receive priority where they overlap the course.
+3. Supplied Mishkin, Saunders/Cornett, Cecchetti and Bodie materials are used to deepen mechanisms and reconcile imprecise or overly categorical statements.
+4. The website never reproduces personal contact information found in study files.
 
 ## Module mapping
 
-| Module | Primary supplied sources | Coverage emphasized |
+| Module | Main supplied sources | v2.0 depth added |
 |---|---|---|
-| Introduction to Finance | Hoàng Kim Thanh Ch.0; `2024 Introduction to Finance.pdf`; `2023 Introduction to Finance.pdf` | real vs financial assets, household/firm decisions, organization form, agency/governance, financial system |
-| Time Value of Money | Hoàng Kim Thanh Ch.2/2.1; `2023 Time Value of Money.pdf`; `Time Value of Money 1.docx`; `Time Value of Money 2.docx` | timelines, PV/FV, annuities, perpetuities, growing cash flows, APR/EAR, loans, NPV/IRR |
-| Personal Finance | household-decision framework + TVM tutorials | financial position, saving, borrowing, buy/lease, insurance and retirement |
-| Financial Markets & Institutions | Hoàng Kim Thanh Ch.3 + money-market notes; `2023 Understanding Financial Markets and Financial Institutions.pdf`; `Asymmetric Infos.pdf`; tutorials | market architecture, transaction cost, information asymmetry, intermediaries, money-market instruments/yields |
-| Valuation of Securities | Hoàng Kim Thanh Ch.4; `2023 Valuation of securities.pdf` | valuation principle, zero/coupon bonds, YTM, bond risk, stock DDM |
-| Understanding Risk | `2023 Understanding risk.pdf`; `Cecchetti - Understanding Risk - Chapter 5.pdf` | expected return, variance/SD, risk aversion, diversification, insurance/information |
-| Managing Financial Health | `2023 Financial Statements.pdf`; `2023 Analyzing Firm Performance.pdf`; `Financial Statement 2.docx`; Hoàng Kim Thanh profit-vs-cash note | linked statements, common-size analysis, ratios, leverage and cash cycle |
-
-## High-value checks retained
-
-- Commercial paper is a **money-market** instrument.
-- Federal funds are very short-term interbank loans.
-- Negotiable CDs are transferable time-deposit instruments.
-- A repo is collateralized short-term financing structured around sale/repurchase of securities.
-- Dealer-market bid is normally below ask.
-- Bankers' acceptances are short-term trade-finance instruments.
-- Zero-coupon bonds pay no periodic coupon.
-- New stock issues belong to the primary market.
-- Discount yield, bond-equivalent yield and EAR are not interchangeable.
-- TVM requires cash-flow period and rate period to match.
-- Financial-ratio interpretation depends on a consistent numerator/denominator definition and operating context.
+| Introduction to Finance | Hoàng Kim Thanh Ch.0; 2023/2024 Introduction slides | real/financial asset symmetry, opportunity cost, incremental decisions, financing/working-capital links, agency controls and direct/indirect finance |
+| Time Value of Money | Hoàng Kim Thanh Ch.2/2.1; TVM lectures and tutorials | focal dates, rate-period consistency, derivation intuition, deferred/growing cash flows, loan balance, NPV/IRR failure modes and extensive timelines |
+| Personal Finance | TVM applications and household-decision framework | financial-position diagnosis, goal funding, effective borrowing cost, buy/lease equivalence, insurance design and two-stage retirement planning |
+| Financial Markets & Institutions | Hoàng Kim Thanh Ch.3, Money Market, Treasury auctions; Mishkin; Asymmetric Infos | multi-axis market classification, transaction-cost lifecycle, adverse selection/moral hazard, intermediary balance sheets, repo and auction mechanics, quotation conventions |
+| Valuation of Securities | Hoàng Kim Thanh Ch.4; 2023 Valuation; TVM exercises | required vs realized return, zero/coupon bond cash-flow maps, YTM assumptions, bond sensitivity, multi-stage DDM and preferred-stock terms |
+| Understanding Risk | 2023 Understanding Risk; Cecchetti Ch.5 | distributions, variance workflow, certainty equivalents, downside limits, covariance and two-asset diversification, insurance information problems |
+| Managing Financial Health | Financial Statements; Analyzing Firm Performance; Financial Statement 2 | linked statements, accrual-to-cash logic, common-size diagnosis, ratio decomposition, transaction effects, leverage definitions and cash-cycle funding value |
 
 ## Exercise design
 
-The existing 600-question bank is preserved. It combines instructor/tutorial-linked checks, exam-style variants and generated retrieval-practice variants. Generated material remains labelled as generated rather than being presented as a verbatim instructor question.
+The original 600-question bank is preserved. v2.0 adds 144 lesson-embedded guided problems:
+
+- **Easy:** recognize the concept and apply one direct step.
+- **Intermediate:** combine two or more pieces of information and justify the formula/classification.
+- **Advanced:** handle timing shifts, multiple stages, hidden assumptions, conflicting metrics or decision trade-offs.
+
+Solutions explain the starting structure, each calculation/reasoning step, the final answer and why the method is valid.
