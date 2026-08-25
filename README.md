@@ -1,10 +1,13 @@
-# zuòi lùn Finance Mastery — TCH 302 · v3.0
+# zuòi lùn Finance Mastery — TCH 302 · v3.1
 
 A static, GitHub Pages-ready learning system for **Principles of Finance (TCH 302)**. The site teaches in English, places accurate Vietnamese translations beside key terms, and combines deep theory with active recall, worked solutions, timelines and exam practice.
 
-## What is new in v3.0
+## What is new in v3.1
 
-- Complete visual redesign inspired by Duna's high-contrast editorial language: off-white canvas, black learning surfaces, cobalt action color, oversized typography, generous spacing and modular grids.
+- Exact Duna-derived core palette throughout the interface: electric blue `#0000EE`, black `#000000`, brown-black `#292421`, and warm off-white `#F7F7F5`.
+- Header mascot logo is now rendered as a real image with a CSS fallback and repository-relative URL, so it remains visible on GitHub Pages subpaths.
+
+- Complete visual redesign using Duna's high-contrast editorial language: off-white canvas, black learning surfaces, electric-blue action color, oversized typography, generous spacing and modular grids.
 - Shared **zuòi lùn** mascot, wordmark, favicon, Apple touch icon and installable web-app icons, aligned with the Accounting Mastery brand family.
 - **144 section self-checks** — one after every conceptual deep-dive section in all 48 lessons.
 - Every self-check includes an answer field, a question-specific guided answer, a reasoning checklist and a local confidence marker (`Review` / `Clear`).

@@ -1,4 +1,4 @@
-# Source Alignment — Finance Mastery v3.0
+# Source Alignment — Finance Mastery v3.1
 
 This build preserves the TCH 302 structure and expands it from summary-level notes into a teachable learning system.
 
@@ -11,7 +11,7 @@ This build preserves the TCH 302 structure and expands it from summary-level not
 
 ## Module mapping
 
-| Module | Main supplied sources | v3.0 depth retained and expanded |
+| Module | Main supplied sources | v3.1 depth retained and expanded |
 |---|---|---|
 | Introduction to Finance | Hoàng Kim Thanh Ch.0; 2023/2024 Introduction slides | real/financial asset symmetry, opportunity cost, incremental decisions, financing/working-capital links, agency controls and direct/indirect finance |
 | Time Value of Money | Hoàng Kim Thanh Ch.2/2.1; TVM lectures and tutorials | focal dates, rate-period consistency, derivation intuition, deferred/growing cash flows, loan balance, NPV/IRR failure modes and extensive timelines |
@@ -23,7 +23,7 @@ This build preserves the TCH 302 structure and expands it from summary-level not
 
 ## Exercise design
 
-The original 600-question bank is preserved. v3.0 retains 144 lesson-embedded guided problems and adds 144 section self-checks with direct model answers:
+The original 600-question bank is preserved. v3.1 retains 144 lesson-embedded guided problems and adds 144 section self-checks with direct model answers:
 
 - **Easy:** recognize the concept and apply one direct step.
 - **Intermediate:** combine two or more pieces of information and justify the formula/classification.

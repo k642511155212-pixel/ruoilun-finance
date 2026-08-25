@@ -1,4 +1,4 @@
-# Finance Mastery v3.0 — Content & Function Audit
+# Finance Mastery v3.1 — Content & Function Audit
 
 ## Preserved product invariants
 
@@ -8,7 +8,7 @@
 - Vanilla HTML/CSS/JavaScript, hash routing and local-browser persistence.
 - All existing study utilities and their navigation routes.
 
-## Deep-content standard preserved in v3.0
+## Deep-content standard preserved in v3.1
 
 Every lesson now contains:
 
@@ -59,7 +59,7 @@ Personal contact metadata appearing inside study notes is not reproduced.
 - 144 section self-checks with direct model answers, one below every conceptual deep-dive section.
 - 48 applied inline knowledge checks with immediate option-by-option feedback.
 - Vietnamese key-term support placed beside relevant theory sections and retained in the bilingual glossary.
-- Duna-inspired editorial redesign and shared zuòi lùn brand assets.
+- Exact Duna core palette, editorial redesign, and shared zuòi lùn brand assets.
 - Difficulty sequence Easy → Intermediate → Advanced in every lesson.
 - 41 non-empty timeline records with valid rows/events.
 - No duplicate question IDs and no missing lesson references.
