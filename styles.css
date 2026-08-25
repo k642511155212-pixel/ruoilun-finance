@@ -913,7 +913,7 @@ body{
   right:20px;
   width:76px;
   height:76px;
-  background:url("assets/fly-neutral.png") center/contain no-repeat;
+  background:var(--mascot-neutral) center/contain no-repeat;
   opacity:.92;
   pointer-events:none;
 }
@@ -926,7 +926,7 @@ body{
   width:88px;
   height:88px;
   transform:translateY(-50%);
-  background:url("assets/fly-angry.png") center/contain no-repeat;
+  background:var(--mascot-angry) center/contain no-repeat;
   opacity:.9;
   pointer-events:none;
 }
