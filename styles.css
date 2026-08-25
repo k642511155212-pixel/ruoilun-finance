@@ -739,3 +739,89 @@ body{
   .global-search-head{padding:20px 18px 14px}.global-search-box{margin:0 18px}.global-search-results{padding:13px 18px 18px}.global-search-result{grid-template-columns:62px minmax(0,1fr) auto;padding:11px 7px}.global-search-box kbd{display:none}.search-empty>div{grid-template-columns:1fr}
 }
 @media(max-width:430px){.pillars{grid-template-columns:1fr}.hero-note{right:165px}.self-check-actions .outline-btn{width:100%}}
+
+/* =========================================================
+   V3.2 — HAND-PAINTED WELCOME
+   Original art carries the emotion; live text and controls stay
+   accessible, responsive and faithful to the Duna core palette.
+   ========================================================= */
+:root{
+  --pastel-peach:#f2d2bd;
+  --pastel-blush:#efd3dc;
+  --pastel-lavender:#dcd8f1;
+  --pastel-sand:#eadfcb;
+}
+.hero-painted{
+  min-height:690px;
+  padding:clamp(46px,6vw,82px);
+  border:1px solid rgba(41,36,33,.14);
+  border-radius:30px;
+  background:var(--cream);
+  color:var(--ink);
+  box-shadow:0 30px 90px rgba(41,36,33,.13);
+  isolation:isolate;
+}
+.hero-painted:before{content:none}
+.hero-painted:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(247,247,245,.99) 0%,rgba(247,247,245,.95) 32%,rgba(247,247,245,.48) 52%,rgba(247,247,245,.05) 72%),
+    linear-gradient(0deg,rgba(247,247,245,.2),transparent 42%);
+  pointer-events:none;
+}
+.hero-painted .hero-art{position:absolute;inset:0;width:100%;height:100%;opacity:1;z-index:-2}
+.hero-paint{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-painted .hero-copy{max-width:min(650px,57%);color:var(--ink)}
+.hero-painted .hero-kicker{
+  border:1px solid rgba(0,0,238,.22);
+  background:rgba(247,247,245,.64);
+  color:#0000ee;
+  backdrop-filter:blur(10px);
+  font-weight:650;
+}
+.hero-painted .hero-copy h1{
+  max-width:650px;
+  margin:34px 0 26px;
+  color:var(--ink);
+  font-size:clamp(4rem,7.7vw,7.2rem);
+  font-weight:590;
+  line-height:.88;
+  letter-spacing:-.075em;
+}
+.hero-painted .hero-copy h1 em{color:#292421;font-style:normal;font-weight:430}
+.hero-painted .hero-copy p{max-width:560px;color:#504a46;font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.72}
+.hero-painted .hero-actions{margin-top:32px}
+.hero-painted .yellow-btn{box-shadow:0 12px 32px rgba(0,0,238,.2)}
+.hero-painted .ghost-btn{border-color:rgba(41,36,33,.24);background:rgba(247,247,245,.72);color:#292421;backdrop-filter:blur(10px)}
+.hero-painted .ghost-btn:hover{border-color:#0000ee;background:#fff;color:#0000ee;transform:translateY(-1px)}
+.hero-painted .hero-note{right:24px;bottom:22px;color:#292421}
+.hero-painted .hero-note span{border-color:rgba(41,36,33,.14);background:rgba(247,247,245,.78);color:#292421;box-shadow:0 5px 18px rgba(41,36,33,.06)}
+.pillars{padding-top:62px;padding-bottom:86px;gap:34px}
+.pillars article{padding-top:22px}.pillars h3{font-weight:620}.pillars p{max-width:250px;color:#67615d;line-height:1.78}
+
+@media(max-width:1000px){
+  .hero-painted .hero-copy{max-width:68%}
+  .hero-painted:after{background:linear-gradient(90deg,rgba(247,247,245,.99) 0%,rgba(247,247,245,.9) 44%,rgba(247,247,245,.18) 78%)}
+  .hero-painted .hero-copy h1{font-size:clamp(3.8rem,9vw,6.4rem)}
+}
+@media(max-width:680px){
+  .hero-painted{min-height:720px;padding:34px 24px 190px;border-radius:22px}
+  .hero-painted:before{content:none}
+  .hero-painted:after{background:linear-gradient(180deg,rgba(247,247,245,.98) 0%,rgba(247,247,245,.9) 54%,rgba(247,247,245,.08) 82%)}
+  .hero-painted .hero-art{inset:0;width:100%;height:100%}
+  .hero-painted .hero-paint{object-position:64% center}
+  .hero-painted .hero-copy{max-width:100%}
+  .hero-painted .hero-copy h1{margin:28px 0 20px;font-size:clamp(3.2rem,15vw,4.9rem);line-height:.9}
+  .hero-painted .hero-copy p{max-width:96%;font-size:.94rem;line-height:1.66}
+  .hero-painted .hero-actions{display:grid;grid-template-columns:1fr;max-width:260px}
+  .hero-painted .hero-note{left:20px;right:20px;bottom:18px;justify-content:flex-start}
+  .hero-painted .hero-note span{font-size:.55rem}
+  .pillars{gap:22px;padding-top:46px;padding-bottom:68px}
+}
+@media(max-width:430px){
+  .hero-painted{min-height:760px}
+  .hero-painted .hero-note{right:20px}
+}

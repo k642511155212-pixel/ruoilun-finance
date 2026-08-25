@@ -1,6 +1,6 @@
-# v3.1 Content Coverage
+# v3.2 Content Coverage
 
-v3.1 preserves every v2.0 content expansion and adds 144 section self-checks, 144 direct guided answers, 48 inline knowledge checks, nearby Vietnamese terminology support, a complete editorial redesign, the exact Duna core palette, and a GitHub Pages-safe header logo.
+v3.2 preserves every v2.0 content expansion and adds 144 section self-checks, 144 direct guided answers, 48 inline knowledge checks, nearby Vietnamese terminology support, a hand-painted editorial hero, the exact Duna core palette, and a GitHub Pages-safe header logo.
 
 | Module | Lessons | Guided problems | Timeline emphasis |
 |---|---:|---:|---|

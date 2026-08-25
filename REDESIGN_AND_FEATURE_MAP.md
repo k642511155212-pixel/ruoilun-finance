@@ -2,7 +2,7 @@
 
 ## Design direction
 
-The v3.1 system uses Duna's core color language and editorial principles without copying its page structure: electric blue `#0000EE`, black `#000000`, brown-black `#292421`, warm off-white `#F7F7F5`, large editorial headings, compact pill controls, modular product cards, clear metric strips and generous whitespace. Finance Mastery keeps its own course structure, mascot and study-focused information hierarchy.
+The v3.2 system combines Duna's core color language with an original hand-painted opening scene. Electric blue `#0000EE`, black `#000000`, brown-black `#292421` and warm off-white `#F7F7F5` still structure the learning UI; peach, blush, lavender and sand appear as gentle atmospheric layers in the hero. The result keeps the course structure, mascot and study-focused information hierarchy while making the first impression warmer and less corporate.
 
 ## Features learned from Accounting Mastery
 
