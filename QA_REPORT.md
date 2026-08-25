@@ -17,3 +17,17 @@
 - `node --check annotations.js`: PASS
 - `index.html` loads `data.js` → `annotations.js` → `app.js` in dependency order.
 - GitHub Pages remains static-only; no backend dependency added.
+# Visual asset hotfix — v3.4
+
+- Root cause confirmed: the page referenced `assets/...`, but the ZIP placed the visual files at repository root and did not include an `assets/` directory.
+- Restored the complete `assets/` directory with the header logo, watercolor hero, favicon variants, app icons, and social preview image.
+- Browser verification passed: the header logo renders at its intrinsic width and the hero artwork loads at 1586 × 992 with full opacity.
+- GitHub Pages-safe relative paths are preserved.
+
+# Accounting-style embedded asset fix — v3.5
+
+- Compared the implementation against the supplied working Accounting Mastery ZIP.
+- Embedded the header logo directly in `index.html`, matching Accounting Mastery's self-contained logo strategy.
+- Converted the watercolor hero to an optimized WebP and embedded it directly in `styles.css`, matching Accounting Mastery's self-contained hero strategy.
+- Removed the runtime hero `<img>` dependency, so the visible hero no longer relies on a repository subpath or an `assets/` request.
+- Browser QA confirmed that the inline logo loads and that the inline hero background renders with `background-size: cover`.

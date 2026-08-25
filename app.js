@@ -244,8 +244,7 @@ const App = (() => {
 
   function dashboard(){
     const s=scoreStats(); const totalLessons=D.modules.reduce((a,m)=>a+m.lessons.length,0);
-    const hero=`<section class="hero-card hero-painted">
-      <div class="hero-art" aria-hidden="true"><img class="hero-paint" src="./assets/finance-painted-hero-v32.png" alt="" width="1586" height="992" fetchpriority="high" decoding="async" /></div>
+    const hero=`<section class="hero-card hero-painted"> 
       <div class="hero-copy"><span class="hero-kicker">A thoughtful way to learn finance</span><h1>Finance,<br><em>made easier to see.</em></h1><p>A calm place to slow down, trace every cash flow, connect English concepts with Vietnamese key terms, and build confidence through guided practice.</p><div class="hero-actions"><button class="yellow-btn" data-route="learn">Begin with the course ↗</button><button class="ghost-btn" data-route="practice">Try a self-check ↗</button></div></div>
       <div class="hero-note"><span>48 deep lessons</span><span>144 section self-checks</span><span>600 practice questions</span></div>
     </section>`;

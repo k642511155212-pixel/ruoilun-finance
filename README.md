@@ -1,4 +1,4 @@
-# zuòi lùn Finance Mastery - TCH 302 · v3.3
+# zuòi lùn Finance Mastery — TCH 302 · v3.3
 
 A static, GitHub Pages-ready learning system for **Principles of Finance (TCH 302)**. The site teaches in English, places accurate Vietnamese translations beside key terms, and combines deep theory with active recall, worked solutions, timelines and exam practice.
 
