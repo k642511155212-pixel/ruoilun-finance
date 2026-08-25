@@ -1,8 +1,12 @@
-# zuòi lùn Finance Mastery — TCH 302 · v3.2
+# zuòi lùn Finance Mastery — TCH 302 · v3.3
 
 A static, GitHub Pages-ready learning system for **Principles of Finance (TCH 302)**. The site teaches in English, places accurate Vietnamese translations beside key terms, and combines deep theory with active recall, worked solutions, timelines and exam practice.
 
-## What is new in v3.2
+## What is new in v3.3
+
+- Fixed the hero artwork stacking order so the watercolor landscape is actually visible instead of sitting behind the card background.
+- Replaced the header image dependency with the same self-contained SVG mascot mark used by Accounting Mastery.
+- Kept the headline, actions and stat chips above the art with a responsive readability overlay.
 
 - Original hand-painted hero landscape that puts emotional warmth before product framing.
 - Softer, sentence-case hero typography and wider spacing so the opening message feels calm rather than corporate.
