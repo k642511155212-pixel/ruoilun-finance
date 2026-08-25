@@ -19,6 +19,14 @@ const App = (() => {
     exam: null,
     search: ''
   };
+  const MASCOTS = Object.freeze({
+    flower: 'assets/fly-flower.png',
+    heart: 'assets/fly-heart.png',
+    neutral: 'assets/fly-neutral.png',
+    angry: 'assets/fly-angry.png',
+    mustache: 'assets/fly-mustache.png',
+    sideeye: 'assets/fly-sideeye.png'
+  });
   const app = document.getElementById('app');
   const toast = document.getElementById('toast');
   const noteDialog = document.getElementById('noteDialog');
@@ -191,9 +199,23 @@ const App = (() => {
   function isSaved(type,id){ return state.saved.some(x=>x.type===type&&x.id===id); }
   function saveToggle(type,id){ const i=state.saved.findIndex(x=>x.type===type&&x.id===id); if(i>=0){state.saved.splice(i,1);showToast('Removed from Saved');} else {state.saved.unshift({type,id,at:Date.now()});showToast('Saved');} persist(); render({preserveScroll:true}); }
 
+  function mascotForPage(title=''){
+    if(/mistake|error|exam/i.test(title))return MASCOTS.angry;
+    if(/practice|progress|saved/i.test(title))return MASCOTS.heart;
+    if(/formula|calculator|source/i.test(title))return MASCOTS.sideeye;
+    if(/glossary|notes|flashcard/i.test(title))return MASCOTS.mustache;
+    return MASCOTS.flower;
+  }
+  function mascotFloatLayer(){
+    return `<div class="mascot-float-layer" aria-hidden="true">
+      <img class="floating-fly fly-left-top" src="${MASCOTS.flower}" alt="">
+      <img class="floating-fly fly-right-mid" src="${MASCOTS.heart}" alt="">
+      <img class="floating-fly fly-left-bottom" src="${MASCOTS.sideeye}" alt="">
+    </div>`;
+  }
   function shell(content,{eyebrow='',title='',lead='',actions=''}={}){
     return `<div class="page-shell shell">
-      ${title?`<section class="page-heading"><div><span class="eyebrow">${eyebrow}</span><h1>${title}</h1><p>${lead}</p></div><div class="heading-actions">${actions}</div></section>`:''}
+      ${title?`<section class="page-heading"><div><span class="eyebrow">${eyebrow}</span><h1>${title}</h1><p>${lead}</p></div><div class="page-heading-side"><img class="page-mascot" src="${mascotForPage(title)}" alt="" aria-hidden="true"><div class="heading-actions">${actions}</div></div></section>`:''}
       ${content}
     </div>`;
   }
@@ -555,7 +577,7 @@ const App = (() => {
     else if(r==='sources')html=sources();
     else if(r==='settings')html=settings();
     else if(r==='menu')html=menu(); else html=notFound();
-    app.innerHTML=html;
+    app.innerHTML=mascotFloatLayer()+html;
     updateHeaderProgress();
     bindAfterRender(r);
     typesetMath(app);
@@ -651,7 +673,7 @@ const App = (() => {
     const correct=choice===q.answer; state.attempts.push({qid:q.id,choice,correct,at:Date.now()});
     if(!correct&&!state.mistakes.includes(q.id))state.mistakes.unshift(q.id); if(correct)state.mistakes=state.mistakes.filter(id=>id!==q.id); persist();
     card.querySelectorAll('.option').forEach((b,i)=>{b.disabled=true;if(i===q.answer)b.classList.add('correct');if(i===choice&&!correct)b.classList.add('wrong');});
-    const panel=card.querySelector('.answer-panel');panel.hidden=false;panel.innerHTML=`<strong>${correct?'Correct — the rule is applied consistently.':'Not quite — diagnose the setup before recalculating.'}</strong><p>${esc(q.explanation)}</p><div class="answer-breakdown"><span>WHY EACH OPTION</span>${q.options.map((o,i)=>`<div class="answer-breakdown-row ${i===q.answer?'correct':''}"><b>${String.fromCharCode(65+i)}</b><p><strong>${esc(o)}</strong><br>${esc(distractorExplanation(q,i))}</p></div>`).join('')}</div><div class="q-meta">${esc(mod(q.module)?.title||q.module)} · ${esc(lesson(q.module,q.lesson)?.title||q.lesson)} · ${esc(q.origin)}</div><button class="outline-btn" data-route="learn/${q.module}/${q.lesson}">Review concept ↗</button>`;
+    const panel=card.querySelector('.answer-panel');panel.hidden=false;panel.innerHTML=`<img class="feedback-mascot" src="${correct?MASCOTS.heart:MASCOTS.angry}" alt="" aria-hidden="true"><strong>${correct?'Correct — the rule is applied consistently.':'Not quite — diagnose the setup before recalculating.'}</strong><p>${esc(q.explanation)}</p><div class="answer-breakdown"><span>WHY EACH OPTION</span>${q.options.map((o,i)=>`<div class="answer-breakdown-row ${i===q.answer?'correct':''}"><b>${String.fromCharCode(65+i)}</b><p><strong>${esc(o)}</strong><br>${esc(distractorExplanation(q,i))}</p></div>`).join('')}</div><div class="q-meta">${esc(mod(q.module)?.title||q.module)} · ${esc(lesson(q.module,q.lesson)?.title||q.lesson)} · ${esc(q.origin)}</div><button class="outline-btn" data-route="learn/${q.module}/${q.lesson}">Review concept ↗</button>`;
     document.getElementById('nextPractice')?.removeAttribute('disabled');
   }
 
@@ -663,7 +685,7 @@ const App = (() => {
     const correct=choice===q.answer;quiz.dataset.answered='true';
     quiz.querySelectorAll('[data-inline-answer]').forEach((b,i)=>{b.disabled=true;if(i===q.answer)b.classList.add('correct');else if(i===choice)b.classList.add('wrong');});
     const feedback=quiz.querySelector('.inline-knowledge-feedback');
-    feedback.innerHTML=`<div class="knowledge-result ${correct?'correct':'wrong'}"><strong>${correct?'Correct — now explain why in your own words.':'Not correct yet — compare the logic of every option.'}</strong><span>${correct?'✓':'↻'}</span></div><div class="knowledge-breakdown">${q.options.map((o,i)=>`<div class="${i===q.answer?'correct':''}"><b>${String.fromCharCode(65+i)}</b><p><strong>${esc(o)}</strong><br>${esc(distractorExplanation(q,i))}</p></div>`).join('')}</div>`;
+    feedback.innerHTML=`<div class="knowledge-result ${correct?'correct':'wrong'}"><img class="knowledge-mascot" src="${correct?MASCOTS.heart:MASCOTS.angry}" alt="" aria-hidden="true"><strong>${correct?'Correct — now explain why in your own words.':'Not correct yet — compare the logic of every option.'}</strong><span>${correct?'✓':'↻'}</span></div><div class="knowledge-breakdown">${q.options.map((o,i)=>`<div class="${i===q.answer?'correct':''}"><b>${String.fromCharCode(65+i)}</b><p><strong>${esc(o)}</strong><br>${esc(distractorExplanation(q,i))}</p></div>`).join('')}</div>`;
     state.attempts.push({qid:q.id,choice,correct,at:Date.now(),source:'inline-check'});
     if(!correct&&!state.mistakes.includes(q.id))state.mistakes.unshift(q.id);if(correct)state.mistakes=state.mistakes.filter(id=>id!==q.id);
     persist();
