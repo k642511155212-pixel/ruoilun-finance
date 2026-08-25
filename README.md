@@ -1,46 +1,60 @@
-# Finance Mastery — TCH 302 · v2.0
+# zuòi lùn Finance Mastery — TCH 302 · v3.0
 
-A static, GitHub Pages-ready study system for **Principles of Finance (TCH 302)**.
+A static, GitHub Pages-ready learning system for **Principles of Finance (TCH 302)**. The site teaches in English, places accurate Vietnamese translations beside key terms, and combines deep theory with active recall, worked solutions, timelines and exam practice.
 
-## What v2.0 contains
+## What is new in v3.0
 
-- 7 modules and 48 lessons; the original key principles and lesson routes are preserved.
-- A three-part **Conceptual Deep Dive** in every lesson: mechanism, application logic and diagnostic reasoning.
-- **41 readable timelines** for cash flows, loans, annuities, projects, securities, market processes, retirement and the cash conversion cycle.
-- Timelines are split into clearly labelled rows (and into fewer columns on small screens) rather than forcing every event onto one line.
-- **144 guided problems** embedded in lessons: exactly 3 per lesson at Easy, Intermediate and Advanced levels.
-- Every guided problem includes a starting hint, numbered solution method, final answer and explanation of why the method works.
-- 600 existing practice questions remain available in Practice, Question Bank, Mistake Notebook and Exam Mode.
-- Formula Sheet expanded from 25 to **39 typeset formulas**, including growing annuity, rate conversion, loan balance, holding-period return, portfolio risk and firm-health formulas.
-- Source clarifications correct overstatements found in study notes without discarding the course framing.
+- Complete visual redesign inspired by Duna's high-contrast editorial language: off-white canvas, black learning surfaces, cobalt action color, oversized typography, generous spacing and modular grids.
+- Shared **zuòi lùn** mascot, wordmark, favicon, Apple touch icon and installable web-app icons, aligned with the Accounting Mastery brand family.
+- **144 section self-checks** — one after every conceptual deep-dive section in all 48 lessons.
+- Every self-check includes an answer field, a question-specific guided answer, a reasoning checklist and a local confidence marker (`Review` / `Clear`).
+- **48 inline applied knowledge checks** — one per lesson, with immediate feedback and an explanation for every option.
+- Vietnamese key-term support is placed beside the relevant conceptual section and retained in the full bilingual term grid and glossary.
+- Global search across lessons, questions, formulas and glossary terms (`Ctrl/⌘ K` or `/`).
+- Header progress indicator and a clearer path from theory → self-check → guided practice → exam practice.
+- Practice feedback now explains why each option is correct or incorrect instead of showing only the correct result.
+
+## Complete learning content
+
+- 7 modules and 48 deep lessons.
+- 144 conceptual deep-dive sections.
+- 144 direct model answers for section self-checks.
+- 41 readable timelines. Long timelines wrap into labelled rows instead of being compressed onto one line.
+- 144 guided problems: Easy, Intermediate and Advanced in every lesson.
+- 600 practice questions with explanations, filters, mistakes and exam use.
+- 39 typeset formula families plus interactive calculators.
 
 ## Core utilities preserved
 
-- Dashboard, Learn, Practice, Question Bank and Mistake Notebook
-- Notes & Highlights with linked context, search, filters, editing and export
-- Personal Flashcards, Formula Sheet and Calculators
-- Exam Mode, Progress & Analytics, Glossary, Saved, Sources and Settings
-- LocalStorage persistence, hash routing and zero-build GitHub Pages deployment
-- In-place lesson completion; marking a lesson complete does not jump to the top
-
-## Files added in v2.0
-
-- `deep-content-core.js` — formula expansion and safe merge helpers
-- `deep-intro.js`
-- `deep-tvm.js`
-- `deep-personal.js`
-- `deep-markets.js`
-- `deep-valuation.js`
-- `deep-risk.js`
-- `deep-health.js`
-
-The new files extend `data.js` and `study-content.js`; they do not overwrite the original question bank or principles.
+- Dashboard, Learn, Practice and Question Bank
+- Mistake Notebook and option-by-option feedback
+- Notes, highlights, linked comments and export
+- Personal flashcards with spaced-review controls
+- Formula Sheet and calculators
+- Exam Mode and Progress & Analytics
+- Bilingual Glossary, Saved items, Sources and Settings
+- LocalStorage persistence, hash routing and responsive layout
 
 ## Deploy to GitHub Pages
 
-1. Upload **all files in this folder** to the repository root.
-2. In GitHub, open **Settings → Pages**.
-3. Select deployment from the `main` branch and the repository root.
-4. Open the generated Pages URL.
+1. Upload **all files and folders in this package** to the repository root.
+2. Open **Settings → Pages → Build and deployment**.
+3. Choose **GitHub Actions**. The included workflow deploys automatically after a push to `main`.
 
-No `npm install`, build command or backend is required. Formula rendering uses MathJax from jsDelivr, so an internet connection is required for the typeset equation graphics.
+You can also choose **Deploy from a branch → main / root** because this is a static HTML/CSS/JavaScript website. No package installation, framework build or backend is required.
+
+## Important files
+
+- `index.html` — application shell, brand metadata and script loading order.
+- `styles.css` — responsive visual system and v3.0 editorial theme.
+- `app.js` — routes, learning interactions, self-check persistence and global search.
+- `section-answers.js` — 144 question-specific guided self-check answers.
+- `data.js`, `study-content.js`, `deep-*.js` — original course data plus deep theory, timelines, formulas and guided problems.
+- `assets/` — zuòi lùn logo and application icons.
+- `.github/workflows/deploy-pages.yml` — GitHub Pages deployment workflow.
+
+## Local data
+
+Progress, answers, mistakes, self-check drafts, confidence markers, notes, highlights, flashcards and settings are stored in the learner's browser. Clearing browser storage resets those records.
+
+Math formulas use MathJax from jsDelivr. An internet connection is required for MathJax rendering; the learning content and all other application logic are included in the repository.

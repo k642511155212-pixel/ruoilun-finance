@@ -1,0 +1,21 @@
+{
+  "name": "zuòi lùn Finance Mastery",
+  "short_name": "zuòi lùn",
+  "description": "Deep Principles of Finance lessons in English with Vietnamese key-term support, timelines, worked examples and self-checks.",
+  "start_url": "./index.html#dashboard",
+  "display": "standalone",
+  "background_color": "#f7f7f5",
+  "theme_color": "#0d0d0d",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

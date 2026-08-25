@@ -13,6 +13,7 @@ const App = (() => {
     saved: LS.get('fm_saved', []),
     flashcards: LS.get('fm_flashcards', []),
     reviews: LS.get('fm_flash_reviews', {}),
+    selfChecks: LS.get('fm_self_checks', {}),
     settings: LS.get('fm_settings', {fontScale:100,compact:false}),
     practice: {pool:[], index:0, answered:false},
     exam: null,
@@ -21,12 +22,15 @@ const App = (() => {
   const app = document.getElementById('app');
   const toast = document.getElementById('toast');
   const noteDialog = document.getElementById('noteDialog');
+  const globalSearchDialog = document.getElementById('globalSearchDialog');
+  const globalSearchInput = document.getElementById('globalSearchInput');
+  const globalSearchResults = document.getElementById('globalSearchResults');
   let noteEditorCtx = null;
   let annotationFocusId = null;
 
   function persist(){
     LS.set('fm_attempts',state.attempts); LS.set('fm_completed',state.completed); LS.set('fm_mistakes',state.mistakes);
-    LS.set('fm_saved',state.saved); LS.set('fm_flashcards',state.flashcards); LS.set('fm_flash_reviews',state.reviews); LS.set('fm_settings',state.settings);
+    LS.set('fm_saved',state.saved); LS.set('fm_flashcards',state.flashcards); LS.set('fm_flash_reviews',state.reviews); LS.set('fm_self_checks',state.selfChecks); LS.set('fm_settings',state.settings);
   }
   function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1800); }
   function esc(s=''){ return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
@@ -66,7 +70,32 @@ const App = (() => {
       </div>
     </article>`;
   }
-  function deepDivePanel(sections=[]){
+  function selfCheckModel(section,lessonKey,index){
+    const paragraphs=section.paragraphs||[], bullets=section.bullets||[];
+    return {
+      answer:D.sectionAnswers?.[lessonKey]?.[index]||section.answer||paragraphs[paragraphs.length-1]||paragraphs[0]||'Use the section logic above to state the rule, explain the mechanism, and apply it to the situation.',
+      points:bullets.slice(0,4)
+    };
+  }
+  function sectionTermSupport(terms=[],index=0){
+    if(!terms.length)return '';
+    const start=index*2;
+    let chosen=terms.slice(start,start+2);
+    if(!chosen.length)chosen=terms.slice(Math.max(0,terms.length-2));
+    return `<aside class="section-term-support"><span>KEY TERMS · TIẾNG VIỆT</span>${chosen.map(t=>`<div><b>${esc(t[0])}</b><small>${esc(t[1])}</small></div>`).join('')}</aside>`;
+  }
+  function sectionSelfCheck(section,index,lessonKey){
+    if(!section.check)return '';
+    const checkKey=`${lessonKey}/section-${index+1}`, saved=state.selfChecks[checkKey]||{}, model=selfCheckModel(section,lessonKey,index);
+    return `<section class="section-self-check" data-self-check="${esc(checkKey)}">
+      <div class="self-check-head"><div><span>SELF-CHECK ${String(index+1).padStart(2,'0')} · ACTIVE RECALL</span><h4>Answer before revealing the guide</h4></div><b>2–3 min</b></div>
+      <p class="self-check-question">${esc(section.check)}</p>
+      <label class="self-check-response"><span>Your answer / Câu trả lời của bạn</span><textarea data-self-input="${esc(checkKey)}" rows="4" placeholder="State the rule, explain why, then apply it…">${esc(saved.answer||'')}</textarea></label>
+      <div class="self-check-actions"><button class="outline-btn" type="button" data-self-reveal="${esc(checkKey)}">Reveal guided answer</button><span>How clear is this?</span><button class="confidence-btn ${saved.confidence==='review'?'active':''}" type="button" data-self-confidence="review" data-self-key="${esc(checkKey)}">Review</button><button class="confidence-btn ${saved.confidence==='clear'?'active':''}" type="button" data-self-confidence="clear" data-self-key="${esc(checkKey)}">Clear</button></div>
+      <div class="self-check-model" data-self-model="${esc(checkKey)}" hidden><span>GUIDED ANSWER · HƯỚNG DẪN</span><p>${esc(model.answer)}</p>${model.points.length?`<div class="model-checklist"><b>A strong answer should include:</b><ul>${model.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}<div class="reasoning-path"><b>Reasoning path</b><ol><li>State the governing concept.</li><li>Connect timing, risk, rate or classification to that concept.</li><li>Conclude in the language of the question.</li></ol></div></div>
+    </section>`;
+  }
+  function deepDivePanel(sections=[],terms=[],lessonKey=''){
     if(!sections.length)return '';
     return `<section class="theory-block deep-dive-section">
       <span class="block-label">CONCEPTUAL DEEP DIVE</span>
@@ -74,9 +103,9 @@ const App = (() => {
       <p class="section-intro">Each part answers a different question: what the concept means, why it works, how to apply it, and where the reasoning can fail.</p>
       <div class="deep-dive-grid">${sections.map((s,i)=>`<article class="deep-dive-card">
         <div class="deep-dive-card-head"><span>${String(i+1).padStart(2,'0')}</span><div><small>${esc(s.kicker||'Core reasoning')}</small><h3>${esc(s.title)}</h3></div></div>
-        ${(s.paragraphs||[]).map(p=>`<p>${esc(p)}</p>`).join('')}
-        ${s.bullets?.length?`<ul>${s.bullets.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
-        ${s.check?`<div class="deep-check"><b>Self-check</b><p>${esc(s.check)}</p></div>`:''}
+        <div class="deep-learning-layout"><div class="deep-learning-copy">${(s.paragraphs||[]).map(p=>`<p>${esc(p)}</p>`).join('')}
+        ${s.bullets?.length?`<ul>${s.bullets.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}</div>${sectionTermSupport(terms,i)}</div>
+        ${sectionSelfCheck(s,i,lessonKey)}
       </article>`).join('')}</div>
     </section>`;
   }
@@ -119,6 +148,34 @@ const App = (() => {
       </details>`).join('')}</div>
     </section>`;
   }
+  function lessonCheckpointQuestion(mid,lid,sections=[]){
+    const exact=(D.questions||[]).filter(q=>q.module===mid&&q.lesson===lid);
+    const pool=exact.length?exact:(D.questions||[]).filter(q=>q.module===mid);
+    if(!pool.length)return null;
+    const tokens=[...(sections||[]).flatMap(s=>[s.title,s.check,...(s.bullets||[])]),lesson(mid,lid)?.title||'']
+      .join(' ').toLowerCase().match(/[a-z]{4,}/g)||[];
+    return pool.map((q,i)=>{
+      const haystack=`${q.question} ${q.explanation} ${q.topic||''}`.toLowerCase();
+      return {q,i,score:tokens.reduce((sum,t)=>sum+(haystack.includes(t)?1:0),0)};
+    }).sort((a,b)=>b.score-a.score||a.i-b.i)[0]?.q||pool[0];
+  }
+  function inlineKnowledgeCheck(q){
+    if(!q)return '';
+    return `<section class="theory-block inline-knowledge-wrap"><div class="inline-knowledge" data-inline-quiz="${esc(q.id)}">
+      <div class="inline-knowledge-head"><div><span class="block-label">KNOWLEDGE CHECK · 1 MINUTE</span><h2>Can you apply the lesson immediately?</h2></div><span class="knowledge-topic">${esc(q.topic||q.difficulty||'Application')}</span></div>
+      <p class="inline-knowledge-question">${esc(q.question)}</p>
+      <div class="inline-knowledge-options">${q.options.map((o,i)=>`<button type="button" data-inline-answer="${i}"><b>${String.fromCharCode(65+i)}</b><span>${esc(o)}</span></button>`).join('')}</div>
+      <div class="inline-knowledge-feedback" aria-live="polite"></div>
+    </div></section>`;
+  }
+  function distractorExplanation(q,index){
+    if(index===q.answer)return `Correct. ${q.explanation}`;
+    const option=String(q.options[index]||''), correct=String(q.options[q.answer]||'');
+    const numeric=/[-+]?\d[\d,.]*%?/.test(option);
+    if(numeric)return `This value is not consistent with the required timing, rate convention, sign, or denominator. Rebuild the setup before calculating; the consistent result or rule is “${correct}”. ${q.explanation}`;
+    if(/always|never|only|guarantee/i.test(option))return `The absolute wording is too strong for this finance relationship. Check the conditions and exceptions. The defensible conclusion is “${correct}”. ${q.explanation}`;
+    return `This choice does not follow the governing classification, cash-flow timing, risk relationship, or valuation rule. Compare it with “${correct}”. ${q.explanation}`;
+  }
   function mod(id){ return D.modules.find(m=>m.id===id); }
   function lesson(mid,lid){ return mod(mid)?.lessons.find(l=>l.id===lid); }
   function qById(id){ return D.questions.find(q=>q.id===id); }
@@ -140,24 +197,68 @@ const App = (() => {
       ${content}
     </div>`;
   }
+  function searchNorm(value=''){
+    return String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  }
+  function globalSearchIndex(){
+    const rows=[];
+    D.modules.forEach(m=>m.lessons.forEach(l=>{
+      const enh=lessonEnhancement(m.id,l.id), terms=[...(l.terms||[]),...(enh?.termsExtra||[])];
+      rows.push({type:'Lesson',title:l.title,sub:`Module ${m.num} · ${m.title}`,route:`learn/${m.id}/${l.id}`,text:[l.title,l.objective,l.keyPrinciple,...(l.explanation||[]),...terms.flat()].join(' ')});
+    }));
+    (D.formulas||[]).forEach(f=>rows.push({type:'Formula',title:f[0],sub:f[2]||f[3]||'Formula sheet',route:'formulas',text:f.join(' ')}));
+    Object.entries(D.glossary||{}).forEach(([term,definition])=>rows.push({type:'Key term',title:term,sub:definition,route:'glossary',text:`${term} ${definition}`}));
+    (D.questions||[]).forEach(q=>rows.push({type:'Question',title:q.question,sub:`${q.id} · ${q.difficulty}`,route:`practice/${q.module}/${q.lesson}`,text:`${q.question} ${q.explanation} ${q.topic||''}`}));
+    return rows;
+  }
+  let cachedSearchIndex=null;
+  function renderGlobalSearchResults(query=''){
+    if(!globalSearchResults)return;
+    const q=searchNorm(query).trim();
+    if(q.length<2){
+      globalSearchResults.innerHTML=`<div class="search-empty"><span>QUICK PATHS</span><p>Type at least two characters, or jump to a study tool.</p><div>${[['Learn','learn'],['Question bank','bank'],['Formula sheet','formulas'],['Glossary','glossary']].map(x=>`<button data-route="${x[1]}">${x[0]} <b>↗</b></button>`).join('')}</div></div>`;
+      return;
+    }
+    cachedSearchIndex=cachedSearchIndex||globalSearchIndex();
+    const tokens=q.split(/\s+/).filter(Boolean);
+    const matches=cachedSearchIndex.map((row,index)=>{
+      const hay=searchNorm(`${row.title} ${row.sub} ${row.text}`);
+      const score=tokens.reduce((sum,t)=>sum+(hay.includes(t)?1:0)+(searchNorm(row.title).includes(t)?2:0),0);
+      return {row,index,score};
+    }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.index-b.index).slice(0,24);
+    globalSearchResults.innerHTML=matches.length?`<div class="search-count">${matches.length} focused results</div>${matches.map(({row})=>`<button class="global-search-result" data-route="${esc(row.route)}"><span>${esc(row.type)}</span><div><h3>${esc(row.title)}</h3><p>${esc(row.sub)}</p></div><b>↗</b></button>`).join('')}`:`<div class="search-empty"><span>NO MATCH</span><p>Try a broader English or Vietnamese key term.</p><button data-route="bank">Open Question Bank ↗</button></div>`;
+  }
+  function openGlobalSearch(){
+    if(!globalSearchDialog)return;
+    renderGlobalSearchResults(globalSearchInput?.value||'');
+    if(!globalSearchDialog.open)globalSearchDialog.showModal();
+    setTimeout(()=>globalSearchInput?.focus(),20);
+  }
+  function closeGlobalSearch(){ if(globalSearchDialog?.open)globalSearchDialog.close(); }
+  function updateHeaderProgress(){
+    const node=document.getElementById('headerProgress');
+    if(!node)return;
+    const total=D.modules.reduce((sum,m)=>sum+m.lessons.length,0);
+    node.textContent=`${Math.round((state.completed.length/total)*100)||0}%`;
+  }
 
   function dashboard(){
     const s=scoreStats(); const totalLessons=D.modules.reduce((a,m)=>a+m.lessons.length,0);
     const hero=`<section class="hero-card">
-      <div class="hero-art" aria-hidden="true"><span class="orbit o1"></span><span class="orbit o2"></span><span class="hero-symbol">%</span></div>
-      <div class="hero-copy"><span class="hero-kicker">Source-aligned · TCH 302</span><h1>MASTER<br><em>FINANCE</em></h1><p>Build intuition first. Then formulas. Then exam-speed application.</p><div class="hero-actions"><button class="yellow-btn" data-route="learn">Start learning ↗</button><button class="ghost-btn" data-route="practice">Practice now ↗</button></div></div>
-      <div class="hero-note">48 lessons · 600 questions · 144 guided problems</div>
+      <div class="hero-art" aria-hidden="true"><span class="orbit o1"></span><span class="orbit o2"></span><span class="hero-symbol">%</span><div class="hero-mascot"><img src="assets/zuoi-character.png" alt="" /></div></div>
+      <div class="hero-copy"><span class="hero-kicker">zuòi lùn · Finance learning system</span><h1>FINANCE,<br><em>MADE LEGIBLE.</em></h1><p>Go beyond definitions: understand the mechanism, see the Vietnamese meaning of key terms beside the theory, and test yourself before moving on.</p><div class="hero-actions"><button class="yellow-btn" data-route="learn">Start learning ↗</button><button class="ghost-btn" data-route="practice">Open self-test ↗</button></div></div>
+      <div class="hero-note"><span>48 deep lessons</span><span>144 section self-checks</span><span>600 practice questions</span></div>
     </section>`;
     const pillars=`<section class="pillars">${[
-      ['01','Understand','Theory is expanded around the course’s own definitions and logic.'],
-      ['02','Apply','Worked examples connect every principle to a numerical or decision case.'],
-      ['03','Diagnose','Mistakes, explanations and analytics show exactly where reasoning breaks.'],
-      ['04','Perform','Exam mode removes scaffolding and forces timed retrieval.']
+      ['01','Understand deeply','Every definition is expanded into mechanism, conditions, intuition and limits.'],
+      ['02','Read bilingually','English stays primary; Vietnamese key terms sit beside the exact concept.'],
+      ['03','Check yourself','Every conceptual section ends with active recall and a guided answer.'],
+      ['04','Perform under pressure','Worked problems, mistake review and exam mode turn knowledge into retrieval.']
     ].map(x=>`<article><span>${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p></article>`).join('')}</section>`;
     const progress=`<section class="editorial-grid section-space"><div class="editorial-copy"><span class="eyebrow">Your course map</span><h2>Seven modules. One connected financial system.</h2><p>The structure follows the supplied TCH 302 syllabus: foundations → time value → household decisions → markets and institutions → valuation → risk → financial health.</p><div class="inline-checks"><span>✓ ${s.completed}/${totalLessons} lessons complete</span><span>✓ ${s.accuracy}% practice accuracy</span><span>✓ ${state.mistakes.length} active mistakes</span></div><button class="green-btn" data-route="progress">View progress ↗</button></div>
       <div class="metric-card"><span>Study progress</span><strong>${Math.round(s.completed/totalLessons*100)||0}%</strong><p>Completion is based on lessons you explicitly mark complete.</p><div class="mini-bars">${D.modules.map(m=>`<div><b>${m.num}</b><i><u style="width:${moduleProgress(m.id)}%"></u></i><small>${moduleProgress(m.id)}%</small></div>`).join('')}</div></div></section>`;
     const modules=`<section class="soft-section"><div class="section-head"><span class="eyebrow">Learn</span><h2>Choose a module</h2><p>Each module opens into concept lessons, worked examples, exam traps and linked practice.</p></div><div class="module-showcase">${D.modules.map(m=>`<article class="module-card" data-route="learn/${m.id}"><div class="module-icon">${m.icon}</div><span>Module ${m.num}</span><h3>${m.title}</h3><p>${m.subtitle}</p><div class="module-card-foot"><b>${m.lessons.length} lessons</b><small>${moduleProgress(m.id)}% complete</small></div></article>`).join('')}</div></section>`;
-    const stats=`<section class="stat-strip">${[['600','Practice questions'],['144','Guided problems'],[String(D.formulas.length),'Typeset formulas'],['48','Deep lessons']].map(x=>`<div><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join('')}</section>`;
+    const stats=`<section class="stat-strip">${[['144','Section self-checks'],['144','Guided problems'],['41','Readable timelines'],['600','Practice questions']].map(x=>`<div><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join('')}</section>`;
     const lower=`<section class="why-section section-space"><div class="collage-card"><div class="fake-chart"><i style="height:28%"></i><i style="height:45%"></i><i style="height:62%"></i><i style="height:81%"></i><i style="height:70%"></i></div><div class="yellow-sticker">Theory → formula → decision → exam.</div><div class="badge-round">FM<br>302</div></div><div><span class="eyebrow">Why this build</span><h2>Designed around how finance questions actually fail.</h2><p>Most mistakes are not algebra mistakes. They come from using the wrong market classification, wrong timeline, wrong rate convention, wrong cash-flow timing, or wrong denominator. Each lesson therefore explains the decision logic before the formula.</p><div class="quality-row"><span>Source alignment</span><b>100%</b></div><div class="quality-line"><i style="width:100%"></i></div><div class="quality-row"><span>Function preservation</span><b>100%</b></div><div class="quality-line"><i style="width:100%"></i></div></div></section>`;
     return `<div class="home-shell shell">${hero}${pillars}${progress}</div>${modules}<div class="home-shell shell">${stats}${lower}</div>`;
   }
@@ -179,7 +280,8 @@ const App = (() => {
     const explanations=[...(l.explanation||[]),...(enh?.moreExplanation||[])];
     const lessonTerms=[...(l.terms||[]),...(enh?.termsExtra||[])];
     const terms=lessonTerms.length?`<section class="term-grid-wrap"><div class="term-grid">${lessonTerms.map(t=>`<div><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join('')}</div></section>`:'';
-    const deepDives=deepDivePanel(enh?.deepDive||[]);
+    const deepDives=deepDivePanel(enh?.deepDive||[],lessonTerms,key);
+    const inlineCheck=inlineKnowledgeCheck(lessonCheckpointQuestion(mid,lid,enh?.deepDive||[]));
     const timelines=timelinePanel(enh?.timelines||[]);
     const corrections=sourceCorrectionPanel(enh?.sourceCorrections||[]);
     const formulas=enh?.formulaKeys?.length?`<section class="theory-block formula-section"><div class="section-inline-head"><div><span class="block-label">FORMULAS THAT BELONG TO THIS CONCEPT</span><h2>See the equation, then read what every symbol means.</h2></div><span class="source-priority">${esc(enh.prioritySource||'Course source')}</span></div><div class="lesson-formula-grid">${enh.formulaKeys.map(k=>formulaPanel(k)).join('')}</div></section>`:'';
@@ -192,6 +294,7 @@ const App = (() => {
       <section class="theory-block intuition"><span class="block-label">KEY PRINCIPLE</span><h2>${esc(l.keyPrinciple)}</h2><p class="principle-note">This statement is the anchor. The sections below expand it without changing the course principle.</p></section>
       <section class="theory-block"><span class="block-label">DEEP EXPLANATION</span><div class="deep-copy">${explanations.map((p,i)=>`<div class="explanation-paragraph"><span>${String(i+1).padStart(2,'0')}</span><p>${esc(p)}</p></div>`).join('')}</div></section>
       ${deepDives}
+      ${inlineCheck}
       ${corrections}
       ${terms}
       ${timelines}
@@ -421,7 +524,11 @@ const App = (() => {
   function examResult(){ const r=state.exam?.result;if(!r)return examHome(); return shell(`<div class="score-hero"><span>Final score</span><strong>${r.correct}/20</strong><h2>${Math.round(r.correct/20*100)}%</h2><button class="green-btn" id="newExam">New exam</button></div><div class="breakdown-grid">${r.breakdown.filter(x=>x.total).map(x=>`<div><span>${x.m.num}</span><h3>${esc(x.m.title)}</h3><strong>${x.correct}/${x.total}</strong></div>`).join('')}</div><div class="review-list">${r.questions.map(q=>{const a=state.exam.answers[q.id];return `<article class="review-row ${a===q.answer?'correct':'wrong'}"><span>${q.id}</span><div><h3>${esc(q.question)}</h3><p>Your answer: ${a===undefined?'Not answered':esc(q.options[a])}</p><p><b>Correct:</b> ${esc(q.options[q.answer])}</p><small>${esc(q.explanation)}</small></div></article>`}).join('')}</div>`,{eyebrow:'Exam complete',title:'Review the reasoning',lead:'Use the module breakdown to decide what to review next.'}); }
 
   function progress(){ const s=scoreStats(); return shell(`<div class="analytics-hero"><div><span>Practice accuracy</span><strong>${s.accuracy}%</strong><small>${s.correct} correct / ${s.total} attempts</small></div><div><span>Lessons complete</span><strong>${s.completed}</strong><small>of ${D.modules.reduce((a,m)=>a+m.lessons.length,0)}</small></div><div><span>Mistakes</span><strong>${state.mistakes.length}</strong><small>active review queue</small></div></div><div class="analytics-table">${D.modules.map(m=>`<article><span>${m.num}</span><div><h3>${esc(m.title)}</h3><div class="progress-line"><i style="width:${moduleProgress(m.id)}%"></i></div></div><strong>${moduleProgress(m.id)}%</strong><small>${moduleAccuracy(m.id)}% accuracy</small></article>`).join('')}</div>`,{eyebrow:'Progress & Analytics',title:'Measure what you can retrieve',lead:'Analytics use your actual local attempts and explicit lesson completion.'}); }
-  function glossary(){ const rows=Object.entries(D.glossary).sort((a,b)=>a[0].localeCompare(b[0])); return shell(`<div class="glossary-grid">${rows.map(([k,v])=>`<article><span>${esc(k.charAt(0))}</span><h3>${esc(k)}</h3><p>${esc(v)}</p></article>`).join('')}</div>`,{eyebrow:'Key terminology',title:'Glossary',lead:'Definitions are kept concise and aligned with the course framing.'}); }
+  function glossary(){
+    const viMap={};D.modules.forEach(m=>m.lessons.forEach(l=>{const enh=lessonEnhancement(m.id,l.id);[...(l.terms||[]),...(enh?.termsExtra||[])].forEach(t=>{if(!viMap[searchNorm(t[0])])viMap[searchNorm(t[0])]=t[1];});}));
+    const rows=Object.entries(D.glossary).sort((a,b)=>a[0].localeCompare(b[0]));
+    return shell(`<div class="glossary-grid">${rows.map(([k,v])=>`<article><span>${esc(k.charAt(0))}</span><h3>${esc(k)}</h3>${viMap[searchNorm(k)]?`<p class="glossary-vi"><b>Tiếng Việt</b> · ${esc(viMap[searchNorm(k)])}</p>`:''}<p>${esc(v)}</p></article>`).join('')}</div>`,{eyebrow:'Key terminology · Vietnamese support',title:'Bilingual glossary',lead:'English remains the teaching language. Vietnamese equivalents sit beside the term so you can recognize the concept precisely without replacing the English definition.'});
+  }
   function saved(){ const rows=state.saved.map(s=>{ if(s.type==='question'){const q=qById(s.id);return q&&{title:q.question,sub:`Question ${q.id}`,route:`practice/${q.module}/${q.lesson}`,type:'Question'};} const [mid,lid]=s.id.split('/'),l=lesson(mid,lid); return l&&{title:l.title,sub:mod(mid).title,route:`learn/${mid}/${lid}`,type:'Lesson'};}).filter(Boolean); return shell(rows.length?`<div class="saved-list">${rows.map(r=>`<article><span>${r.type}</span><div><h3>${esc(r.title)}</h3><p>${esc(r.sub)}</p></div><button class="outline-btn" data-route="${r.route}">Open ↗</button></article>`).join('')}</div>`:`<div class="empty-state"><h2>Nothing saved yet.</h2><p>Use the ☆ icon on lessons and questions.</p></div>`,{eyebrow:'Bookmarks',title:'Saved'}); }
   function sources(){ return shell(`<div class="source-list">${D.sources.map((s,i)=>`<article><span>${String(i+1).padStart(2,'0')}</span><div><small>${esc(s.type)}</small><h3>${esc(s.name)}</h3><p>${esc(s.coverage)}</p></div></article>`).join('')}</div><div class="source-note"><b>Editorial rule used in this rebuild:</b> the lecture/tutorial materials define the course frame. Expanded explanations clarify that frame; they do not replace key principles with a different textbook structure.</div>`,{eyebrow:'Grounding',title:'Sources',lead:'The theory and exercises are organized around the files supplied for TCH 302.'}); }
   function settings(){ return shell(`<div class="settings-card"><label><span>Text size</span><input id="fontScale" type="range" min="90" max="115" value="${state.settings.fontScale}"><b id="fontScaleVal">${state.settings.fontScale}%</b></label><label class="switch-row"><span><b>Compact cards</b><small>Reduce vertical spacing in lists</small></span><input id="compactToggle" type="checkbox" ${state.settings.compact?'checked':''}></label><hr><button class="danger-btn" id="resetData">Reset all local progress</button><p class="muted">Reset clears attempts, lesson completion, mistakes, saved items, flashcards and annotations from this browser only.</p></div>`,{eyebrow:'Local preferences',title:'Settings'}); }
@@ -450,6 +557,7 @@ const App = (() => {
     else if(r==='settings')html=settings();
     else if(r==='menu')html=menu(); else html=notFound();
     app.innerHTML=html;
+    updateHeaderProgress();
     bindAfterRender(r);
     typesetMath(app);
     if(preserveScroll)requestAnimationFrame(()=>window.scrollTo({top:previousY,behavior:'auto'}));
@@ -478,7 +586,20 @@ const App = (() => {
   }
 
   document.addEventListener('click',e=>{
-    const route=e.target.closest('[data-route]'); if(route){nav(route.dataset.route);return;}
+    const route=e.target.closest('[data-route]'); if(route){closeGlobalSearch();nav(route.dataset.route);return;}
+    const reveal=e.target.closest('[data-self-reveal]'); if(reveal){
+      const model=[...document.querySelectorAll('[data-self-model]')].find(node=>node.dataset.selfModel===reveal.dataset.selfReveal);
+      if(model){model.hidden=!model.hidden;reveal.textContent=model.hidden?'Reveal guided answer':'Hide guided answer';}
+      return;
+    }
+    const confidence=e.target.closest('[data-self-confidence]'); if(confidence){
+      const key=confidence.dataset.selfKey, current=state.selfChecks[key]||{};
+      state.selfChecks[key]={...current,confidence:confidence.dataset.selfConfidence,updated:Date.now()};persist();
+      confidence.closest('.self-check-actions')?.querySelectorAll('[data-self-confidence]').forEach(b=>b.classList.toggle('active',b===confidence));
+      showToast(confidence.dataset.selfConfidence==='clear'?'Marked clear':'Added to review');
+      return;
+    }
+    const inlineAnswer=e.target.closest('[data-inline-answer]'); if(inlineAnswer){handleInlineAnswer(inlineAnswer);return;}
     const save=e.target.closest('[data-save-type]'); if(save){saveToggle(save.dataset.saveType,save.dataset.saveId);return;}
     const comp=e.target.closest('[data-complete]'); if(comp){
       const k=comp.dataset.complete,i=state.completed.indexOf(k);
@@ -488,6 +609,7 @@ const App = (() => {
       comp.classList.toggle('done',nowDone);
       comp.textContent=nowDone?'✓ Completed':'Mark lesson complete';
       comp.setAttribute('aria-pressed',nowDone?'true':'false');
+      updateHeaderProgress();
       showToast(nowDone?'Lesson marked complete':'Lesson marked incomplete');
       return;
     }
@@ -530,12 +652,33 @@ const App = (() => {
     const correct=choice===q.answer; state.attempts.push({qid:q.id,choice,correct,at:Date.now()});
     if(!correct&&!state.mistakes.includes(q.id))state.mistakes.unshift(q.id); if(correct)state.mistakes=state.mistakes.filter(id=>id!==q.id); persist();
     card.querySelectorAll('.option').forEach((b,i)=>{b.disabled=true;if(i===q.answer)b.classList.add('correct');if(i===choice&&!correct)b.classList.add('wrong');});
-    const panel=card.querySelector('.answer-panel');panel.hidden=false;panel.innerHTML=`<strong>${correct?'Correct':'Not quite'}</strong><p>${esc(q.explanation)}</p><div class="q-meta">${esc(mod(q.module)?.title||q.module)} · ${esc(lesson(q.module,q.lesson)?.title||q.lesson)} · ${esc(q.origin)}</div><button class="outline-btn" data-route="learn/${q.module}/${q.lesson}">Review concept ↗</button>`;
+    const panel=card.querySelector('.answer-panel');panel.hidden=false;panel.innerHTML=`<strong>${correct?'Correct — the rule is applied consistently.':'Not quite — diagnose the setup before recalculating.'}</strong><p>${esc(q.explanation)}</p><div class="answer-breakdown"><span>WHY EACH OPTION</span>${q.options.map((o,i)=>`<div class="answer-breakdown-row ${i===q.answer?'correct':''}"><b>${String.fromCharCode(65+i)}</b><p><strong>${esc(o)}</strong><br>${esc(distractorExplanation(q,i))}</p></div>`).join('')}</div><div class="q-meta">${esc(mod(q.module)?.title||q.module)} · ${esc(lesson(q.module,q.lesson)?.title||q.lesson)} · ${esc(q.origin)}</div><button class="outline-btn" data-route="learn/${q.module}/${q.lesson}">Review concept ↗</button>`;
     document.getElementById('nextPractice')?.removeAttribute('disabled');
   }
 
+  function handleInlineAnswer(btn){
+    const quiz=btn.closest('[data-inline-quiz]');
+    if(!quiz||quiz.dataset.answered==='true')return;
+    const q=qById(quiz.dataset.inlineQuiz),choice=Number(btn.dataset.inlineAnswer);
+    if(!q)return;
+    const correct=choice===q.answer;quiz.dataset.answered='true';
+    quiz.querySelectorAll('[data-inline-answer]').forEach((b,i)=>{b.disabled=true;if(i===q.answer)b.classList.add('correct');else if(i===choice)b.classList.add('wrong');});
+    const feedback=quiz.querySelector('.inline-knowledge-feedback');
+    feedback.innerHTML=`<div class="knowledge-result ${correct?'correct':'wrong'}"><strong>${correct?'Correct — now explain why in your own words.':'Not correct yet — compare the logic of every option.'}</strong><span>${correct?'✓':'↻'}</span></div><div class="knowledge-breakdown">${q.options.map((o,i)=>`<div class="${i===q.answer?'correct':''}"><b>${String.fromCharCode(65+i)}</b><p><strong>${esc(o)}</strong><br>${esc(distractorExplanation(q,i))}</p></div>`).join('')}</div>`;
+    state.attempts.push({qid:q.id,choice,correct,at:Date.now(),source:'inline-check'});
+    if(!correct&&!state.mistakes.includes(q.id))state.mistakes.unshift(q.id);if(correct)state.mistakes=state.mistakes.filter(id=>id!==q.id);
+    persist();
+  }
+
   document.getElementById('menuTrigger')?.addEventListener('click',()=>nav('menu'));
-  document.getElementById('searchTrigger')?.addEventListener('click',()=>nav('bank'));
+  document.getElementById('searchTrigger')?.addEventListener('click',openGlobalSearch);
+  document.getElementById('globalSearchClose')?.addEventListener('click',closeGlobalSearch);
+  globalSearchDialog?.addEventListener('click',e=>{if(e.target===globalSearchDialog)closeGlobalSearch();});
+  document.addEventListener('keydown',e=>{
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openGlobalSearch();}
+    else if(e.key==='/'&&!/input|textarea|select/i.test(document.activeElement?.tagName||'')){e.preventDefault();openGlobalSearch();}
+    else if(e.key==='Escape')closeGlobalSearch();
+  });
   document.getElementById('practiceModule');
   document.addEventListener('change',e=>{
     if(e.target.id==='practiceModule'){const v=e.target.value;const mode=document.getElementById('practiceMode')?.value||'mixed';state.practice.pool=[];nav(v?`practice/${v}/mode/${mode}`:`practice/mode/${mode}`);}
@@ -544,6 +687,8 @@ const App = (() => {
     if(e.target.id==='compactToggle'){state.settings.compact=e.target.checked;persist();document.body.classList.toggle('compact',e.target.checked);}
   });
   document.addEventListener('input',e=>{
+    if(e.target.matches('[data-self-input]')){const key=e.target.dataset.selfInput,current=state.selfChecks[key]||{};state.selfChecks[key]={...current,answer:e.target.value,updated:Date.now()};persist();}
+    if(e.target.id==='globalSearchInput')renderGlobalSearchResults(e.target.value);
     if(e.target.id==='formulaSearch'){const t=e.target.value.toLowerCase();document.querySelectorAll('.formula-card').forEach(c=>c.hidden=!c.dataset.search.includes(t));}
     if(e.target.id==='noteSearch')renderNotesResults();
   });

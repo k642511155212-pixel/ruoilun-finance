@@ -1,7 +1,7 @@
 "use strict";
 
 /*
-  Finance Mastery v2.0 — deep-learning content helpers
+  Finance Mastery v3.0 — deep-learning content helpers
   ----------------------------------------------------
   This layer extends, rather than replaces, data.js and study-content.js.
   Original key principles, the 600-question bank, routing and LocalStorage
@@ -140,6 +140,6 @@
   }
 
   window.FM_DEEP = {S,P,E,R,T,register};
-  D.version = "2.0";
+  D.version = "3.0";
   D.deepPracticeCount = 144;
 })();

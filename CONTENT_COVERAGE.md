@@ -1,4 +1,6 @@
-# v2.0 Content Coverage
+# v3.0 Content Coverage
+
+v3.0 preserves every v2.0 content expansion and adds 144 section self-checks, 144 direct guided answers, 48 inline knowledge checks, nearby Vietnamese terminology support and a complete editorial redesign.
 
 | Module | Lessons | Guided problems | Timeline emphasis |
 |---|---:|---:|---|
